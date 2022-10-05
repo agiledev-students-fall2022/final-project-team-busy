@@ -19,25 +19,26 @@ Several sets of instructions are included in this repository. They should each b
 
 1. See the [Deployment instructions](./instructions-4-deployment.md) for the requirements of deploying an app.
 
-#Busy?
-##Project Description
+# Busy?
+
+## Project Description
 Busy? is a mobile app that allows users to create schedules and share their availability with friends and their community. With a simple but efficient system of coordination, busy people can finally find the time to connect with each other!
 Every user has a private calendar where they can add and edit activites for specific times. Activities may be one-time or recurring. Users can view by day, week, month, and year.
 Users can see a friend's calendar to determine a time to connect. Time conflicts and ideal times are highlighted. Calendar details may be hidden, depending on the friend's privacy preferences.
 Users can create groups and invite others to a group. Members can see each other's availability, time conflicts, and ideal times for meeting. They can also vote on the best option. Group members can schedule events, and other members can RSVP.
 
-##Team
+## Team
 [Adib El Ounani](https://github.com/wananiadib)
 [Bryan Chavez-Gonzalez](https://github.com/bcg325)
 [Raj Bharaj](https://github.com/rajanbharaj)
 [Niel Chonoolal](https://github.com/nielnyu)
 [Ritin Malhotra](https://github.com/ritindev)
 
-##About
+## About
 A short history of how the project came to be.
 Information about how to contribute to this project can be found in [CONTRIBUTING.md](./CONTRIBUTING.md)
 
-##Instructions for building and testing project
+## Instructions for building and testing project
 Will be updated when project reaches that stage
 
 
