@@ -34,9 +34,13 @@ Users can create groups and invite others to a group. Members can see each other
 ## Team
 
 [Adib El Ounani](https://github.com/wananiadib)
+
 [Bryan Chavez-Gonzalez](https://github.com/bcg325)
+
 [Raj Bharaj](https://github.com/rajanbharaj)
+
 [Niel Chonoolal](https://github.com/nielnyu)
+
 [Ritin Malhotra](https://github.com/ritindev)
 
 ## About
