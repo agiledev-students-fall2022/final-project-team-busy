@@ -170,3 +170,15 @@ You may also notice that clicking the month drop-down menu button brings up the 
 ![Create Event Overlay](wireframes/Create%20Event%20Overlay.png)
 
 - This overlay enables users to create an event for a given date from their own home page (i.e., user profile calendar)
+
+# Account Settings
+
+![Account Settings](wireframes/Account%20Settings.png)
+
+- This page enables users to change their account settings (i.e., make profile calendar public or private, edit bio and change profile picture)
+
+The profile picture is changed through the following page:
+
+![Change Profile Picture](wireframes/Change%20Profile%20Pic.png)
+
+- This page enables users to change their profile picture.
