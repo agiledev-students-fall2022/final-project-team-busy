@@ -7,6 +7,11 @@ Replace the contents of this file with the completed assignments, as described i
 - [app map & wireframe instructions](instructions-0a-app-map-wireframes.md).
 - [prototype instructions](instructions-0b-prototyping.md)
 
+# App Prototype
+[Link to the Clickable Prototype](https://www.figma.com/proto/NUrsgWWd7bYRWXnVhkWUUK/Add-Ext.-Calendar-Wireframe?node-id=44%3A78&scaling=scale-down&page-id=20%3A60&starting-point-node-id=44%3A78)
+
+This is the clickable / tappable mobile prototype for the Minimum Viable Product (MVP) of our application. Through this prototype, we have connected the wireframes that we created in Figma for the pages of our application. The prototype enables users to get a better understanding of how the different pages of our app are interconnected, and how they're accessed from within one another. It also includes some overlays that appear when you try to add an event to the calendar, select a month etc. 
+
 # App Map 
 
 ![App Map](wireframes/AppMap.png)
@@ -22,7 +27,6 @@ The app map depicts major pages that users can access. It demonstrates the paren
 ![Homepage](wireframes/Homepage.png)
 
 The homepage will be the user's personal calendar, where they can view their upcoming schedules.
-
 
 
 # Adding events to Personal Calendar 
