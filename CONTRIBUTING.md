@@ -56,7 +56,7 @@ IMPORTANT: Before starting every task every member must Git Pull every time befo
 
 While coding every member must ensure they use self documentating code that is has descriptive variables and function names. This will ensure whoever oversees and merges the member's branch, will understand everything that occurs in the code. 
 
-It is important for every member of the team to commit clean and usable code for the project. When a developer pull reuqest their current working branch, the member who will decide whether to merge the pull request into the main branch must act as code editor and make sure every code is in a standardized format. If code is not in appropriate format, the code editor can return it back to the developer to fix.
+It is important for every member of the team to commit clean and usable code for the project. When a developer pull request their current working branch, the member who will decide whether to merge the pull request into the main branch must act as code editor and make sure every code is in a standardized format. If code is not in appropriate format, the code editor can return it back to the developer to fix.
 
 
 Happy Coding!
