@@ -33,9 +33,9 @@ The homepage will be the user's personal calendar, where they can view their upc
 
 # Adding events to Personal Calendar 
 
-![Add Events to PC](wireframes/Adding_PC.png)
+![Add Events to PC](wireframes/personalCalendar.png)
 
-- When a user decides to add a new event on their personal calendar they will tap a date on the calendar on the hopepage, and then be shown the schedule of the day with the bottom portion being any new event they want to add. 
+- When a user decides to add a new event on their personal calendar they will tap a date on the calendar on the hopepage, and then be shown the schedule of the day with the bottom portion redirects to create new event.
 
 
 # User Profile 
