@@ -33,7 +33,7 @@ The homepage will be the user's personal calendar, where they can view their upc
 
 ![Add Events to PC](wireframes/Adding_PC.png)
 
-When a user decides to add a new event on their personal calendar they will tap a date on the calendar on the hopepage, and then be shown the schedule of the day with the bottom portion being any new event they want to add. 
+- When a user decides to add a new event on their personal calendar they will tap a date on the calendar on the hopepage, and then be shown the schedule of the day with the bottom portion being any new event they want to add. 
 
 
 # User Profile 
@@ -52,6 +52,20 @@ When a user decides to add a new event on their personal calendar they will tap 
 
 - This page is a navbar item, and will be always be accessible from the HomePage and any of the HomePages first children, see AppMap for more details.
 
+# Profile Calendar
+
+![Profile Calendar](wireframes/Profile%20Calendar.png)
+
+- The Profile Calendar page allows a user to look at the public calendar of someone's profile.
+
+- A user can click on a date in the calendar to open the page for the date as follows:
+
+# Profile Calendar (Date Clicked)
+
+![Profile Calendar (Date Clicked)](wireframes/Profile%20Calendar%20(Date%20Clicked).png)
+
+- This page allows a user to view the schedule for a date in another user's public calendar.
+
 # Friends 
 
 ![Friends](wireframes/Friends.png)
@@ -59,6 +73,22 @@ When a user decides to add a new event on their personal calendar they will tap 
 - The Friends page shows a users friend list, allowing them to quickly find out who they are connected to and view their friends private profile.
 
 - This page is a navbar item, and will be always be accessible from the HomePage and any of the HomePages first children, see AppMap for more details.
+
+# Friend Calendar
+
+![Friend Calendar](wireframes/Friend%20Calendar.png)
+
+- The Friend Calendar page allows a user to look at the calendar of someone they're friends with profile.
+
+- A user can click on a date in the calendar to open the page for the date as follows:
+
+# Friend Calendar (Date Clicked)
+
+![Friend Calendar (Date Clicked)](wireframes/Friend%20Calendar%20(Date%20Clicked).png)
+
+- This page allows a user to view the schedule for a date in a friend's calendar.
+- Through this page, a user can also create an event for an activity with their friend for the given date.
+
 # Groups
 
 ![Groups](wireframes/Groups.png)
@@ -68,6 +98,27 @@ When a user decides to add a new event on their personal calendar they will tap 
 - The Groups page also contains a 'Create Group' button allowing them to navigate to the Create Groups page easily. 
 
 - This page is a navbar item, and will be always be accessible from the HomePage and any of the HomePages first children, see AppMap for more details.
+
+# Group Calendar
+
+![Group Calendar](wireframes/Group%20Calendar.png)
+
+- The Group Calendar page allows a user to look at the calendar of a group they're part of.
+
+- A user can click on a date in the calendar to open the page for the date as follows:
+
+# Group Calendar (Date Clicked)
+
+![Group Calendar (Date Clicked)](wireframes/Group%20Calendar%20(Date%20Clicked).png)
+
+- This page allows a user to view the schedule for a date in a group's calendar.
+- Through this page, a user can also create an event for an activity with their group for the given date.
+
+# Create Group
+
+![Create Group](wireframes/Create%20Group%20Wireframe.png)
+
+- This page enables users to create groups, add a profile picture for the group and invite their friends to the group.
 
 # Events
 
@@ -85,5 +136,9 @@ When a user decides to add a new event on their personal calendar they will tap 
 
 - A user can either go back to the main events page, or if interested after viewing all relevant information, can request to join event.
 
+# Create Event
 
+![Create Event](wireframes/Create%20Event%20Wireframe.png)
+
+- This page allows users to create events for a specified date. They can also invite selected friends for the event from this page.
 
