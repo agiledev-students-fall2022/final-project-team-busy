@@ -142,3 +142,25 @@ The homepage will be the user's personal calendar, where they can view their upc
 
 - This page allows users to create events for a specified date. They can also invite selected friends for the event from this page.
 
+# Add External Calendar
+
+![Add External Calendar](wireframes/Add%20Ext.%20Calendar.png)
+
+- This page enables users to import `.ical` calendars to the app to either add events from the calendar or replace current personal calendar.
+
+- This page has the following options:
+  - Event Addition:
+  1. Add all event from the imported calendar
+  2. Add events from specified months from the imported calendar
+   - Calendar Merging / Replacement:
+  1. Add events from imported calendar to existing personal calendar
+  2. Replace existing personal calendar.
+
+You may also notice that clicking the month drop-down menu button brings up the select month overlay, which is as follows:
+
+# Select Month Overlay
+
+![Month Selection Overlay](wireframes/Month%20Selection%20Overlay.png)
+
+- This page enables users to either select a month of the year or return to the calling page
+- Useful for creating events
