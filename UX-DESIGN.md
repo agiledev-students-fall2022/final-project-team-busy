@@ -136,9 +136,9 @@ The homepage will be the user's personal calendar, where they can view their upc
 
 - A user can either go back to the main events page, or if interested after viewing all relevant information, can request to join event.
 
-# Create Event
+# Create Event Page
 
-![Create Event](wireframes/Create%20Event%20Wireframe.png)
+![Create Event Page](wireframes/Create%20Event%20Wireframe.png)
 
 - This page allows users to create events for a specified date. They can also invite selected friends for the event from this page.
 
@@ -164,3 +164,9 @@ You may also notice that clicking the month drop-down menu button brings up the 
 
 - This page enables users to either select a month of the year or return to the calling page
 - Useful for creating events
+
+# Create Event Overlay
+
+![Create Event Overlay](wireframes/Create%20Event%20Overlay.png)
+
+- This overlay enables users to create an event for a given date from their own home page (i.e., user profile calendar)
