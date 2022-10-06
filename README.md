@@ -45,7 +45,7 @@ Users can create groups and invite others to a group. Members can see each other
 
 ## About
 
-Busy? is a project inspired by the daily life of a busy college student. As many students can attest to, having free time to hang out with your friends can be difficult especially with all the classes, homework and activities that are constantly taking up our time. Busy? main goal is to offer a lending hand to help students not only schedule their busy lives, but also schedule those special moments that are waiting to happening with your friends. To learn more about the conceptulization of busy? please click [here](https://github.com/agiledev-students-fall2022/project-proposal-codingbuds/blob/main/README.md). 
+Busy? is a project inspired by the daily life of a busy college student. As many students can attest to, having free time to hang out with your friends can be difficult especially with all the classes, homework and activities that are constantly taking up our time. Busy? main goal is to offer a lending hand to help students not only schedule their busy lives, but also schedule those special moments that are waiting to happen with your friends. To learn more about the conceptulization of busy? please click [here](https://github.com/agiledev-students-fall2022/project-proposal-codingbuds/blob/main/README.md). 
 
 Information about how to contribute to this project can be found in [CONTRIBUTING.md](./CONTRIBUTING.md)
 
