@@ -182,3 +182,9 @@ The profile picture is changed through the following page:
 ![Change Profile Picture](wireframes/Change%20Profile%20Pic.png)
 
 - This page enables users to change their profile picture.
+
+# Profile / Group Feed
+
+![Profile / Group Feed](wireframes/Group%20Feed.png)
+
+- This page enables users to view the profile of another user or a group, and request their friendship or group invitation.
