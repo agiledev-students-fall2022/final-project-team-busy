@@ -20,7 +20,7 @@ The app map depicts major pages that users can access. It demonstrates the paren
 
 
 # Sign In / Login 
-
+![Login](wireframes/Login.png)
 
 # Homepage (Personal Calendar) 
 
