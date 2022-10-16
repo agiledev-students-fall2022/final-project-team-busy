@@ -1,4 +1,10 @@
+import ReduxExample from "../examples/ReduxExample";
 function Home() {
-  return <div>Home</div>;
+  return (
+    <>
+      <h1>Profile</h1>
+      <ReduxExample />
+    </>
+  );
 }
 export default Home;
