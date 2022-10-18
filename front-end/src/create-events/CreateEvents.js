@@ -5,6 +5,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DateTimePicker } from '@mui/x-date-pickers'
 import { useState } from 'react';
 import { TextField } from '@mui/material';
+import FriendList from './FriendList';
 
 const CreateEvents = props => {
     let currentDate = new Date().toLocaleString()
@@ -36,6 +37,7 @@ const CreateEvents = props => {
                     }}
                 />
                 <p>Add friends to {name}</p>
+                <FriendList />
             </LocalizationProvider>
         </div>
     )
