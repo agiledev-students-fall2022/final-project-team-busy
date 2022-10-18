@@ -26,7 +26,7 @@ const FriendList = () => {
     let friends = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     return (
-        <List dense sx={{ width: '100%', bgcolor: 'background.paper' }}>
+        <List dense sx={{ width: '100%', bgcolor: 'background.paper', paddingTop: '2.5px', marginLeft: '-5px' }}>
             {friends.map((value) => {
                 const labelId = `checkbox-list-secondary-label-${value}`;
                 return (
