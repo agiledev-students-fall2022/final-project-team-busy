@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './home/Home';
-import LookUp from './lookup/LookUp';
+import LookUp from './Pages/LookUp';
 import CreateEvents from './create-events/CreateEvents';
 import NavComponent from './navbar/NavBar';
 
@@ -12,7 +12,7 @@ function App() {
       <Router>
             <Routes>
                 <Route path='/home' element={<Home />} />
-                <Route path='/lookup' element={<LookUp />} />
+                <Route path='Pages/LookUp' element={<LookUp />} />
                 <Route path='/create-event' element={<CreateEvents />} />
             </Routes>
             <NavComponent />

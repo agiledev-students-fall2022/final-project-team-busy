@@ -1,0 +1,24 @@
+button {
+    display: inline-block;
+    background-color: #ffffff;
+    border-radius: 20px;
+    border: 1px solid #979797;
+    color: #979797;
+    font-weight: lighter;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px;
+    width: 25%;
+    max-height: 15vh;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover{
+    background-color: rgb(214, 241, 255);
+}
+
+button:focus{
+    background-color: rgb(169, 219, 248);
+}
