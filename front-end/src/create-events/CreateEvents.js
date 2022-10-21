@@ -46,8 +46,8 @@ const CreateEvents = props => {
                 <p>Add friends to {name}</p>
                 <FriendList />
                 <div className="form-submit-buttons">
-                    <Button variant="outlined">Cancel</Button>
-                    <Button variant="contained">Create Event</Button>
+                    <Button variant="outlined" className='cancel-button'>Cancel</Button>
+                    <Button variant="contained" className='create-event-button'>Create Event</Button>
                 </div>
             </LocalizationProvider>
         </div>
