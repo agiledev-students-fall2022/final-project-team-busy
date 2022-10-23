@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -7,27 +7,25 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Checkbox from '@mui/material/Checkbox';
 import Avatar from '@mui/material/Avatar';
 
-const FriendList = () => {
-    const [checked, setChecked] = React.useState([1]);
+const FriendList = ({friends, checked, handleToggle}) => {
+    // const [checked, setChecked] = useState([1]);
 
-    const handleToggle = (value) => () => {
-        const currentIndex = checked.indexOf(value);
-        const newChecked = [...checked];
+    // const handleToggle = (value) => () => {
+    //     const currentIndex = checked.indexOf(value);
+    //     const newChecked = [...checked];
 
-        if (currentIndex === -1) {
-            newChecked.push(value);
-        } else {
-            newChecked.splice(currentIndex, 1);
-        }
+    //     if (currentIndex === -1) {
+    //         newChecked.push(value);
+    //     } else {
+    //         newChecked.splice(currentIndex, 1);
+    //     }
 
-        setChecked(newChecked);
-    };
-
-    let friends = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    //     setChecked(newChecked);
+    // };
 
     return (
         <List dense sx={{ width: '100%', bgcolor: 'background.paper', paddingTop: '2.5px', marginLeft: '-5px' }}>
-            {friends.map((value) => {
+            {friends && friends.map((value) => {
                 const labelId = `checkbox-list-secondary-label-${value}`;
                 return (
                     <ListItem
