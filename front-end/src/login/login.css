@@ -1,0 +1,36 @@
+.form-card {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 0.2rem 3rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  width: 30rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.form-align-right {
+  text-align: right;
+}
+
+a {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+/* 
+border: "1px solid #333",
+          borderRadius: "10px",
+          margin: "0 auto",
+          maxWidth: "30rem",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 4,
+           */
