@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './home/Home';
 import LookUp from './Pages/LookUp';
 import CreateEvents from './create-events/CreateEvents';
-import NavComponent from './navbar/NavBar';
+import NavComponent from './navbar/NavComponent';
 import AddExtCal from './Pages/AddExtCal';
 import CreateGroups from './create-groups/CreateGroups'
+import Friends from './Friends';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
                 <Route path='/create-event' element={<CreateEvents />} />
                 <Route path='/add-external-calendar' element={<AddExtCal />} />
                 <Route path='/create-group' element={<CreateGroups />} />
+                <Route path="/friends" element={<Friends />} />
             </Routes>
             <NavComponent />
         </Router>

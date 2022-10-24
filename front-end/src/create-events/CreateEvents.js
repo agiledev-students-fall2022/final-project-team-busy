@@ -8,6 +8,7 @@ import { TextField } from '@mui/material';
 import FriendList from './FriendList';
 import { Button } from '@mui/material'
 
+
 const CreateEvents = props => {
     let currentDate = new Date().toLocaleString()
     const [date, setDate] = useState(currentDate)
