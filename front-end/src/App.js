@@ -7,6 +7,7 @@ import NavComponent from './navbar/NavComponent';
 import AddExtCal from './Pages/AddExtCal';
 import CreateGroups from './create-groups/CreateGroups'
 import Friends from './Friends';
+import Groups from './Groups';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
                 <Route path='/create-event' element={<CreateEvents />} />
                 <Route path='/add-external-calendar' element={<AddExtCal />} />
                 <Route path='/create-group' element={<CreateGroups />} />
+                <Route path='/groups' element={<Groups />} />
                 <Route path="/friends" element={<Friends />} />
             </Routes>
             <NavComponent />
