@@ -5,6 +5,7 @@ import LookUp from './Pages/LookUp';
 import CreateEvents from './create-events/CreateEvents';
 import NavComponent from './navbar/NavBar';
 import AddExtCal from './Pages/AddExtCal';
+import CreateGroups from './create-groups/CreateGroups'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
                 <Route path='Pages/LookUp' element={<LookUp />} />
                 <Route path='/create-event' element={<CreateEvents />} />
                 <Route path='/add-external-calendar' element={<AddExtCal />} />
+                <Route path='/create-group' element={<CreateGroups />} />
             </Routes>
             <NavComponent />
         </Router>
