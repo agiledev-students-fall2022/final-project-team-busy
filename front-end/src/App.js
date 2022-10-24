@@ -1,4 +1,3 @@
-
 import "./App.css";
 import { useState } from "react";
 import {
@@ -13,7 +12,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import Home from "./home/Home";
 import LookUp from "./Pages/LookUp";
 import CreateEvents from "./create-events/CreateEvents";
-import NavComponent from "./navbar/NavBar";
+import NavComponent from "./navbar/NavComponent";
 import AddExtCal from "./Pages/AddExtCal";
 import CreateGroups from "./create-groups/CreateGroups";
 import Friends from "./Friends";
