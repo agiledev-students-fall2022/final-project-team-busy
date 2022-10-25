@@ -9,7 +9,7 @@ import {
 import Login from "./login/Login";
 import SignUp from "./login/SignUp";
 import ProtectedRoute from "./Components/ProtectedRoute";
-import Home from './Pages/Home';
+import Home from "./Pages/Home";
 import LookUp from "./Pages/LookUp";
 import CreateEvents from "./create-events/CreateEvents";
 import NavComponent from "./navbar/NavComponent";
@@ -17,7 +17,6 @@ import AddExtCal from "./Pages/AddExtCal";
 import CreateGroups from "./create-groups/CreateGroups";
 import Friends from "./Friends";
 import ProfilePage from "./profile-page/ProfilePage";
-
 
 function App() {
   const [user, setUser] = useState(null);
@@ -38,13 +37,13 @@ function App() {
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/sign-up" element={<SignUp onLogin={handleLogin} />} />
           <Route element={<ProtectedRoute user={user} />}>
-          <Route path='Pages/Home' element={<Home />} />
-          <Route path='Pages/LookUp' element={<LookUp />} />
-          <Route path="/create-event" element={<CreateEvents />} />
-          <Route path="/add-external-calendar" element={<AddExtCal />} />
-          <Route path="/create-group" element={<CreateGroups />} />
-          <Route path="/friends" element={<Friends />} />
-          <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/lookup" element={<LookUp />} />
+            <Route path="/create-event" element={<CreateEvents />} />
+            <Route path="/add-external-calendar" element={<AddExtCal />} />
+            <Route path="/create-group" element={<CreateGroups />} />
+            <Route path="/friends" element={<Friends />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Route>
         </Routes>
         {user && <NavComponent />}
