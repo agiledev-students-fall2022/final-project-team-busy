@@ -32,7 +32,7 @@ const NavComponent = (props) => {
             label="Profile"
             icon={<AccountCircleIcon />}
             component={Link}
-            to="/home"
+            to="/profile"
           />
           <BottomNavigationAction
             label="Look Up"
