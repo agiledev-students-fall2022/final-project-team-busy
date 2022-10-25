@@ -18,7 +18,58 @@ const CreateGroups = () => {
     const [nameChanges, setNameChanges] = useState(0);
     const [friendsChecked, setChecked] = useState([1]);
 
-    let friends = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    let friends = [
+        {
+            "value": 0,
+            "name": "Oran McCullough",
+            "bgcolor": "#f44336"
+        },
+        {
+            "value": 1,
+            "name": "Jacynthe Walter",
+            "bgcolor": "#f44336"
+        },
+        {
+            "value": 2,
+            "name": "Darrell Renner",
+            "bgcolor": "#e91e63"
+        },
+        {
+            "value": 3,
+            "name": "Darrell Renner",
+            "bgcolor": "#e91e63"
+        },
+        {
+            "value": 4,
+            "name": "Jeremie Gorczany",
+            "bgcolor": "#4caf50"
+        },
+        {
+            "value": 5,
+            "name": "Oran McCullough",
+            "bgcolor": "#f44336"
+        },
+        {
+            "value": 6,
+            "name": "Jaquan Von",
+            "bgcolor": "#4caf50"
+        },
+        {
+            "value": 7,
+            "name": "Darrell Renner",
+            "bgcolor": "#e91e63"
+        },
+        {
+            "value": 8,
+            "name": "Oran McCullough",
+            "bgcolor": "#f44336"
+        },
+        {
+            "value": 9,
+            "name": "Darrell Renner",
+            "bgcolor": "#2196f3"
+        }
+    ]
 
     const handleNameChange = (e) => {
         // console.log(e.target.value);
@@ -45,7 +96,7 @@ const CreateGroups = () => {
             newChecked.splice(currentIndex, 1);
         }
 
-        console.log(newChecked);
+        console.log(friends[newChecked[newChecked.length - 1]])
 
         setChecked(newChecked);
     };
@@ -63,9 +114,9 @@ const CreateGroups = () => {
                 <input hidden accept="image/*" type="file" onChange={handleDPChange} />
                 <Avatar alt="Group" src={dpURL} sx={{ width: 75, height: 75, bgcolor: blue[400], display: 'flex', justifyContent: 'center', alignItems: 'center' }}><GroupsIcon sx={{ width: 42.5, height: 42.5, ":hover": 'cursor: pointer', position: 'relative', bottom: '1.5%' }} /></Avatar>
             </IconButton>
-            <TextField className='group-name' id="group-name" label="Enter Group Name" variant="outlined" required value={name} onChange={handleNameChange} inputProps={{ maxLength: 30 }} error={nameError} helperText={nameError ? 'Please enter group name' : ''}/>
+            <TextField className='group-name' id="group-name" label="Enter Group Name" variant="outlined" required value={name} onChange={handleNameChange} inputProps={{ maxLength: 30 }} error={nameError} helperText={nameError ? 'Please enter group name' : ''} />
             <p>Add friends to group {name}</p>
-            <FriendList friends={friends} checked={friendsChecked} handleToggle={handleToggle}/>
+            <FriendList friends={friends} checked={friendsChecked} handleToggle={handleToggle} />
             <div className="form-submit-buttons">
                 <Button variant="outlined" className='cancel-button'>Cancel</Button>
                 <Button type='submit' onClick={handleSubmission} variant="contained" className='create-group-button' disabled={anyError} >Create Group</Button>
