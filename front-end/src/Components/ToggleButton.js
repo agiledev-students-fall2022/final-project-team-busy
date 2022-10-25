@@ -3,7 +3,7 @@ import './ToggleButton.css';
 
 const ToggleButton = ({onClick, text}) => {
     return(
-    <button onClick = {onClick}>{text}</button>
+    <button className = "ripple" onClick = {onClick}>{text}</button>
     )
 }
 

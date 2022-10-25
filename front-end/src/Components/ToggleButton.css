@@ -1,24 +1,31 @@
+.ripple {
+    background-position: center;
+    transition: background 0.8s;
+  }
+  .ripple:hover {
+    background: #1864c4 radial-gradient(circle, transparent 1%, #1864c4 1%) center/15000%;
+  }
+.ripple:active {
+    background-color: #6eb9f7;
+    background-size: 100%;
+    transition: background 0s;
+  }
+
+
 button {
     display: inline-block;
-    background-color: #ffffff;
-    border-radius: 20px;
+    background-color: #1976d2;
+    border-radius: 10px;
     border: 1px solid #979797;
-    color: #979797;
+    color: #ffffff;
     font-weight: lighter;
     text-align: center;
     font-size: 18px;
     padding: 10px;
+    min-width: 3px;
     width: 25%;
     max-height: 15vh;
     transition: all 0.5s;
     cursor: pointer;
     margin: 5px;
-}
-
-button:hover{
-    background-color: rgb(214, 241, 255);
-}
-
-button:focus{
-    background-color: rgb(169, 219, 248);
 }

@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import PasswordInput from "../Components/PasswordInput";
 import "./login.css";
 
-const Login = ({ onLogin }) => {
+const SignUp = ({ onLogin }) => {
   const [values, setValues] = useState({
     email: "",
     emailFocused: false,
@@ -15,6 +15,10 @@ const Login = ({ onLogin }) => {
     passwordFocused: false,
     validPassword: false,
     showPassword: false,
+    passwordConfirm: "",
+    showPasswordConfirm: false,
+    validPasswordConfirm: false,
+    passwordConfirmFocused: false,
   });
 
   const navigate = useNavigate();
@@ -64,7 +68,7 @@ const Login = ({ onLogin }) => {
 
   return (
     <Box maxWidth="sm" component="form" className="form-card">
-      <h2>Login</h2>
+      <h2>Sign Up</h2>
       <TextField
         fullWidth
         required
@@ -85,6 +89,17 @@ const Login = ({ onLogin }) => {
         handleClickShowPassword={handleClickShowPassword("showPassword")}
         handleMouseDownPassword={handleMouseDownPassword}
       />
+      <PasswordInput
+        inputLabel={"Confirm Password"}
+        showPassword={values.showPasswordConfirm}
+        password={values.passwordConfirm}
+        validPassword={values.validPasswordConfirm}
+        passwordFocused={values.passwordConfirmFocused}
+        onChange={handleChange("passwordConfirm")}
+        handleClickShowPassword={handleClickShowPassword("showPasswordConfirm")}
+        handleMouseDownPassword={handleMouseDownPassword}
+      />
+
       <span className="form-align-right">
         <Link to="/forgot-password">Forgot your password?</Link>
       </span>
@@ -93,15 +108,15 @@ const Login = ({ onLogin }) => {
         variant="contained"
         onClick={handleSubmit}
       >
-        Log in
+        sign Up
       </Button>
       <Button className="form-button" variant="contained">
         Continue with Google
       </Button>
       <p>
-        Don't have an account? <Link to="/sign-up">Sign up</Link>{" "}
+        Already have an account? <Link to="/login">Login</Link>{" "}
       </p>
     </Box>
   );
 };
-export default Login;
+export default SignUp;

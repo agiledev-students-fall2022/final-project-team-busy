@@ -1,0 +1,16 @@
+.intro { 
+    padding: 40px;
+    
+}
+
+.heading{
+    font-weight: normal;
+    color: black;
+}
+
+.schedule{
+    font-weight: normal;
+    color: black;
+    text-decoration: underline;
+    text-decoration-color: black;
+}

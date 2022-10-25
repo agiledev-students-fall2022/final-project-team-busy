@@ -4,8 +4,25 @@
 }
 
 .heading{
+    text-align: left;
+    margin: 0;
     font-weight: normal;
-    color: #737272;
 }
+
+.home-head{
+    display: flex;
+    align-items: center;
+}
+
+.offset{
+    margin-left: auto;
+}
+
+.username {
+    display: flex;
+    color: #111;
+}
+
+
 
 
