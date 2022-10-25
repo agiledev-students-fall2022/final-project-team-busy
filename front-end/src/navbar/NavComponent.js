@@ -46,7 +46,11 @@ const NavComponent = (props) => {
             component={Link}
             to="/friends"
           />
-          <BottomNavigationAction label="Groups" icon={<GroupsIcon />} />
+          <BottomNavigationAction 
+            label="Groups" 
+            icon={<GroupsIcon />}
+            component={Link}
+            to="/groups" />
           <BottomNavigationAction
             label="Events"
             icon={<EventIcon />}

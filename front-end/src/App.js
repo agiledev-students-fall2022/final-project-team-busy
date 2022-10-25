@@ -43,6 +43,7 @@ function App() {
                 <Route path='/add-external-calendar' element={<AddExtCal />} />
                 <Route path='/create-group' element={<CreateGroups />} />
                 <Route path="/friends" element={<Friends />} />
+                <Route path="/groups" element={<Groups  />} />
             </Routes>
             <NavComponent />
         </Router>
