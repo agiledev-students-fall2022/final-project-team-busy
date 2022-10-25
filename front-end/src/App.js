@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from './home/Home';
+import Home from './Pages/Home';
 import LookUp from './Pages/LookUp';
 import CreateEvents from './create-events/CreateEvents';
 import NavComponent from './navbar/NavBar';
@@ -12,7 +12,7 @@ function App() {
       {/* <NavBar /> */}
       <Router>
             <Routes>
-                <Route path='/home' element={<Home />} />
+                <Route path='Pages/Home' element={<Home />} />
                 <Route path='Pages/LookUp' element={<LookUp />} />
                 <Route path='/create-event' element={<CreateEvents />} />
                 <Route path='/add-external-calendar' element={<AddExtCal />} />
