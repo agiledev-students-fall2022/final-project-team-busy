@@ -5,12 +5,12 @@
 
 .heading{
     font-weight: normal;
-    color: #737272;
+    color: black;
 }
 
 .schedule{
     font-weight: normal;
-    color: #737272;
+    color: black;
     text-decoration: underline;
-    text-decoration-color: #737272;
+    text-decoration-color: black;
 }
