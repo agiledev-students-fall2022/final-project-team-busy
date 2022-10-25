@@ -17,8 +17,58 @@ const CreateEvents = props => {
     const [nameChanges, setNameChanges] = useState(0);
     const [friendsChecked, setChecked] = useState([1]);
 
-    let friends = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
+    let friends = [
+        {
+            "value": 0,
+            "name": "Oran McCullough",
+            "bgcolor": "#f44336"
+        },
+        {
+            "value": 1,
+            "name": "Jacynthe Walter",
+            "bgcolor": "#f44336"
+        },
+        {
+            "value": 2,
+            "name": "Darrell Renner",
+            "bgcolor": "#e91e63"
+        },
+        {
+            "value": 3,
+            "name": "Darrell Renner",
+            "bgcolor": "#e91e63"
+        },
+        {
+            "value": 4,
+            "name": "Jeremie Gorczany",
+            "bgcolor": "#4caf50"
+        },
+        {
+            "value": 5,
+            "name": "Oran McCullough",
+            "bgcolor": "#f44336"
+        },
+        {
+            "value": 6,
+            "name": "Jaquan Von",
+            "bgcolor": "#4caf50"
+        },
+        {
+            "value": 7,
+            "name": "Darrell Renner",
+            "bgcolor": "#e91e63"
+        },
+        {
+            "value": 8,
+            "name": "Oran McCullough",
+            "bgcolor": "#f44336"
+        },
+        {
+            "value": 9,
+            "name": "Darrell Renner",
+            "bgcolor": "#2196f3"
+        }
+    ]
 
     const handleToggle = (value) => () => {
         const currentIndex = friendsChecked.indexOf(value);
@@ -30,7 +80,7 @@ const CreateEvents = props => {
             newChecked.splice(currentIndex, 1);
         }
 
-        console.log(newChecked)
+        console.log(friends[newChecked[newChecked.length - 1]])
 
         setChecked(newChecked);
     };
@@ -55,7 +105,7 @@ const CreateEvents = props => {
         setDescription(e.target.value);
     }
 
-    
+
     let nameError = (nameChanges > 0 && name === '')
     let noNameSubmitted = (name === '')
     let dateError = (date < new Date());
@@ -66,7 +116,7 @@ const CreateEvents = props => {
         <div className='create-events-page'>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <h2 className="create-event-heading">Create Event</h2>
-                <TextField id="event-name" label="Enter Event Name" variant="outlined" required value={name} onChange={handleNameChange} inputProps={{ maxLength: 50 }} error={nameError} helperText={nameError ? 'Please enter group name' : ''}/>
+                <TextField id="event-name" label="Enter Event Name" variant="outlined" required value={name} onChange={handleNameChange} inputProps={{ maxLength: 50 }} error={nameError} helperText={nameError ? 'Please enter group name' : ''} />
                 <TextField id="event-description" label="Enter Event Description" variant="outlined" multiline minRows={3} value={description} onChange={handleDescriptionChange} />
                 <DateTimePicker
                     renderInput={(props) => <TextField {...props} />}
@@ -77,7 +127,7 @@ const CreateEvents = props => {
                     }}
                 />
                 <p>Add friends to {name}</p>
-                <FriendList friends={friends} checked={friendsChecked} handleToggle={handleToggle} setChecked={setChecked}/>
+                <FriendList friends={friends} checked={friendsChecked} handleToggle={handleToggle} setChecked={setChecked} />
                 <div className="form-submit-buttons">
                     <Button variant="outlined" className='cancel-button'>Cancel</Button>
                     <Button type='submit' disabled={anyError} onClick={handleSubmission} variant="contained" className='create-event-button'>Create Event</Button>
