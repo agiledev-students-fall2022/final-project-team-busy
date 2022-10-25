@@ -1,0 +1,18 @@
+.events-card-desc {
+  margin: 0.8rem 0;
+}
+
+.events-card {
+  text-align: left;
+  padding: 1rem 1.5rem;
+  width: 90%;
+  max-width: 50rem;
+  margin: 1rem auto;
+  cursor: pointer;
+}
+
+.events-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

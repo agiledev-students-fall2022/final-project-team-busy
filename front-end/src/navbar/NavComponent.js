@@ -47,7 +47,12 @@ const NavComponent = (props) => {
             to="/friends"
           />
           <BottomNavigationAction label="Groups" icon={<GroupsIcon />} />
-          <BottomNavigationAction label="Events" icon={<EventIcon />} />
+          <BottomNavigationAction
+            label="Events"
+            icon={<EventIcon />}
+            component={Link}
+            to="/events"
+          />
         </BottomNavigation>
       </Paper>
     </Box>
