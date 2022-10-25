@@ -37,7 +37,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp onLogin={handleLogin} />} />
           <Route element={<ProtectedRoute user={user} />}>
             <Route path="/home" element={<Home />} />
-            <Route path="Pages/LookUp" element={<LookUp />} />
+            <Route path="/lookup" element={<LookUp />} />
             <Route path="/create-event" element={<CreateEvents />} />
             <Route path="/add-external-calendar" element={<AddExtCal />} />
             <Route path="/create-group" element={<CreateGroups />} />
