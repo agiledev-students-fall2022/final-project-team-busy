@@ -1,9 +1,22 @@
 .events-container {
-  padding: 0 2rem;
+  padding: 2rem;
+  /* padding: 32.5px; */
 }
 
 .events-button {
   display: block;
   width: 20rem;
-  margin: 0.8rem auto;
+  margin: 2rem auto;
+}
+
+.events-search-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.events-flex {
+  display: flex;
+  align-items: center;
 }

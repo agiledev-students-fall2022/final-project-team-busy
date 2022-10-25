@@ -1,12 +1,14 @@
 import "./Events.css";
-import { useState } from "react";
+import { Link } from "react-router-dom";
+
 import SearchIcon from "@mui/icons-material/Search";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import EventCard from "../Components/EventCard";
 import Container from "@mui/material/Container";
+import HomeIcon from "@mui/icons-material/Home";
+import { IconButton } from "@mui/material";
 
 const Events = () => {
   const events = [
@@ -32,25 +34,37 @@ const Events = () => {
 
   return (
     <Container maxWidth="md" className="events-container">
-      <h2 className="align-left">Events</h2>
+      <div className="events-flex">
+        <h2 className="events-heading">Events</h2>
+        <div className="home-button">
+          <IconButton aria-label="home" component={Link} to="/home">
+            <HomeIcon
+              sx={{ height: 45, width: 45, ":hover": { cursor: "pointer" } }}
+            />
+          </IconButton>
+        </div>
+      </div>
+      <div className="events-search-group">
+        <TextField
+          id="outlined-basic"
+          label="Search Events"
+          variant="outlined"
+          sx={{ m: 1, width: "40ch" }}
+          InputProps={{
+            endAdornment: <SearchIcon />,
+          }}
+        />
 
-      <TextField
-        id="outlined-basic"
-        label="Search Events"
-        variant="outlined"
-        sx={{ m: 1, width: "40ch" }}
-        InputProps={{
-          endAdornment: <SearchIcon />,
-        }}
-      />
-
-      <Button
-        sx={{ display: "block" }}
-        className="events-button"
-        variant="contained"
-      >
-        Create Event
-      </Button>
+        <Button
+          component={Link}
+          to="/create-event"
+          sx={{ display: "block" }}
+          className="events-button"
+          variant="contained"
+        >
+          Create Event
+        </Button>
+      </div>
       <h3 className="align-left">Event List</h3>
       <Stack>
         {events.map((event) => (
