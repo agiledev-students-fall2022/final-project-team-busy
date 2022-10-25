@@ -20,6 +20,7 @@ import Friends from "./Friends";
 
 import ProfilePage from "./profile-page/ProfilePage";
 import Events from "./events/Events";
+import Groups from './Groups';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -35,7 +36,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Routes>
+      <Routes>
           <Route path="/" element={<Navigate replace to={"/login"} />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/sign-up" element={<SignUp onLogin={handleLogin} />} />
@@ -48,7 +49,7 @@ function App() {
             <Route path="/create-group" element={<CreateGroups />} />
             <Route path="/events" element={<Events />} />
             <Route path="/create-event" element={<CreateEvents />} />
-
+            <Route path="/groups" element={<Groups  />} />
           </Route>
         </Routes>
         {user && <NavComponent />}
