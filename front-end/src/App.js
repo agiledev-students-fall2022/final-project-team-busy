@@ -16,6 +16,7 @@ import NavComponent from "./navbar/NavComponent";
 import AddExtCal from "./Pages/AddExtCal";
 import CreateGroups from "./create-groups/CreateGroups";
 import Friends from "./Friends";
+import ProfilePage from "./profile-page/ProfilePage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -42,6 +43,7 @@ function App() {
             <Route path="/add-external-calendar" element={<AddExtCal />} />
             <Route path="/create-group" element={<CreateGroups />} />
             <Route path="/friends" element={<Friends />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Route>
         </Routes>
         {user && <NavComponent />}

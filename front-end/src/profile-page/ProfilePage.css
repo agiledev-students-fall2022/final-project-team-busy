@@ -1,0 +1,47 @@
+.profile-heading {
+    text-align: left;
+    margin: 0;
+}
+
+.username {
+    display: flex;
+    color: #111;
+}
+
+.profile-page {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    padding: 32.5px;
+}
+
+.profile-pic-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+}
+
+.bio-heading {
+    text-align: left;
+    margin: 0;
+}
+
+.bio-text {
+    text-align: left;
+}
+
+.external-buttons {
+    margin-top: 75px;
+    display: flex;
+    flex-direction: column;
+    gap: 13.5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.account-settings-button,
+.add-external-calendar-button {
+    flex: 1;
+    width: 95%;
+}
