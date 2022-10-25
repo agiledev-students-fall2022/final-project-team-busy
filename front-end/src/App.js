@@ -36,17 +36,24 @@ function App() {
   return (
     <div className="App">
       <Router>
-            <Routes>
-                <Route path='/home' element={<Home />} />
-                <Route path='Pages/LookUp' element={<LookUp />} />
-                <Route path='/create-event' element={<CreateEvents />} />
-                <Route path='/add-external-calendar' element={<AddExtCal />} />
-                <Route path='/create-group' element={<CreateGroups />} />
-                <Route path="/friends" element={<Friends />} />
-                <Route path="/groups" element={<Groups  />} />
-            </Routes>
-            <NavComponent />
-        </Router>
+      <Routes>
+          <Route path="/" element={<Navigate replace to={"/login"} />} />
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/sign-up" element={<SignUp onLogin={handleLogin} />} />
+          <Route element={<ProtectedRoute user={user} />}>
+             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/add-external-calendar" element={<AddExtCal />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/lookup" element={<LookUp />} />
+            <Route path="/friends" element={<Friends />} />
+            <Route path="/create-group" element={<CreateGroups />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/create-event" element={<CreateEvents />} />
+            <Route path="/groups" element={<Groups  />} />
+          </Route>
+        </Routes>
+        {user && <NavComponent />}
+      </Router>
     </div>
   );
 }
