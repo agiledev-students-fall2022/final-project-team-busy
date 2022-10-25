@@ -34,8 +34,8 @@ const Events = () => {
 
   return (
     <Container maxWidth="md" className="events-container">
-      <div className="heading-and-home-button-header">
-        <h2 className="profile-heading">Events</h2>
+      <div className="events-flex">
+        <h2 className="events-heading">Events</h2>
         <div className="home-button">
           <IconButton aria-label="home" component={Link} to="/home">
             <HomeIcon

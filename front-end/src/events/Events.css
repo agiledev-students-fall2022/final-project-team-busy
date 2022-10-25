@@ -15,3 +15,8 @@
   align-items: center;
   justify-content: center;
 }
+
+.events-flex {
+  display: flex;
+  align-items: center;
+}
