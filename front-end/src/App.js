@@ -6,6 +6,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+
 import Login from "./login/Login";
 import SignUp from "./login/SignUp";
 import ProtectedRoute from "./Components/ProtectedRoute";

@@ -1,0 +1,9 @@
+.events-container {
+  padding: 0 2rem;
+}
+
+.events-button {
+  display: block;
+  width: 20rem;
+  margin: 0.8rem auto;
+}
