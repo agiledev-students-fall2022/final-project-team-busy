@@ -1,20 +1,11 @@
-.heading{
-    font-weight: normal;
-    color: black;
+.create-event-heading {
+    text-align: center;
+    margin: 0;
 }
 
-.intro { 
-    padding: 40px;
-    
-}
-
-.container{
+.create-personal-event {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.text{
-    padding:1px;
-    height: 10px;
+    flex-direction: column;
+    gap: 13.5px;
+    padding: 25px;
 }
