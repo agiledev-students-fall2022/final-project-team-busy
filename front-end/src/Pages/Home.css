@@ -14,3 +14,12 @@
     text-decoration: underline;
     text-decoration-color: black;
 }
+
+.heading-and-add-button-header {
+    display: flex;
+    align-items: center;
+}
+
+.add-button {
+    margin-left: auto;
+}

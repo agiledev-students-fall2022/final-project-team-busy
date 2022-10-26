@@ -17,7 +17,7 @@ import NavComponent from "./navbar/NavComponent";
 import AddExtCal from "./Pages/AddExtCal";
 import CreateGroups from "./create-groups/CreateGroups";
 import Friends from "./Friends";
-
+import AddPersonalCalendar from "./Pages/AddPersonalCalendar";
 import ProfilePage from "./profile-page/ProfilePage";
 import Events from "./events/Events";
 import Groups from './Groups';
@@ -50,6 +50,7 @@ function App() {
             <Route path="/events" element={<Events />} />
             <Route path="/create-event" element={<CreateEvents />} />
             <Route path="/groups" element={<Groups  />} />
+            <Route path = '/addpersonalcalendar' element = {<AddPersonalCalendar/>} />
           </Route>
         </Routes>
         {user && <NavComponent />}
