@@ -7,15 +7,19 @@ import { useState } from 'react';
 import { TextField } from '@mui/material';
 import FriendList from './FriendList';
 import { Button } from '@mui/material'
+import { Link, useNavigate } from 'react-router-dom'
+import ConfirmationMessage from './ConfirmationMessage';
 
 
 const CreateEvents = props => {
     let currentDate = new Date().toLocaleString()
-    const [date, setDate] = useState(currentDate)
+    const [startDate, setStartDate] = useState(currentDate)
+    const [endDate, setEndDate] = useState(currentDate)
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [nameChanges, setNameChanges] = useState(0);
     const [friendsChecked, setChecked] = useState([1]);
+    const [created, setCreated] = useState(false);
 
     let friends = [
         {
@@ -86,6 +90,10 @@ const CreateEvents = props => {
     };
 
     const handleSubmission = () => {
+        setCreated(true);
+        setTimeout(() => {
+            setCreated(false);
+        }, 1500);
         console.log("Form submitted")
     }
 
@@ -108,7 +116,7 @@ const CreateEvents = props => {
 
     let nameError = (nameChanges > 0 && name === '')
     let noNameSubmitted = (name === '')
-    let dateError = (date < new Date());
+    let dateError = (startDate < currentDate || new Date(endDate) < new Date(startDate))
     let noFriendsAddedError = (friendsChecked.length === 0)
     let anyError = (nameError || noFriendsAddedError || noNameSubmitted || dateError)
 
@@ -121,15 +129,26 @@ const CreateEvents = props => {
                 <DateTimePicker
                     renderInput={(props) => <TextField {...props} />}
                     label="Date and Time"
-                    value={date}
+                    value={startDate}
                     onChange={(newDate) => {
-                        setDate(newDate);
+                        setStartDate(newDate);
                     }}
+                    minDateTime={new Date()}
+                />
+                <DateTimePicker
+                    renderInput={(props) => <TextField {...props} />}
+                    label="Date and Time"
+                    value={endDate}
+                    onChange={(newDate) => {
+                        setEndDate(newDate);
+                    }}
+                    minDateTime={new Date(startDate)}
                 />
                 <p>Add friends to {name}</p>
                 <FriendList friends={friends} checked={friendsChecked} handleToggle={handleToggle} setChecked={setChecked} />
+                <ConfirmationMessage relation={"Event"} confirmed={created} />
                 <div className="form-submit-buttons">
-                    <Button variant="outlined" className='cancel-button'>Cancel</Button>
+                    <Button variant="outlined" className='cancel-button' component={Link} to="/events">Cancel</Button>
                     <Button type='submit' disabled={anyError} onClick={handleSubmission} variant="contained" className='create-event-button'>Create Event</Button>
                 </div>
             </LocalizationProvider>
