@@ -128,7 +128,7 @@ const CreateEvents = props => {
                 <TextField id="event-description" label="Enter Event Description" variant="outlined" multiline minRows={3} value={description} onChange={handleDescriptionChange} />
                 <DateTimePicker
                     renderInput={(props) => <TextField {...props} />}
-                    label="Date and Time"
+                    label="Event Start Date and Time"
                     value={startDate}
                     onChange={(newDate) => {
                         setStartDate(newDate);
@@ -137,7 +137,7 @@ const CreateEvents = props => {
                 />
                 <DateTimePicker
                     renderInput={(props) => <TextField {...props} />}
-                    label="Date and Time"
+                    label="Event End Date and Time"
                     value={endDate}
                     onChange={(newDate) => {
                         setEndDate(newDate);
