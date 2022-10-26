@@ -4,6 +4,7 @@ import GroupCard from './Components/GroupCard';
 import HomeIcon from '@mui/icons-material/Home';
 import Button from "@mui/material/Button";
 import { useNavigate } from 'react-router-dom';
+import HomeButton from './Components/HomeButton';
 
 function Groups() {
     const navigate = useNavigate();
@@ -21,7 +22,7 @@ function Groups() {
             <Typography
             variant="h3"
             >Group</Typography >
-            <HomeIcon />
+            <HomeButton />
         </Grid>
         <Grid 
         container

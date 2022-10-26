@@ -3,7 +3,6 @@ import CardHeader from '@mui/material/CardHeader';
 import {faker} from '@faker-js/faker';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
-import Paper from '@mui/material/Paper';
 
 
 function GroupCard() {
