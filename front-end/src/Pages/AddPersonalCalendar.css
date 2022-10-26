@@ -1,0 +1,20 @@
+.heading{
+    font-weight: normal;
+    color: black;
+}
+
+.intro { 
+    padding: 40px;
+    
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.text{
+    padding:1px;
+    height: 10px;
+}

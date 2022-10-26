@@ -11,18 +11,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './PersonalCalendar.css';
 
 const PersonalCalendar = (props) => {
-  const [date, setDate] = useState(new Date())
-
-
-  const onChange = date => {setDate(date)}
 
   
 
-
-
   return (
     <div> 
-      <Calendar onChange={onChange} value={date}/> 
+      <Calendar onChange={props.onChange} value={props.date} /> 
     </div>
 
   )
