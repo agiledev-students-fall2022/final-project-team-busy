@@ -2,9 +2,11 @@ import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import GroupCard from './Components/GroupCard';
 import HomeIcon from '@mui/icons-material/Home';
+import Button from "@mui/material/Button";
+import { useNavigate } from 'react-router-dom';
 
 function Groups() {
-
+    const navigate = useNavigate();
     return ( 
     <Grid 
     container
@@ -27,7 +29,10 @@ function Groups() {
         alignItems="center"
         rowSpacing={2}
         margin="0vw 1vw"
-        >
+        >   
+            <Grid item>
+                <Button variant='contained' style={{width: "95vw"}} onClick={() => navigate('/create-group')}>Create group</Button>
+            </Grid>
             <Grid item >
                 <GroupCard />
             </Grid>
