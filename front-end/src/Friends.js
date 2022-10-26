@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import FriendCard from './Components/FriendCard';
-import HomeIcon from '@mui/icons-material/Home';
+import HomeButton from './Components/HomeButton';
 
 function Friends() {
 
@@ -20,7 +20,7 @@ function Friends() {
             <Typography
             variant="h3"
             >Friends</Typography >
-            <HomeIcon />
+            <HomeButton />
         </Grid>
         <Grid 
         container
