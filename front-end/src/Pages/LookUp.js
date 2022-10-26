@@ -7,16 +7,15 @@ import SearchBar from '../Components/SearchBar';
 import { IconButton } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from "react-router-dom";
+import { Button } from '@mui/material'
+import TextField from '@mui/material/TextField'; 
+
 
 
 const LookUp = () => {
 
     const [state, setState] = useState("Searching Users")
 
-    const selectUser = () => setState("Searching Users")
-
-    const selectGroups = () => setState("Searching Groups")
-    
 
     return(
         
@@ -34,13 +33,13 @@ const LookUp = () => {
             
 
             <div> 
-                <ToggleButton onClick = {selectUser} text = "Users" ></ToggleButton>
-                <ToggleButton onClick = {selectGroups} text = "Groups" ></ToggleButton>
+                <Button onClick = {() => setState("Searching Users")} className = 'user' variant="contained">Users</Button>
+                <Button onClick = {() => setState("Searching Groups")} className = 'groups' variant="contained">Groups</Button>
             </div>
 
-
-            <SearchBar placeholder = {state}  ></SearchBar> 
-
+            <div className = 'searching' >
+                <TextField id="outlined-basic" label={state} variant="outlined" sx={{height:'20'}} />
+            </div>
 
 
         </div>
