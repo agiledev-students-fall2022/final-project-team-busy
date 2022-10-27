@@ -23,6 +23,7 @@ import Events from "./events/Events";
 import Groups from './Groups';
 import GroupProfile from "./Pages/GroupProfile";
 import FriendProfile from "./Pages/FriendProfile";
+import FriendCalendar from "./Pages/FriendCalendar";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -59,6 +60,7 @@ function App() {
               />
               <Route path = "/GroupProfile" element = {<GroupProfile/>} /> 
               <Route path = "/FriendProfile" element = {<FriendProfile/>} /> 
+              <Route path = "/FriendCalendar" element = {<FriendCalendar/>} />
             </Route>
           </Routes>
         </div>

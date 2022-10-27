@@ -1,9 +1,7 @@
-.heading {
+.calendar-heading {
     text-align: left;
     margin: 0;
 }
-
-
 
 .heading-and-home-button-header {
     display: flex;
@@ -14,31 +12,12 @@
     margin-left: auto;
 }
 
-.lookup-page {
+.friend-calendar-page {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
     padding: 32.5px;
 }
-
-.toggle-button{
-    text-align: center;
-}
-
-.searching{
-    text-align: center;
-}
-
-.searching{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-
-
-
 
 
 

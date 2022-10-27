@@ -35,7 +35,10 @@ const GroupProfile = () =>{
                 </p>
             </div>
             <div className='friendc'>
-                <Button variant="contained" className='friend-button' >Friend's Calendar</Button>
+                <Link to = "/FriendCalendar">
+                    <Button variant="contained" className='friend-button' >Friend's Calendar</Button>
+                </Link>
+                
             </div>
             
         </div>
