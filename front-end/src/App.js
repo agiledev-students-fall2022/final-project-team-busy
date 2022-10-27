@@ -21,6 +21,7 @@ import AddPersonalCalendar from "./Pages/AddPersonalCalendar";
 import ProfilePage from "./profile-page/ProfilePage";
 import Events from "./events/Events";
 import Groups from './Groups';
+import GroupCalendar from "./Components/GroupCalendar";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -51,6 +52,7 @@ function App() {
             <Route path="/create-event" element={<CreateEvents />} />
             <Route path="/groups" element={<Groups  />} />
             <Route path = '/addpersonalcalendar' element = {<AddPersonalCalendar/>} />
+            <Route path="/igroup" element={<GroupCalendar />} />
           </Route>
         </Routes>
         {user && <NavComponent />}
