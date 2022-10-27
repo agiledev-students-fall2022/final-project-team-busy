@@ -1,39 +1,46 @@
-import Kalend, { CalendarView } from 'kalend' // import component
-import 'kalend/dist/styles/index.css'; // import styles
 import Grid from '@mui/material/Grid';
 import { Typography } from '@mui/material';
 import HomeButton from './HomeButton';
+import Calendar from './Calendar';
 
 
 function GroupCalendar() {
+    // Different color for different people
     const events = [
         {
+            id: 0,
+            title: "Daily Standup Meeting",
+            start: new Date(2022, 9, 26, 22, 0, 0, 0),
+            end: new Date(2022, 9, 26, 22, 30, 0, 0),
+            desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, voluptates.",
+          },
+      
+          {
             id: 1,
-            startAt: '2022-10-26T18:00:00.000Z',
-            endAt: '2022-10-26T19:00:00.000Z',
-            summary: 'test',
-            color: 'blue',
-        },
-        {
+            title: "All Day Event",
+            allDay: true,
+            start: new Date(2022, 9, 27),
+            end: new Date(2022, 9, 28),
+            desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, voluptates.",
+            backgroundColor: "green"
+          },
+          {
             id: 2,
-            startAt: '2021-11-21T18:00:00.000Z',
-            endAt: '2021-11-21T19:00:00.000Z',
-            summary: 'test',
-            color: 'blue',
-        }
+            title: "Meeting",
+            start: new Date(2022, 9, 29, 10, 30, 0, 0),
+            end: new Date(2022, 9, 29, 12, 30, 0, 0),
+            desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, voluptates.",
+          },
+          {
+            id: 3,
+            title: "Lunch with Joe",
+            start: new Date(2022, 10, 2, 13, 0, 0, 0),
+            end: new Date(2022, 10, 2, 13, 30, 0, 0),
+            desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, voluptates.",
+          },
 ]
     return (
-    
-            <Kalend
-            events={events}
-            initialDate={new Date().toISOString()}
-            hourHeight={60}
-            initialView={CalendarView.WEEK}
-            timeFormat={'24'}
-            weekDayStart={'Monday'}
-            calendarIDsHidden={['work']}
-            language={'en'}
-            />
+        <Calendar events={events} />
     );
 }
 
