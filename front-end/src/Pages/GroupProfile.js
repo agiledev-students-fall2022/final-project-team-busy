@@ -46,7 +46,9 @@ const GroupProfile = () =>{
                 </p>
             </div>
             <div className='groupc'>
-                <Button variant="contained" className='group-button' >Group's Calendar</Button>
+                <Link to={"/GroupCalendar"} >
+                    <Button variant="contained" className='group-button' >Group's Calendar</Button>
+                </Link>
             </div>
             
         </div>

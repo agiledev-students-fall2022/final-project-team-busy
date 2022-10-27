@@ -3,9 +3,8 @@ import Grid from '@mui/material/Grid';
 import GroupCard from './Components/GroupCard';
 import HomeIcon from '@mui/icons-material/Home';
 import Button from "@mui/material/Button";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import HomeButton from './Components/HomeButton';
-import {Link} from 'react-router-dom';
 
 function Groups() {
     const navigate = useNavigate();

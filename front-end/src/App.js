@@ -26,7 +26,7 @@ import FriendProfile from "./Pages/FriendProfile";
 import FriendCalendar from "./Pages/FriendCalendar";
 import AccountSettings from "./Pages/AccountSettings";
 import ProfilePic from './profile-page/profile-page-dp.jpeg'
-
+import GroupCal from './Pages/GroupCal'
 
 function App() {
   const [user, setUser] = useState(null);
@@ -67,6 +67,7 @@ function App() {
 
               <Route path = "/FriendCalendar" element = {<FriendCalendar/>} />
               <Route path="/GroupProfile" element={<GroupProfile />} />
+              <Route path="/GroupCalendar" element={<GroupCal />} />
               <Route path="/FriendProfile" element={<FriendProfile />} />
               <Route path="/account-settings" element={<AccountSettings setDP={setDP} setBio={setBio} />} />
 
