@@ -31,7 +31,7 @@ const ProfilePage = ({dp, bio}) => {
             </section>
             <div className='external-buttons'>
                 <Button variant="contained" className='account-settings-button' component={Link} to="/account-settings">Account Settings</Button>
-                <Button variant="contained" className='add-external-calendar-button'>Add External Calendar</Button>
+                <Button variant="contained" className='add-external-calendar-button' component={Link} to="/add-external-calendar">Add External Calendar</Button>
             </div>
         </div>
     )
