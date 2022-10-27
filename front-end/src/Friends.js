@@ -2,6 +2,7 @@ import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import FriendCard from './Components/FriendCard';
 import HomeButton from './Components/HomeButton';
+import {Link} from 'react-router-dom';
 
 function Friends() {
 
@@ -30,34 +31,54 @@ function Friends() {
         margin="0vw 1vw"
         >
             <Grid item >
-                <FriendCard />
+                <Link to= '/FriendProfile'>
+                    <FriendCard />
+                </Link>
             </Grid>
             <Grid item >
-                <FriendCard />
+                <Link to= '/FriendProfile'>
+                    <FriendCard />
+                </Link>
             </Grid>
             <Grid item >
-                <FriendCard />
+                <Link to= '/FriendProfile'>
+                    <FriendCard />
+                </Link>
             </Grid>
             <Grid item >
-                <FriendCard />
+                <Link to= '/FriendProfile'>
+                    <FriendCard />
+                </Link>
             </Grid>
             <Grid item >
-                <FriendCard />
+                <Link to= '/FriendProfile'>
+                    <FriendCard />
+                </Link>
             </Grid>
             <Grid item >
-                <FriendCard />
+                <Link to= '/FriendProfile'>
+                    <FriendCard />
+                </Link>
             </Grid>
             <Grid item >
-                <FriendCard />
+                <Link to= '/FriendProfile'>
+                    <FriendCard />
+                </Link>
             </Grid>
             <Grid item >
-                <FriendCard />
+                <Link to= '/FriendProfile'>
+                    <FriendCard />
+                </Link>
             </Grid>
             <Grid item >
-                <FriendCard />
+                <Link to= '/FriendProfile'>
+                    <FriendCard />
+                </Link>
             </Grid>
             <Grid item >
-                <FriendCard />
+                <Link to= '/FriendProfile'>
+                    <FriendCard />
+                </Link>
             </Grid>     
         </Grid>
     </Grid>
