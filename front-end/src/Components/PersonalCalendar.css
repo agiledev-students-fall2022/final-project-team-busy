@@ -1,4 +1,4 @@
-.react-calendar {
+/* .react-calendar {
   justify-content: center;
   width: 450px;
   padding: 20px;
@@ -115,11 +115,10 @@
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #e6e6e6;
 }
+   */
 
-
-
-
-
-  
-
-  
+.big-calendar {
+  width: 100%;
+  min-height: 500px;
+  height: 500px;
+}
