@@ -1,0 +1,25 @@
+.calendar-heading {
+    text-align: left;
+    margin: 0;
+}
+
+.heading-and-home-button-header {
+    display: flex;
+    align-items: center;
+}
+
+.home-button {
+    margin-left: auto;
+}
+
+.friend-calendar-page {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    padding: 32.5px;
+}
+
+
+
+
+

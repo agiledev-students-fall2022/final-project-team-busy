@@ -18,7 +18,8 @@ const CreateEvents = props => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [nameChanges, setNameChanges] = useState(0);
-    const [friendsChecked, setChecked] = useState([1]);
+    const [friendsChecked, setFriendsChecked] = useState([1]);
+    const [groupsChecked, setGroupsChecked] = useState([2]);
     const [created, setCreated] = useState(false);
 
     let friends = [
@@ -74,7 +75,39 @@ const CreateEvents = props => {
         }
     ]
 
-    const handleToggle = (value) => () => {
+    let groups = [
+        {
+            "value": 0,
+            "name": "Study Group",
+            "bgcolor": "#f44336"
+        },
+        {
+            "value": 1,
+            "name": "Walking Group",
+            "bgcolor": "#f44336"
+        },
+        {
+            "value": 2,
+            "name": "My Group",
+            "bgcolor": "#e91e63"
+        },
+        {
+            "value": 3,
+            "name": "Your Group",
+            "bgcolor": "#e91e63"
+        },
+        {
+            "value": 4,
+            "name": "This Group",
+            "bgcolor": "#4caf50"
+        },
+        {
+            "value": 5,
+            "name": "That Group",
+            "bgcolor": "#f44336"
+        }]
+
+    const handleToggleFriends = (value) => () => {
         const currentIndex = friendsChecked.indexOf(value);
         const newChecked = [...friendsChecked];
 
@@ -86,7 +119,22 @@ const CreateEvents = props => {
 
         console.log(friends[newChecked[newChecked.length - 1]])
 
-        setChecked(newChecked);
+        setFriendsChecked(newChecked);
+    };
+
+    const handleToggleGroups = (value) => () => {
+        const currentIndex = groupsChecked.indexOf(value);
+        const newChecked = [...groupsChecked];
+
+        if (currentIndex === -1) {
+            newChecked.push(value);
+        } else {
+            newChecked.splice(currentIndex, 1);
+        }
+
+        console.log(groups[newChecked[newChecked.length - 1]])
+
+        setGroupsChecked(newChecked);
     };
 
     const handleSubmission = () => {
@@ -117,8 +165,7 @@ const CreateEvents = props => {
     let nameError = (nameChanges > 0 && name === '')
     let noNameSubmitted = (name === '')
     let dateError = (startDate < currentDate || new Date(endDate) < new Date(startDate))
-    let noFriendsAddedError = (friendsChecked.length === 0)
-    let anyError = (nameError || noFriendsAddedError || noNameSubmitted || dateError)
+    let anyError = (nameError || noNameSubmitted || dateError)
 
     return (
         <div className='create-events-page'>
@@ -128,7 +175,7 @@ const CreateEvents = props => {
                 <TextField id="event-description" label="Enter Event Description" variant="outlined" multiline minRows={3} value={description} onChange={handleDescriptionChange} />
                 <DateTimePicker
                     renderInput={(props) => <TextField {...props} />}
-                    label="Date and Time"
+                    label="Event Start Date and Time"
                     value={startDate}
                     onChange={(newDate) => {
                         setStartDate(newDate);
@@ -137,7 +184,7 @@ const CreateEvents = props => {
                 />
                 <DateTimePicker
                     renderInput={(props) => <TextField {...props} />}
-                    label="Date and Time"
+                    label="Event End Date and Time"
                     value={endDate}
                     onChange={(newDate) => {
                         setEndDate(newDate);
@@ -145,7 +192,9 @@ const CreateEvents = props => {
                     minDateTime={new Date(startDate)}
                 />
                 <p>Add friends to {name}</p>
-                <FriendList friends={friends} checked={friendsChecked} handleToggle={handleToggle} setChecked={setChecked} />
+                <FriendList friends={friends} checked={friendsChecked} handleToggle={handleToggleFriends} setChecked={setFriendsChecked} />
+                <p>Add Group to {name}</p>
+                <FriendList friends={groups} checked={groupsChecked} handleToggle={handleToggleGroups} setChecked={setGroupsChecked} />
                 <ConfirmationMessage relation={"Event"} confirmed={created} />
                 <div className="form-submit-buttons">
                     <Button variant="outlined" className='cancel-button' component={Link} to="/events">Cancel</Button>

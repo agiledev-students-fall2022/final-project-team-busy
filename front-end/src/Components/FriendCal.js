@@ -1,6 +1,6 @@
 import Calendar from "./Calendar";
 
-const PersonalCalendar = (props) => {
+const FriendCal = (props) => {
   const personalEvents = [
     {
       id: 0,
@@ -21,7 +21,7 @@ const PersonalCalendar = (props) => {
     {
       id: 2,
       title: "Meeting",
-      start: new Date(2022, 9, 29, 10, 30, 0, 0),
+      start: new Date(2022, 10, 1, 10, 30, 0, 0),
       end: new Date(2022, 9, 29, 12, 30, 0, 0),
       desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, voluptates.",
     },
@@ -43,4 +43,4 @@ const PersonalCalendar = (props) => {
   return <Calendar events={personalEvents} />;
 };
 
-export default PersonalCalendar;
+export default FriendCal;

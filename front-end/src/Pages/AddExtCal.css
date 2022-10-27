@@ -1,0 +1,36 @@
+.add-external-calendar-heading {
+    text-align: center;
+    margin: 0;
+}
+
+.add-external-calendar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 25px;
+}
+
+.add-external-calendar-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-external-calendar-button {
+    min-height: 75px;
+}
+
+.export-options {
+    text-align: left;
+    margin-bottom: -13.5px;
+}
+
+.form-submit-buttons {
+    display: flex;
+    gap: 13.5px;
+}
+
+.cancel-button,
+.export-cal-button {
+    flex: 1;
+}

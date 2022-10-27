@@ -5,6 +5,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import Button from "@mui/material/Button";
 import { useNavigate, Link } from 'react-router-dom';
 import HomeButton from './Components/HomeButton';
+import {Link} from 'react-router-dom';
 
 function Groups() {
     const navigate = useNavigate();
@@ -35,36 +36,54 @@ function Groups() {
                 <Button variant='contained' style={{width: "95vw"}} onClick={() => navigate('/create-group')}>Create group</Button>
             </Grid>
             <Grid item >
-                <Link to={'/igroup'}>
+                <Link to ="/GroupProfile"> 
                     <GroupCard />
                 </Link>
             </Grid>
             <Grid item >
-                <GroupCard />
+                <Link to ="/GroupProfile"> 
+                    <GroupCard />
+                </Link>
             </Grid>
             <Grid item >
-                <GroupCard />
+                <Link to ="/GroupProfile"> 
+                    <GroupCard />
+                </Link>
             </Grid>
             <Grid item >
-                <GroupCard />
+                <Link to ="/GroupProfile"> 
+                    <GroupCard />
+                </Link>
             </Grid>
             <Grid item >
-                <GroupCard />
+                <Link to ="/GroupProfile"> 
+                    <GroupCard />
+                </Link>
             </Grid>
             <Grid item >
-                <GroupCard />
+                <Link to ="/GroupProfile"> 
+                    <GroupCard />
+                </Link>
             </Grid>
             <Grid item >
-                <GroupCard />
+                <Link to ="/GroupProfile"> 
+                    <GroupCard />
+                </Link>
             </Grid>
             <Grid item >
-                <GroupCard />
+                <Link to ="/GroupProfile"> 
+                    <GroupCard />
+                </Link>
             </Grid>
             <Grid item >
-                <GroupCard />
+                <Link to ="/GroupProfile"> 
+                    <GroupCard />
+                </Link>
             </Grid>
             <Grid item >
-                <GroupCard />
+                <Link to ="/GroupProfile"> 
+                    <GroupCard />
+                </Link>
             </Grid>     
         </Grid>
     </Grid>

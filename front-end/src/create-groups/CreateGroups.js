@@ -9,6 +9,8 @@ import { blue } from '@mui/material/colors'
 import FriendList from '../create-events/FriendList'
 import { Button } from '@mui/material'
 // import { FormControl } from '@mui/material'
+import ConfirmationMessage from '../create-events/ConfirmationMessage'
+import { Link } from 'react-router-dom'
 
 
 const CreateGroups = () => {
@@ -17,6 +19,7 @@ const CreateGroups = () => {
     const [dpURL, setDPURL] = useState();
     const [nameChanges, setNameChanges] = useState(0);
     const [friendsChecked, setChecked] = useState([1]);
+    const [created, setCreated] = useState(false);
 
     let friends = [
         {
@@ -83,6 +86,10 @@ const CreateGroups = () => {
     }
 
     const handleSubmission = () => {
+        setCreated(true);
+        setTimeout(() => {
+            setCreated(false);
+        }, 1500);
         console.log("Form submitted")
     }
 
@@ -117,8 +124,9 @@ const CreateGroups = () => {
             <TextField className='group-name' id="group-name" label="Enter Group Name" variant="outlined" required value={name} onChange={handleNameChange} inputProps={{ maxLength: 30 }} error={nameError} helperText={nameError ? 'Please enter group name' : ''} />
             <p>Add friends to group {name}</p>
             <FriendList friends={friends} checked={friendsChecked} handleToggle={handleToggle} />
+            <ConfirmationMessage relation={"Group"} confirmed={created} />
             <div className="form-submit-buttons">
-                <Button variant="outlined" className='cancel-button'>Cancel</Button>
+                <Button variant="outlined" className='cancel-button' component={Link} to="/groups">Cancel</Button>
                 <Button type='submit' onClick={handleSubmission} variant="contained" className='create-group-button' disabled={anyError} >Create Group</Button>
             </div>
         </div>

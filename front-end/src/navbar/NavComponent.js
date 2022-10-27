@@ -10,12 +10,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import GroupsIcon from "@mui/icons-material/Groups";
 import PeopleIcon from "@mui/icons-material/People";
 import EventIcon from "@mui/icons-material/Event";
+import "./NavComponent.css";
 
 const NavComponent = (props) => {
   const [value, setValue] = React.useState(0);
   const ref = React.useRef(null);
   return (
-    <Box sx={{ pb: 7 }} ref={ref}>
+    <Box sx={{ pb: 7 }} ref={ref} className="navbar">
       <CssBaseline />
       <Paper
         sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
@@ -46,11 +47,12 @@ const NavComponent = (props) => {
             component={Link}
             to="/friends"
           />
-          <BottomNavigationAction 
-            label="Groups" 
+          <BottomNavigationAction
+            label="Groups"
             icon={<GroupsIcon />}
             component={Link}
-            to="/groups" />
+            to="/groups"
+          />
           <BottomNavigationAction
             label="Events"
             icon={<EventIcon />}
