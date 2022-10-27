@@ -1,0 +1,35 @@
+.profile-pic-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+}
+
+.intro { 
+    padding: 10px;
+    text-align: center;
+}
+
+.handle{
+    text-decoration: underline;
+    text-decoration-color:black;
+}
+
+.bio{
+    text-align: left;
+    
+}
+
+.groupc{
+    margin-top: 50px;
+
+}
+
+.group-button{
+    width:100%;
+
+}
+
+.home{
+    text-align: right;
+}
