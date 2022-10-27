@@ -1,23 +1,7 @@
-// import * as React from "react";
-// import { useState } from "react";
-// import dayjs from "dayjs";
-// import TextField from "@mui/material/TextField";
-// import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-// import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-// import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
-// import Calendar from "react-calendar";
-// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import "./PersonalCalendar.css";
-
-import { Calendar as BigCalendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
-import "react-big-calendar/lib/css/react-big-calendar.css";
+import Calendar from "./Calendar";
 
 const PersonalCalendar = (props) => {
-  const localizer = momentLocalizer(moment);
-
-  const events = [
+  const personalEvents = [
     {
       id: 0,
       title: "Daily Standup Meeting",
@@ -56,20 +40,7 @@ const PersonalCalendar = (props) => {
       desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio, voluptates.",
     },
   ];
-  return (
-    <div className="home-big-calendar">
-      {/* <Calendar onChange={props.onChange} value={props.date} /> */}
-      <BigCalendar
-        className="big-calendar"
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        selectable
-        defaultView="day"
-      />
-    </div>
-  );
+  return <Calendar events={personalEvents} />;
 };
 
 export default PersonalCalendar;
