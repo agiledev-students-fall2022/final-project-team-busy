@@ -8,6 +8,7 @@ const listener = server.listen(port, function () {
 const close = () => {
   listener.close();
 };
+
 module.exports = {
   close: close,
 };
