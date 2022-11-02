@@ -10,4 +10,8 @@ app.use(morgan("dev")); // morgan has a few logging default styles - dev is a ni
 app.use(express.json()); // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
 
+const auth = require("./routes/auth");
+
+app.use("/auth", auth);
+
 module.exports = app;
