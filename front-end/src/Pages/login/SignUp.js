@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import PasswordInput from "../Components/PasswordInput";
+import PasswordInput from "../../Components/PasswordInput";
 import "./login.css";
 
 const SignUp = ({ onLogin }) => {

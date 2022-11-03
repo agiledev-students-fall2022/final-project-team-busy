@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './AccountSettings.css'
 import { Button, TextField } from '@mui/material'
 import { Link } from 'react-router-dom'
-import AccountSettingsConfirmation from './AccountSettingsConfirmation'
+import AccountSettingsConfirmation from '../../Components/confirmation-messages/AccountSettingsConfirmation'
 
 const AccountSettings = ({ setDP, setBio }) => {
     const [calendarPrivacy, setCalendarPrivacy] = useState("public")

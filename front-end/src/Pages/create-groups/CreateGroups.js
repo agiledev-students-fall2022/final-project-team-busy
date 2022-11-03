@@ -6,10 +6,10 @@ import { Avatar } from '@mui/material'
 import { IconButton } from '@mui/material'
 import GroupsIcon from '@mui/icons-material/Groups'
 import { blue } from '@mui/material/colors'
-import FriendList from '../create-events/FriendList'
+import FriendList from '../../Components/friends-list/FriendList'
 import { Button } from '@mui/material'
 // import { FormControl } from '@mui/material'
-import ConfirmationMessage from '../create-events/ConfirmationMessage'
+import ConfirmationMessage from '../../Components/confirmation-messages/ConfirmationMessage'
 import { Link } from 'react-router-dom'
 
 

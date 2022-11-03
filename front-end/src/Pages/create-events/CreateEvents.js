@@ -5,10 +5,10 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DateTimePicker } from '@mui/x-date-pickers'
 import { useState } from 'react';
 import { TextField } from '@mui/material';
-import FriendList from './FriendList';
+import FriendList from '../../Components/friends-list/FriendList';
 import { Button } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
-import ConfirmationMessage from './ConfirmationMessage';
+import ConfirmationMessage from '../../Components/confirmation-messages/ConfirmationMessage';
 
 
 const CreateEvents = props => {

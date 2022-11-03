@@ -5,7 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
-import EventCard from "../Components/EventCard";
+import EventCard from "../../Components/EventCard";
 import Container from "@mui/material/Container";
 import HomeIcon from "@mui/icons-material/Home";
 import { IconButton } from "@mui/material";

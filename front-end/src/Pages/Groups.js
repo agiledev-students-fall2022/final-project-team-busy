@@ -1,10 +1,10 @@
 import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import GroupCard from './Components/GroupCard';
+import GroupCard from '../Components/GroupCard';
 import HomeIcon from '@mui/icons-material/Home';
 import Button from "@mui/material/Button";
 import { useNavigate, Link } from 'react-router-dom';
-import HomeButton from './Components/HomeButton';
+import HomeButton from '../Components/HomeButton';
 
 function Groups() {
     const navigate = useNavigate();

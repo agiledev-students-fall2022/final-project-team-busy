@@ -7,25 +7,25 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import Login from "./login/Login";
-import SignUp from "./login/SignUp";
+import Login from "./Pages/login/Login";
+import SignUp from "./Pages/login/SignUp";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import Home from "./Pages/Home";
 import LookUp from "./Pages/LookUp";
-import CreateEvents from "./create-events/CreateEvents";
-import NavComponent from "./navbar/NavComponent";
+import CreateEvents from "./Pages/create-events/CreateEvents";
+import NavComponent from "./Components/navbar/NavComponent";
 import AddExtCal from "./Pages/AddExtCal";
-import CreateGroups from "./create-groups/CreateGroups";
-import Friends from "./Friends";
+import CreateGroups from "./Pages/create-groups/CreateGroups";
+import Friends from "./Pages/Friends";
 import AddPersonalCalendar from "./Pages/AddPersonalCalendar";
-import ProfilePage from "./profile-page/ProfilePage";
-import Events from "./events/Events";
-import Groups from './Groups';
+import ProfilePage from "./Pages/profile-page/ProfilePage";
+import Events from "./Pages/events/Events";
+import Groups from './Pages/Groups';
 import GroupProfile from "./Pages/GroupProfile";
 import FriendProfile from "./Pages/FriendProfile";
 import FriendCalendar from "./Pages/FriendCalendar";
-import AccountSettings from "./Pages/AccountSettings";
-import ProfilePic from './profile-page/profile-page-dp.jpeg'
+import AccountSettings from "./Pages/account-settings/AccountSettings";
+import ProfilePic from './Pages/profile-page/profile-page-dp.jpeg'
 import GroupCal from './Pages/GroupCal'
 
 function App() {

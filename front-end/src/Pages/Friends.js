@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import FriendCard from './Components/FriendCard';
-import HomeButton from './Components/HomeButton';
+import FriendCard from '../Components/FriendCard';
+import HomeButton from '../Components/HomeButton';
 import {Link} from 'react-router-dom';
 
 function Friends() {
