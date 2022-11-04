@@ -11,6 +11,7 @@ import { Button } from '@mui/material'
 // import { FormControl } from '@mui/material'
 import ConfirmationMessage from '../../Components/confirmation-messages/ConfirmationMessage'
 import { Link } from 'react-router-dom'
+import { FormControl } from '@mui/material'
 
 
 const CreateGroups = () => {
@@ -117,18 +118,20 @@ const CreateGroups = () => {
     return (
         <div className='create-groups-page'>
             <h2 className='create-group-heading'>Create Group</h2>
-            <IconButton className='dp-picker' color="primary" aria-label="upload picture" component="label">
-                <input hidden accept="image/*" type="file" onChange={handleDPChange} />
-                <Avatar alt="Group" src={dpURL} sx={{ width: 75, height: 75, bgcolor: blue[400], display: 'flex', justifyContent: 'center', alignItems: 'center' }}><GroupsIcon sx={{ width: 42.5, height: 42.5, ":hover": 'cursor: pointer', position: 'relative', bottom: '1.5%' }} /></Avatar>
-            </IconButton>
-            <TextField className='group-name' id="group-name" label="Enter Group Name" variant="outlined" required value={name} onChange={handleNameChange} inputProps={{ maxLength: 30 }} error={nameError} helperText={nameError ? 'Please enter group name' : ''} />
-            <p>Add friends to group {name}</p>
-            <FriendList friends={friends} checked={friendsChecked} handleToggle={handleToggle} />
-            <ConfirmationMessage relation={"Group"} confirmed={created} />
-            <div className="form-submit-buttons">
-                <Button variant="outlined" className='cancel-button' component={Link} to="/groups">Cancel</Button>
-                <Button type='submit' onClick={handleSubmission} variant="contained" className='create-group-button' disabled={anyError} >Create Group</Button>
-            </div>
+            <form action='POST'>
+                <IconButton className='dp-picker' color="primary" aria-label="upload picture" component="label">
+                    <input hidden accept="image/*" type="file" onChange={handleDPChange} />
+                    <Avatar alt="Group" src={dpURL} sx={{ width: 75, height: 75, bgcolor: blue[400], display: 'flex', justifyContent: 'center', alignItems: 'center' }}><GroupsIcon sx={{ width: 42.5, height: 42.5, ":hover": 'cursor: pointer', position: 'relative', bottom: '1.5%' }} /></Avatar>
+                </IconButton>
+                <TextField className='group-name' id="group-name" label="Enter Group Name" variant="outlined" required value={name} onChange={handleNameChange} inputProps={{ maxLength: 30 }} error={nameError} helperText={nameError ? 'Please enter group name' : ''} />
+                <p>Add friends to group {name}</p>
+                <FriendList friends={friends} checked={friendsChecked} handleToggle={handleToggle} />
+                <ConfirmationMessage relation={"Group"} confirmed={created} />
+                <div className="form-submit-buttons">
+                    <Button variant="outlined" className='cancel-button' component={Link} to="/groups">Cancel</Button>
+                    <Button type='submit' onClick={handleSubmission} variant="contained" className='create-group-button' disabled={anyError} >Create Group</Button>
+                </div>
+            </form>
         </div>
     )
 }
