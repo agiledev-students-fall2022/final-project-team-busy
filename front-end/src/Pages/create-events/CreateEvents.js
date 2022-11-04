@@ -171,7 +171,7 @@ const CreateEvents = props => {
         <div className='create-events-page'>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <h2 className="create-event-heading">Create Event</h2>
-                <form action='/create-event' method='post'>
+                <form action='' method='post'>
                     <TextField id="event-name" label="Enter Event Name" variant="outlined" required value={name} onChange={handleNameChange} inputProps={{ maxLength: 50 }} error={nameError} helperText={nameError ? 'Please enter group name' : ''} />
                     <TextField id="event-description" label="Enter Event Description" variant="outlined" multiline minRows={3} value={description} onChange={handleDescriptionChange} />
                     <DateTimePicker
