@@ -118,7 +118,7 @@ const CreateGroups = () => {
     return (
         <div className='create-groups-page'>
             <h2 className='create-group-heading'>Create Group</h2>
-            <form action='POST'>
+            <form action='/create-group' method='post'>
                 <IconButton className='dp-picker' color="primary" aria-label="upload picture" component="label">
                     <input hidden accept="image/*" type="file" onChange={handleDPChange} />
                     <Avatar alt="Group" src={dpURL} sx={{ width: 75, height: 75, bgcolor: blue[400], display: 'flex', justifyContent: 'center', alignItems: 'center' }}><GroupsIcon sx={{ width: 42.5, height: 42.5, ":hover": 'cursor: pointer', position: 'relative', bottom: '1.5%' }} /></Avatar>
