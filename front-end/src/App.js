@@ -20,19 +20,20 @@ import Friends from "./Pages/Friends";
 import AddPersonalCalendar from "./Pages/AddPersonalCalendar";
 import ProfilePage from "./Pages/profile-page/ProfilePage";
 import Events from "./Pages/events/Events";
-import Groups from './Pages/Groups';
+import Groups from "./Pages/Groups";
 import GroupProfile from "./Pages/GroupProfile";
 import FriendProfile from "./Pages/FriendProfile";
 import FriendCalendar from "./Pages/FriendCalendar";
 import AccountSettings from "./Pages/account-settings/AccountSettings";
-import ProfilePic from './Pages/profile-page/profile-page-dp.jpeg'
-import GroupCal from './Pages/GroupCal'
+import ProfilePic from "./Pages/profile-page/profile-page-dp.jpeg";
+import GroupCal from "./Pages/GroupCal";
 
 function App() {
   const [user, setUser] = useState(null);
-  const defaultBio = "Who lives in a pineapple under the sea? SpongeBob SquarePants! Absorbent and yellow and porous is he SpongeBob SquarePants! If nautical nonsense be something you wish SpongeBob SquarePants! Then drop on the deck and flop like a fish! SpongeBob SquarePants!"
-  const [dp, setDP] = useState(ProfilePic)
-  const [bio, setBio] = useState(defaultBio)
+  const defaultBio =
+    "Who lives in a pineapple under the sea? SpongeBob SquarePants! Absorbent and yellow and porous is he SpongeBob SquarePants! If nautical nonsense be something you wish SpongeBob SquarePants! Then drop on the deck and flop like a fish! SpongeBob SquarePants!";
+  const [dp, setDP] = useState(ProfilePic);
+  const [bio, setBio] = useState(defaultBio);
 
   const handleLogin = () => {
     setUser({ id: 1, name: "John Doe" });
@@ -51,7 +52,10 @@ function App() {
             <Route path="/login" element={<Login onLogin={handleLogin} />} />
             <Route path="/sign-up" element={<SignUp onLogin={handleLogin} />} />
             <Route element={<ProtectedRoute user={user} />}>
-              <Route path="/profile" element={<ProfilePage dp={dp} bio={bio} />} />
+              <Route
+                path="/profile"
+                element={<ProfilePage dp={dp} bio={bio} />}
+              />
               <Route path="/add-external-calendar" element={<AddExtCal />} />
               <Route path="/home" element={<Home />} />
               <Route path="/lookup" element={<LookUp />} />
@@ -65,12 +69,14 @@ function App() {
                 element={<AddPersonalCalendar />}
               />
 
-              <Route path = "/FriendCalendar" element = {<FriendCalendar/>} />
+              <Route path="/FriendCalendar" element={<FriendCalendar />} />
               <Route path="/GroupProfile" element={<GroupProfile />} />
               <Route path="/GroupCalendar" element={<GroupCal />} />
               <Route path="/FriendProfile" element={<FriendProfile />} />
-              <Route path="/account-settings" element={<AccountSettings setDP={setDP} setBio={setBio} />} />
-
+              <Route
+                path="/account-settings"
+                element={<AccountSettings setDP={setDP} setBio={setBio} />}
+              />
             </Route>
           </Routes>
         </div>
