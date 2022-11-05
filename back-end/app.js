@@ -11,7 +11,9 @@ app.use(express.json()); // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
 
 const auth = require("./routes/auth");
+const createGroup = require("./routes/create-group")
 
 app.use("/auth", auth);
+app.use("/create-group", createGroup);
 
 module.exports = app;
