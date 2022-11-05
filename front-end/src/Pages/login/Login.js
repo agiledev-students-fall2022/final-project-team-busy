@@ -6,6 +6,8 @@ import Button from "@mui/material/Button";
 import PasswordInput from "../../Components/PasswordInput";
 import "./login.css";
 
+import authService from "../../services/authService";
+
 const Login = ({ onLogin }) => {
   const [values, setValues] = useState({
     email: "",
@@ -51,6 +53,7 @@ const Login = ({ onLogin }) => {
     //   return;
     // }
 
+    authService.login({ email: values.email, password: values.password });
     setValues({
       ...values,
       email: "",

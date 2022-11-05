@@ -5,8 +5,10 @@ router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
+    console.log("No email or password provided");
     return res.status(400).json({ error: "Invalid email or password" });
   }
+  console.log("Email: ", email, "Password: ", password);
 
   //(temp) will be replaced by checking if user exists in DB
   if (email != "email123@gmail.com") {
