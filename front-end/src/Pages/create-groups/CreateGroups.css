@@ -7,8 +7,14 @@
 .create-groups-page {
     display: flex;
     flex-direction: column;
-    gap: 13.5px;
+    gap: 12.5px;
     padding: 25px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 8.5px;
 }
 
 .form-submit-buttons {
