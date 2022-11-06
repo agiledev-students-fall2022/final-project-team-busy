@@ -12,8 +12,13 @@ app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming 
 
 const auth = require("./routes/auth");
 const createGroup = require("./routes/create-group")
+const lookupUser = require("./routes/lookup-user");
+const lookupGroup = require("./routes/lookup-groups")
 
 app.use("/auth", auth);
 app.use("/create-group", createGroup);
+app.use("/lookupuser", lookupUser);
+app.use("/lookupgroup", lookupGroup); 
+
 
 module.exports = app;
