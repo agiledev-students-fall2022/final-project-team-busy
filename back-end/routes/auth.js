@@ -1,41 +1,45 @@
 const express = require("express");
 const router = express.Router();
+const Joi = require("joi");
+
+const schema = Joi.object({
+  email: Joi.string().email({ minDomainSegments: 2 }).required(),
+  password: Joi.string().min(8).required(),
+  passwordConfirm: Joi.ref("password"),
+});
 
 router.post("/login", (req, res) => {
-  const { email, password } = req.body;
+  const { error, value } = schema.validate(req.body);
 
-  if (!email || !password) {
-    console.log("No email or password provided");
-    return res.status(400).json({ error: "Invalid email or password" });
+  if (error) {
+    return res.status(400).json({ error: error.message });
   }
-  console.log("Email: ", email, "Password: ", password);
 
   //(temp) will be replaced by checking if user exists in DB
-  if (email != "email123@gmail.com") {
+  if (value.email != "email123@gmail.com") {
     return res.status(400).json({ error: "Invalid email" });
   }
-  if (password != "password123") {
+  if (value.password != "password123") {
     return res.status(400).json({ error: "Invalid password" });
   }
 
   //(temp) respond with user info
   res.status(201).json({
-    email: "John Doe",
+    name: "John Doe",
     id: 1234,
   });
 });
 
 router.post("/register", (req, res) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
-    return res.status(400).json({ error: "Invalid email or password" });
+  const { error, value } = schema.validate(req.body);
+
+  if (error) {
+    return res.status(400).json({ error: error.message });
   }
 
-  // create user in DB
-
-  //(temp) will be replaced by fetched user from DB
+  //(temp) respond with user info
   res.status(200).json({
-    email,
+    email: "John Doe",
     id: 2345,
   });
 });

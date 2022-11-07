@@ -67,7 +67,7 @@ const SignUp = ({ onLogin }) => {
     authService.register({
       email: data.email,
       password: data.password,
-      confirmPassword: data.passwordConfirm,
+      passwordConfirm: data.passwordConfirm,
     });
     onLogin();
     navigate("/home", { replace: true });

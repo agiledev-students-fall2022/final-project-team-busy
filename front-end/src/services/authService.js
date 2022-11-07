@@ -17,11 +17,11 @@ const login = async ({ email, password }) => {
   return res.data;
 };
 
-const register = async ({ email, password, confirmPassword }) => {
+const register = async ({ email, password, passwordConfirm }) => {
   const res = await axios.post(BASE_URL + "register", {
     email,
     password,
-    confirmPassword,
+    passwordConfirm,
   });
   return res.data;
 };
