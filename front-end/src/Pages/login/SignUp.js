@@ -6,37 +6,56 @@ import Button from "@mui/material/Button";
 import PasswordInput from "../../Components/PasswordInput";
 import "./login.css";
 
+import authService from "../../services/authService";
+import { useForm, Controller } from "react-hook-form";
+
 const SignUp = ({ onLogin }) => {
-  const [values, setValues] = useState({
-    email: "",
-    emailFocused: false,
-    validEmail: false,
-    password: "",
-    passwordFocused: false,
-    validPassword: false,
-    showPassword: false,
-    passwordConfirm: "",
-    showPasswordConfirm: false,
-    validPasswordConfirm: false,
-    passwordConfirmFocused: false,
+  const {
+    register,
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      password: "",
+    },
+  });
+
+  const watchPassword = watch("password", false);
+
+  const validation = {
+    email: {
+      required: "Email is required",
+      pattern: {
+        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+        message: "Invalid email address",
+      },
+    },
+    password: {
+      required: "Password is required",
+      minLength: {
+        value: 8,
+        message: "Password must have at least 8 characters",
+      },
+    },
+    passwordConfirm: {
+      validate: (value) =>
+        value === watchPassword || "The passwords do not match",
+    },
+  };
+
+  const [showPasswords, setShowPasswords] = useState({
+    main: false,
+    confirm: false,
   });
 
   const navigate = useNavigate();
 
-  const handleChange = (valueName) => (e) => {
-    setValues({ ...values, [valueName]: e.target.value });
-    // if (valueName === "password") {
-    //   setValues({ ...values, passwordFocused: true });
-    // }
-    // if (valueName === "email") {
-    //   setValues({ ...values, emailFocused: true });
-    // }
-  };
-
   const handleClickShowPassword = (valueName) => (e) => {
-    setValues({
-      ...values,
-      [valueName]: !values[valueName],
+    setShowPasswords({
+      ...showPasswords,
+      [valueName]: !showPasswords[valueName],
     });
   };
 
@@ -44,24 +63,12 @@ const SignUp = ({ onLogin }) => {
     e.preventDefault();
   };
 
-  const handleSubmit = () => {
-    // if (values.password.length === 0 || values.email.length === 0) {
-    //   setValues({
-    //     ...values,
-    //     invalidPassword: values.password.length === 0,
-    //     invalidEmail: values.email.length === 0,
-    //   });
-    //   alert("invalid email or password");
-    //   return;
-    // }
-
-    setValues({
-      ...values,
-      email: "",
-      password: "",
-      showPassword: false,
+  const onSubmit = (data) => {
+    authService.register({
+      email: data.email,
+      password: data.password,
+      confirmPassword: data.passwordConfirm,
     });
-
     onLogin();
     navigate("/home", { replace: true });
   };
@@ -74,41 +81,47 @@ const SignUp = ({ onLogin }) => {
         required
         label="Email"
         type="email"
-        value={values.email}
-        onChange={handleChange("email")}
-        // error={values.emailFocused && values.invalidEmail}
-        // helperText={"Invalid email address"}
+        {...register("email", validation.email)}
+        error={!!errors.email}
+        helperText={errors.email?.message}
       />
-      <PasswordInput
-        inputLabel={"Password"}
-        showPassword={values.showPassword}
-        password={values.password}
-        validPassword={values.validPassword}
-        passwordFocused={values.passwordFocused}
-        onChange={handleChange("password")}
-        handleClickShowPassword={handleClickShowPassword("showPassword")}
-        handleMouseDownPassword={handleMouseDownPassword}
+      <Controller
+        name="password"
+        control={control}
+        rules={validation.password}
+        render={({ field }) => (
+          <PasswordInput
+            inputLabel={"Password"}
+            showPassword={showPasswords.main}
+            error={errors.password}
+            handleClickShowPassword={handleClickShowPassword("main")}
+            handleMouseDownPassword={handleMouseDownPassword}
+            field={field}
+          />
+        )}
       />
-      <PasswordInput
-        inputLabel={"Confirm Password"}
-        showPassword={values.showPasswordConfirm}
-        password={values.passwordConfirm}
-        validPassword={values.validPasswordConfirm}
-        passwordFocused={values.passwordConfirmFocused}
-        onChange={handleChange("passwordConfirm")}
-        handleClickShowPassword={handleClickShowPassword("showPasswordConfirm")}
-        handleMouseDownPassword={handleMouseDownPassword}
+      <Controller
+        name="passwordConfirm"
+        control={control}
+        rules={validation.passwordConfirm}
+        render={({ field }) => (
+          <PasswordInput
+            inputLabel={"Confirm Password"}
+            showPassword={showPasswords.confirm}
+            error={errors.passwordConfirm}
+            handleClickShowPassword={handleClickShowPassword("confirm")}
+            handleMouseDownPassword={handleMouseDownPassword}
+            field={field}
+          />
+        )}
       />
 
-      <span className="form-align-right">
-        <Link to="/forgot-password">Forgot your password?</Link>
-      </span>
       <Button
         className="form-button"
         variant="contained"
-        onClick={handleSubmit}
+        onClick={handleSubmit(onSubmit)}
       >
-        sign Up
+        Sign Up
       </Button>
       <Button className="form-button" variant="contained">
         Continue with Google

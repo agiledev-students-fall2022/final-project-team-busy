@@ -1,23 +1,22 @@
 import FormControl from "@mui/material/FormControl";
-// import FormHelperText from "@mui/material/FormHelperText";
+import FormHelperText from "@mui/material/FormHelperText";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputLabel from "@mui/material/InputLabel";
+
 const PasswordInput = ({
   inputLabel,
+  error,
   showPassword,
-  password,
-  validPassword,
-  passwordFocused,
-  onChange,
   handleClickShowPassword,
   handleMouseDownPassword,
+  field,
 }) => {
   return (
-    <FormControl fullWidth variant="outlined">
+    <FormControl fullWidth variant="outlined" {...field}>
       <InputLabel htmlFor="outlined-adornment-password">
         {inputLabel}
       </InputLabel>
@@ -26,9 +25,7 @@ const PasswordInput = ({
         id="outlined-adornment-password"
         label="Password"
         type={showPassword ? "text" : "password"}
-        value={password}
-        onChange={onChange}
-        error={passwordFocused && !validPassword}
+        error={!!error}
         endAdornment={
           <InputAdornment position="end">
             <IconButton
@@ -43,8 +40,9 @@ const PasswordInput = ({
         }
       />
 
-      {/* <FormHelperText error>Invalid password</FormHelperText> */}
+      {error && <FormHelperText error>{error?.message}</FormHelperText>}
     </FormControl>
   );
 };
+
 export default PasswordInput;
