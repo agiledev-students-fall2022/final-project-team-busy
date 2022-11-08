@@ -27,7 +27,12 @@ const router = express.Router();
 router.get('/:username', (req,res) => {
     const { username } = req.params;
     const user = usersList.find(u => u.username === username);
-    res.send(user);
+    if (user){
+        res.status(200).send(user);
+    }
+    else{
+        res.status(404).send("No user found");
+    }
 })
 
 module.exports = router;

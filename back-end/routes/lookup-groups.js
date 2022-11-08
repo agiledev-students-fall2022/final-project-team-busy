@@ -24,7 +24,12 @@ const router = express.Router();
 router.get("/:groupname", (req,res) => {
     const { groupname } = req.params;
     const group = groupsList.find(g => g.groupname === groupname);
-    res.send(group);
+    if (group){
+        res.status(200).send(group)
+    }
+    else{
+        res.status(404).send("No group found")
+    }
     
 });
 
