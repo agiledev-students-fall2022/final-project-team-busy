@@ -21,7 +21,7 @@ router.post("/login", (req, res) => {
   }
 
   //(temp) respond with user info
-  res.status(201).json({
+  res.status(200).json({
     name: "John Doe",
     id: 1234,
   });
@@ -35,8 +35,8 @@ router.post("/register", (req, res) => {
   }
 
   //(temp) respond with user info
-  res.status(200).json({
-    email: "John Doe",
+  res.status(201).json({
+    name: "John Doe",
     id: 2345,
   });
 });
