@@ -10,16 +10,18 @@ app.use(morgan("dev")); // morgan has a few logging default styles - dev is a ni
 app.use(express.json()); // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
 
-const auth = require("./routes/auth");
+const auth = require("./routes/auth")
 const createGroup = require("./routes/create-group")
-const lookupUser = require("./routes/lookup-user");
+const lookupUser = require("./routes/lookup-user")
 const lookupGroup = require("./routes/lookup-groups")
 const changeSettings = require("./routes/change-settings");
+const lookupEvent = require("./routes/lookup-events")
 
-app.use("/auth", auth);
-app.use("/create-group", createGroup);
-app.use("/lookupuser", lookupUser);
-app.use("/lookupgroup", lookupGroup); 
+app.use("/auth", auth)
+app.use("/create-group", createGroup)
+app.use("/lookupuser", lookupUser)
+app.use("/lookupgroup", lookupGroup)
+app.use("/lookupevent", lookupEvent)
 app.use("/changeSettings", changeSettings);
 
 

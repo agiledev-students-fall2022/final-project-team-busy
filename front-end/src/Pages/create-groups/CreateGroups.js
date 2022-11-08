@@ -11,6 +11,7 @@ import { Button } from '@mui/material'
 // import { FormControl } from '@mui/material'
 import ConfirmationMessage from '../../Components/confirmation-messages/ConfirmationMessage'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
 
 const CreateGroups = () => {
@@ -21,58 +22,17 @@ const CreateGroups = () => {
     const [friendsChecked, setChecked] = useState([1]);
     const [created, setCreated] = useState(false);
 
-    let friends = [
-        {
-            "value": 0,
-            "name": "Oran McCullough",
-            "bgcolor": "#f44336"
-        },
-        {
-            "value": 1,
-            "name": "Jacynthe Walter",
-            "bgcolor": "#f44336"
-        },
-        {
-            "value": 2,
-            "name": "Darrell Renner",
-            "bgcolor": "#e91e63"
-        },
-        {
-            "value": 3,
-            "name": "Darrell Renner",
-            "bgcolor": "#e91e63"
-        },
-        {
-            "value": 4,
-            "name": "Jeremie Gorczany",
-            "bgcolor": "#4caf50"
-        },
-        {
-            "value": 5,
-            "name": "Oran McCullough",
-            "bgcolor": "#f44336"
-        },
-        {
-            "value": 6,
-            "name": "Jaquan Von",
-            "bgcolor": "#4caf50"
-        },
-        {
-            "value": 7,
-            "name": "Darrell Renner",
-            "bgcolor": "#e91e63"
-        },
-        {
-            "value": 8,
-            "name": "Oran McCullough",
-            "bgcolor": "#f44336"
-        },
-        {
-            "value": 9,
-            "name": "Darrell Renner",
-            "bgcolor": "#2196f3"
-        }
-    ]
+    const friends_mock_data = 'https://my.api.mockaroo.com/friend_mock_data.json?key=8d411320'
+    const [friends, setFriends] = useState([])
+    useEffect(() => {
+        fetch(friends_mock_data)
+            .then((response) => response.json())
+            .then((actualData) => setFriends(actualData))
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, []);
+    const [friendsAdded, setAdded] = useState([friends[1]])
 
     const handleNameChange = (e) => {
         // console.log(e.target.value);
@@ -94,15 +54,15 @@ const CreateGroups = () => {
         const groupInfo = JSON.stringify({
             name: name,
             dp: dpURL,
-            friendsChecked: friendsChecked
+            friendsAdded: friendsAdded
         })
         fetch("/create-group/", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: groupInfo
         }).then(res => res.json())
-        .then(response => console.log('Form Submitted Successfully:', response))
-        .catch(error => console.error('Error:', error))
+            .then(response => console.log('Form Submitted Successfully:', response))
+            .catch(error => console.error('Error:', error))
     }
 
     const handleToggle = (value) => () => {
@@ -115,9 +75,14 @@ const CreateGroups = () => {
             newChecked.splice(currentIndex, 1);
         }
 
-        console.log(friends[newChecked[newChecked.length - 1]])
-
         setChecked(newChecked);
+
+        let newAdded = []
+        newChecked.forEach(friendNum => {
+            newAdded.push(friends[friendNum])
+        })
+        setAdded(newAdded)
+        console.log(newAdded)
     };
 
     let nameError = (nameChanges > 0 && name === '')

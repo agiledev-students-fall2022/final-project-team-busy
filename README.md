@@ -30,4 +30,31 @@ Busy? is a project inspired by the daily life of a busy college student. As many
 Information about how to contribute to this project can be found in [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 
+## How to launch the app
+
+### Get the code
+
+1. Fork this repository
+2. Clone your fork of this repository to your local machine
+3. Navigate into the project directory
+
+### Build the back end
+
+1. Navigate into the `back-end` directory
+2. Run `npm install` to install all dependencies listed in the `package.json` file
+
+### Build the front end
+
+1. Navigate into the `front-end` directory
+2. Run `npm install` to install all dependencies listed in the `package.json` file
+
+### Launch the app
+
+1. Navigate into the root or parent directory
+2. Run `npm install` to install all dependencies listed in the `package.json` file
+3. Run `npm run dev` to launch both React.js and the back-end server at the same time
+
+### Visit the web app in your web browser
+
+- navigate your web browser to http://localhost:3000
 
