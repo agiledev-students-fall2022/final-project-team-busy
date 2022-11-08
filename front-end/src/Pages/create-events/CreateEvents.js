@@ -9,6 +9,7 @@ import FriendList from '../../Components/friends-list/FriendList';
 import { Button } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 import ConfirmationMessage from '../../Components/confirmation-messages/ConfirmationMessage';
+import { useEffect } from 'react';
 
 
 const CreateEvents = props => {
@@ -22,90 +23,113 @@ const CreateEvents = props => {
     const [groupsChecked, setGroupsChecked] = useState([2]);
     const [created, setCreated] = useState(false);
 
-    let friends = [
-        {
-            "value": 0,
-            "name": "Oran McCullough",
-            "bgcolor": "#f44336"
-        },
-        {
-            "value": 1,
-            "name": "Jacynthe Walter",
-            "bgcolor": "#f44336"
-        },
-        {
-            "value": 2,
-            "name": "Darrell Renner",
-            "bgcolor": "#e91e63"
-        },
-        {
-            "value": 3,
-            "name": "Darrell Renner",
-            "bgcolor": "#e91e63"
-        },
-        {
-            "value": 4,
-            "name": "Jeremie Gorczany",
-            "bgcolor": "#4caf50"
-        },
-        {
-            "value": 5,
-            "name": "Oran McCullough",
-            "bgcolor": "#f44336"
-        },
-        {
-            "value": 6,
-            "name": "Jaquan Von",
-            "bgcolor": "#4caf50"
-        },
-        {
-            "value": 7,
-            "name": "Darrell Renner",
-            "bgcolor": "#e91e63"
-        },
-        {
-            "value": 8,
-            "name": "Oran McCullough",
-            "bgcolor": "#f44336"
-        },
-        {
-            "value": 9,
-            "name": "Darrell Renner",
-            "bgcolor": "#2196f3"
-        }
-    ]
+    const friends_mock_data = 'https://my.api.mockaroo.com/friend_mock_data.json?key=8d411320'
+    const [friends, setFriends] = useState([])
+    useEffect(() => {
+        fetch(friends_mock_data)
+            .then((response) => response.json())
+            .then((actualData) => setFriends(actualData))
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, []);
+    const [friendsAdded, setFriendsAdded] = useState([friends[1]])
 
-    let groups = [
-        {
-            "value": 0,
-            "name": "Study Group",
-            "bgcolor": "#f44336"
-        },
-        {
-            "value": 1,
-            "name": "Walking Group",
-            "bgcolor": "#f44336"
-        },
-        {
-            "value": 2,
-            "name": "My Group",
-            "bgcolor": "#e91e63"
-        },
-        {
-            "value": 3,
-            "name": "Your Group",
-            "bgcolor": "#e91e63"
-        },
-        {
-            "value": 4,
-            "name": "This Group",
-            "bgcolor": "#4caf50"
-        },
-        {
-            "value": 5,
-            "name": "That Group",
-            "bgcolor": "#f44336"
-        }]
+    const [groups, setGroups] = useState([])
+    useEffect(() => {
+        fetch(friends_mock_data)
+            .then((response) => response.json())
+            .then((actualData) => setGroups(actualData))
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, []);
+    const [groupsAdded, setGroupsAdded] = useState([groups[1]])
+
+    // let friends = [
+    //     {
+    //         "value": 0,
+    //         "name": "Oran McCullough",
+    //         "bgcolor": "#f44336"
+    //     },
+    //     {
+    //         "value": 1,
+    //         "name": "Jacynthe Walter",
+    //         "bgcolor": "#f44336"
+    //     },
+    //     {
+    //         "value": 2,
+    //         "name": "Darrell Renner",
+    //         "bgcolor": "#e91e63"
+    //     },
+    //     {
+    //         "value": 3,
+    //         "name": "Darrell Renner",
+    //         "bgcolor": "#e91e63"
+    //     },
+    //     {
+    //         "value": 4,
+    //         "name": "Jeremie Gorczany",
+    //         "bgcolor": "#4caf50"
+    //     },
+    //     {
+    //         "value": 5,
+    //         "name": "Oran McCullough",
+    //         "bgcolor": "#f44336"
+    //     },
+    //     {
+    //         "value": 6,
+    //         "name": "Jaquan Von",
+    //         "bgcolor": "#4caf50"
+    //     },
+    //     {
+    //         "value": 7,
+    //         "name": "Darrell Renner",
+    //         "bgcolor": "#e91e63"
+    //     },
+    //     {
+    //         "value": 8,
+    //         "name": "Oran McCullough",
+    //         "bgcolor": "#f44336"
+    //     },
+    //     {
+    //         "value": 9,
+    //         "name": "Darrell Renner",
+    //         "bgcolor": "#2196f3"
+    //     }
+    // ]
+
+    // let groups = [
+    //     {
+    //         "value": 0,
+    //         "name": "Study Group",
+    //         "bgcolor": "#f44336"
+    //     },
+    //     {
+    //         "value": 1,
+    //         "name": "Walking Group",
+    //         "bgcolor": "#f44336"
+    //     },
+    //     {
+    //         "value": 2,
+    //         "name": "My Group",
+    //         "bgcolor": "#e91e63"
+    //     },
+    //     {
+    //         "value": 3,
+    //         "name": "Your Group",
+    //         "bgcolor": "#e91e63"
+    //     },
+    //     {
+    //         "value": 4,
+    //         "name": "This Group",
+    //         "bgcolor": "#4caf50"
+    //     },
+    //     {
+    //         "value": 5,
+    //         "name": "That Group",
+    //         "bgcolor": "#f44336"
+    //     }]
 
     const handleToggleFriends = (value) => () => {
         const currentIndex = friendsChecked.indexOf(value);
@@ -117,9 +141,14 @@ const CreateEvents = props => {
             newChecked.splice(currentIndex, 1);
         }
 
-        console.log(friends[newChecked[newChecked.length - 1]])
-
         setFriendsChecked(newChecked);
+
+        let newAdded = []
+        newChecked.forEach(friendNum => {
+            newAdded.push(friends[friendNum])
+        })
+        setFriendsAdded(newAdded)
+        console.log(newAdded)
     };
 
     const handleToggleGroups = (value) => () => {
@@ -132,9 +161,14 @@ const CreateEvents = props => {
             newChecked.splice(currentIndex, 1);
         }
 
-        console.log(groups[newChecked[newChecked.length - 1]])
-
         setGroupsChecked(newChecked);
+
+        let newAdded = []
+        newChecked.forEach(groupNum => {
+            newAdded.push(groups[groupNum])
+        })
+        setGroupsAdded(newAdded)
+        console.log(newAdded)
     };
 
     const handleSubmission = () => {
