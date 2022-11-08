@@ -8,6 +8,7 @@ import "./login.css";
 
 import authService from "../../services/authService";
 import { useForm, Controller } from "react-hook-form";
+import ErrorIcon from "@mui/icons-material/Error";
 
 const Login = ({ onLogin }) => {
   const {
@@ -39,6 +40,7 @@ const Login = ({ onLogin }) => {
   };
 
   const [showPassword, setShowPassword] = useState(false);
+  const [serverMessage, setServerMessage] = useState(null);
 
   const navigate = useNavigate();
 
@@ -50,16 +52,30 @@ const Login = ({ onLogin }) => {
     e.preventDefault();
   };
 
-  const onSubmit = (data) => {
-    authService.login({ email: data.email, password: data.password });
-
-    onLogin();
-    navigate("/home", { replace: true });
+  const onSubmit = async (data) => {
+    try {
+      const res = await authService.login({
+        email: data.email,
+        password: data.password,
+      });
+      console.log(res);
+      onLogin();
+      navigate("/home", { replace: true });
+    } catch (error) {
+      console.log(error.response.data.error);
+      setServerMessage(error.response.data.error);
+    }
   };
 
   return (
     <Box maxWidth="sm" component="form" className="form-card">
       <h2>Login</h2>
+      {serverMessage && (
+        <div className="form-warning-container">
+          <ErrorIcon />
+          <span>{serverMessage}</span>
+        </div>
+      )}
       <TextField
         fullWidth
         required

@@ -28,3 +28,10 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.form-warning-container {
+  display: flex;
+  color: #d32f2f;
+  gap: 6px;
+  align-items: center;
+}
