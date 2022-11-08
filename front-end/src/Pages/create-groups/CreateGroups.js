@@ -20,7 +20,6 @@ const CreateGroups = () => {
     const [nameChanges, setNameChanges] = useState(0);
     const [friendsChecked, setChecked] = useState([1]);
     const [created, setCreated] = useState(false);
-
     let friends = [
         {
             "value": 0,
@@ -73,6 +72,7 @@ const CreateGroups = () => {
             "bgcolor": "#2196f3"
         }
     ]
+    const [friendsAdded, setAdded] = useState([friends[1]])
 
     const handleNameChange = (e) => {
         // console.log(e.target.value);
@@ -94,15 +94,15 @@ const CreateGroups = () => {
         const groupInfo = JSON.stringify({
             name: name,
             dp: dpURL,
-            friendsChecked: friendsChecked
+            friendsAdded: friendsAdded
         })
         fetch("/create-group/", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: groupInfo
         }).then(res => res.json())
-        .then(response => console.log('Form Submitted Successfully:', response))
-        .catch(error => console.error('Error:', error))
+            .then(response => console.log('Form Submitted Successfully:', response))
+            .catch(error => console.error('Error:', error))
     }
 
     const handleToggle = (value) => () => {
@@ -115,9 +115,14 @@ const CreateGroups = () => {
             newChecked.splice(currentIndex, 1);
         }
 
-        console.log(friends[newChecked[newChecked.length - 1]])
-
         setChecked(newChecked);
+
+        let newAdded = []
+        newChecked.forEach(friendNum => {
+            newAdded.push(friends[friendNum])
+        })
+        setAdded(newAdded)
+        console.log(newAdded)
     };
 
     let nameError = (nameChanges > 0 && name === '')
