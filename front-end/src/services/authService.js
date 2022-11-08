@@ -23,6 +23,7 @@ const register = async ({ email, password, passwordConfirm }) => {
     password,
     passwordConfirm,
   });
+
   return res.data;
 };
 

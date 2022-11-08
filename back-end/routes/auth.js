@@ -16,11 +16,8 @@ router.post("/login", (req, res) => {
   }
 
   //(temp) will be replaced by checking if user exists in DB
-  if (value.email != "email123@gmail.com") {
-    return res.status(400).json({ error: "Invalid email" });
-  }
-  if (value.password != "password123") {
-    return res.status(400).json({ error: "Invalid password" });
+  if (value.email != "test@gmail.com" || value.password != "password123") {
+    return res.status(400).json({ error: "Incorrect email or password" });
   }
 
   //(temp) respond with user info
