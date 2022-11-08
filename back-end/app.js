@@ -14,6 +14,7 @@ const auth = require("./routes/auth")
 const createGroup = require("./routes/create-group")
 const lookupUser = require("./routes/lookup-user")
 const lookupGroup = require("./routes/lookup-groups")
+const changeSettings = require("./routes/change-settings");
 const lookupEvent = require("./routes/lookup-events")
 
 app.use("/auth", auth)
@@ -21,6 +22,8 @@ app.use("/create-group", createGroup)
 app.use("/lookupuser", lookupUser)
 app.use("/lookupgroup", lookupGroup)
 app.use("/lookupevent", lookupEvent)
+app.use("/changeSettings", changeSettings);
+
 
 
 module.exports = app;
