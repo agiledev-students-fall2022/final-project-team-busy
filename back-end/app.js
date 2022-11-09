@@ -16,15 +16,15 @@ const lookupUser = require("./routes/lookup-user")
 const lookupGroup = require("./routes/lookup-groups")
 const changeSettings = require("./routes/change-settings");
 const lookupEvent = require("./routes/lookup-events")
-// const createEvents = require("./routes/create-events");
+const createEvents = require("./routes/create-events");
 
+app.use("/create-events", createEvents);
 app.use("/auth", auth)
 app.use("/create-group", createGroup)
 app.use("/lookupuser", lookupUser)
 app.use("/lookupgroup", lookupGroup)
 app.use("/lookupevent", lookupEvent)
 app.use("/changeSettings", changeSettings);
-// app.use("/create-events", createEvents);
 
 
 

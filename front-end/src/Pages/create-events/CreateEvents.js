@@ -10,8 +10,9 @@ import { Button } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 import ConfirmationMessage from '../../Components/confirmation-messages/ConfirmationMessage';
 import { useEffect } from 'react';
+import axios from 'axios';
 
-
+const BASE_URL = "localhost:5000/"
 const CreateEvents = props => {
     let currentDate = new Date().toLocaleString()
     const [startDate, setStartDate] = useState(currentDate)
@@ -45,91 +46,6 @@ const CreateEvents = props => {
             });
     }, []);
     const [groupsAdded, setGroupsAdded] = useState([groups[1]])
-
-    // let friends = [
-    //     {
-    //         "value": 0,
-    //         "name": "Oran McCullough",
-    //         "bgcolor": "#f44336"
-    //     },
-    //     {
-    //         "value": 1,
-    //         "name": "Jacynthe Walter",
-    //         "bgcolor": "#f44336"
-    //     },
-    //     {
-    //         "value": 2,
-    //         "name": "Darrell Renner",
-    //         "bgcolor": "#e91e63"
-    //     },
-    //     {
-    //         "value": 3,
-    //         "name": "Darrell Renner",
-    //         "bgcolor": "#e91e63"
-    //     },
-    //     {
-    //         "value": 4,
-    //         "name": "Jeremie Gorczany",
-    //         "bgcolor": "#4caf50"
-    //     },
-    //     {
-    //         "value": 5,
-    //         "name": "Oran McCullough",
-    //         "bgcolor": "#f44336"
-    //     },
-    //     {
-    //         "value": 6,
-    //         "name": "Jaquan Von",
-    //         "bgcolor": "#4caf50"
-    //     },
-    //     {
-    //         "value": 7,
-    //         "name": "Darrell Renner",
-    //         "bgcolor": "#e91e63"
-    //     },
-    //     {
-    //         "value": 8,
-    //         "name": "Oran McCullough",
-    //         "bgcolor": "#f44336"
-    //     },
-    //     {
-    //         "value": 9,
-    //         "name": "Darrell Renner",
-    //         "bgcolor": "#2196f3"
-    //     }
-    // ]
-
-    // let groups = [
-    //     {
-    //         "value": 0,
-    //         "name": "Study Group",
-    //         "bgcolor": "#f44336"
-    //     },
-    //     {
-    //         "value": 1,
-    //         "name": "Walking Group",
-    //         "bgcolor": "#f44336"
-    //     },
-    //     {
-    //         "value": 2,
-    //         "name": "My Group",
-    //         "bgcolor": "#e91e63"
-    //     },
-    //     {
-    //         "value": 3,
-    //         "name": "Your Group",
-    //         "bgcolor": "#e91e63"
-    //     },
-    //     {
-    //         "value": 4,
-    //         "name": "This Group",
-    //         "bgcolor": "#4caf50"
-    //     },
-    //     {
-    //         "value": 5,
-    //         "name": "That Group",
-    //         "bgcolor": "#f44336"
-    //     }]
 
     const handleToggleFriends = (value) => () => {
         const currentIndex = friendsChecked.indexOf(value);
@@ -176,8 +92,21 @@ const CreateEvents = props => {
         setTimeout(() => {
             setCreated(false);
         }, 1500);
-        console.log("Form submitted")
-    }
+        // Post request to create-events-page
+        axios.post(BASE_URL + '/create-events/new', {
+            title: name,
+            description: description,
+            members: friends,
+            groups: groups,
+            startTime: startDate,
+            endTime: endDate
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });    }
 
     // const displayDate = () => {
     //     console.log(date)
@@ -205,7 +134,7 @@ const CreateEvents = props => {
         <div className='create-events-page'>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <h2 className="create-event-heading">Create Event</h2>
-                <form action='' method='post'>
+                <form>
                     <TextField id="event-name" label="Enter Event Name" variant="outlined" required value={name} onChange={handleNameChange} inputProps={{ maxLength: 50 }} error={nameError} helperText={nameError ? 'Please enter group name' : ''} />
                     <TextField id="event-description" label="Enter Event Description" variant="outlined" multiline minRows={3} value={description} onChange={handleDescriptionChange} />
                     <DateTimePicker

@@ -7,21 +7,22 @@ const Joi = require("joi");
 
 // Data validation schema for Events
 const eventsSchema = Joi.object({
-    title: Joi.string(),
+    title: Joi.string().required(),
     description: Joi.string(),
-    members: Joi.array().unique().items(Joi.string()),
-    groups: Joi.array().unique().items(Joi.string()),
-    startTime: Joi.date.required(),
-    endTime: Joi.date.required().greater(Joi.ref("startTime"))
+    members: Joi.array().unique().items(Joi.string()).required(),
+    groups: Joi.array().unique().items(Joi.string()).required(),
+    startTime: Joi.date().required(),
+    endTime: Joi.date().required().greater(Joi.ref("startTime"))
 })
 
 // Post request to add events to the page
-router.post("/create-events-page", (req,res) => {
+router.post("/new", (req,res) => {
    const { error } = eventsSchema.validate(req.body);
    if (error) {
         res.status(500).send(error);
    } else {
-        res.sendStatus(500);
+        res.sendStatus(200);
         // Add here post information to Database
    }
 })
+module.exports = router;
