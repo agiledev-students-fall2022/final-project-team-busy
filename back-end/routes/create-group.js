@@ -2,7 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 router.post("/", (req, res) => {
-    const {name, dp, friendsAdded} = req.body
+    const { name, dp, friendsAdded } = req.body
+
+    if (!name || friendsAdded.length === 0) {
+        res.status(400).json({
+            error: "Please enter name and add friends to create a group."
+        })
+    }
 
     res.status(200).json({
         name: name,
