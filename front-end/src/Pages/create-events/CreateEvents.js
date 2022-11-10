@@ -7,12 +7,11 @@ import { useState } from 'react';
 import { TextField } from '@mui/material';
 import FriendList from '../../Components/friends-list/FriendList';
 import { Button } from '@mui/material'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ConfirmationMessage from '../../Components/confirmation-messages/ConfirmationMessage';
 import { useEffect } from 'react';
-import axios from 'axios';
 
-const BASE_URL = "localhost:5000/"
+
 const CreateEvents = props => {
     let currentDate = new Date().toLocaleString()
     const [startDate, setStartDate] = useState(currentDate)
@@ -20,32 +19,26 @@ const CreateEvents = props => {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [nameChanges, setNameChanges] = useState(0);
-    const [friendsChecked, setFriendsChecked] = useState([1]);
-    const [groupsChecked, setGroupsChecked] = useState([2]);
+    const [friendsChecked, setFriendsChecked] = useState([]);
+    const [groupsChecked, setGroupsChecked] = useState([]);
     const [created, setCreated] = useState(false);
 
-    const friends_mock_data = 'https://my.api.mockaroo.com/friend_mock_data.json?key=8d411320'
     const [friends, setFriends] = useState([])
-    useEffect(() => {
-        fetch(friends_mock_data)
-            .then((response) => response.json())
-            .then((actualData) => setFriends(actualData))
-            .catch((err) => {
-                console.log(err.message);
-            });
-    }, []);
-    const [friendsAdded, setFriendsAdded] = useState([friends[1]])
-
     const [groups, setGroups] = useState([])
     useEffect(() => {
-        fetch(friends_mock_data)
-            .then((response) => response.json())
-            .then((actualData) => setGroups(actualData))
-            .catch((err) => {
-                console.log(err.message);
-            });
+        fetch("/create-events/", {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        }).then(response => response.json())
+            .then(response => {
+                console.log('Mock Data Loaded Successfully.')
+                setFriends(response.friends);
+                setGroups(response.groups);
+            })
+            .catch(error => console.error('Error:', error))
     }, []);
-    const [groupsAdded, setGroupsAdded] = useState([groups[1]])
+    const [friendsAdded, setFriendsAdded] = useState([])
+    const [groupsAdded, setGroupsAdded] = useState([])
 
     const handleToggleFriends = (value) => () => {
         const currentIndex = friendsChecked.indexOf(value);
@@ -87,26 +80,29 @@ const CreateEvents = props => {
         console.log(newAdded)
     };
 
-    const handleSubmission = () => {
+    const handleSubmission = (e) => {
+        e.preventDefault();
         setCreated(true);
         setTimeout(() => {
             setCreated(false);
         }, 1500);
-        // Post request to create-events-page
-        axios.post(BASE_URL + '/create-events/new', {
+        const eventInfo = JSON.stringify({
             title: name,
             description: description,
-            members: friends,
-            groups: groups,
-            startTime: startDate,
-            endTime: endDate
+            friendsAdded: friendsAdded,
+            groupsAdded: groupsAdded,
+            startDate: startDate,
+            endDate: endDate
         })
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });    }
+        // Post request to create-events-page
+        fetch("/create-events/", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: eventInfo
+        }).then(res => res.json())
+            .then(response => console.log('Form Submitted Successfully:', response))
+            .catch(error => console.error('Error:', error))
+    }
 
     // const displayDate = () => {
     //     console.log(date)
@@ -134,7 +130,7 @@ const CreateEvents = props => {
         <div className='create-events-page'>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <h2 className="create-event-heading">Create Event</h2>
-                <form>
+                <form onSubmit={handleSubmission} method='post'>
                     <TextField id="event-name" label="Enter Event Name" variant="outlined" required value={name} onChange={handleNameChange} inputProps={{ maxLength: 50 }} error={nameError} helperText={nameError ? 'Please enter group name' : ''} />
                     <TextField id="event-description" label="Enter Event Description" variant="outlined" multiline minRows={3} value={description} onChange={handleDescriptionChange} />
                     <DateTimePicker
@@ -162,7 +158,7 @@ const CreateEvents = props => {
                     <ConfirmationMessage relation={"Event"} confirmed={created} />
                     <div className="form-submit-buttons">
                         <Button variant="outlined" className='cancel-button' component={Link} to="/events">Cancel</Button>
-                        <Button type='submit' disabled={anyError} onClick={handleSubmission} variant="contained" className='create-event-button'>Create Event</Button>
+                        <Button type='submit' disabled={anyError} variant="contained" className='create-event-button'>Create Event</Button>
                     </div>
                 </form>
             </LocalizationProvider>
