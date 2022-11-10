@@ -10,7 +10,7 @@ import { Button } from '@mui/material'
 import { Link } from 'react-router-dom'
 import ConfirmationMessage from '../../Components/confirmation-messages/ConfirmationMessage';
 import { useEffect } from 'react';
-
+import axios from 'axios';
 
 const CreateEvents = props => {
     let currentDate = new Date().toLocaleString()
@@ -35,7 +35,7 @@ const CreateEvents = props => {
                 setFriends(response.friends);
                 setGroups(response.groups);
             })
-            .catch(error => console.error('Error:', error))
+        .catch(error => console.error('Error:', error))
     }, []);
     const [friendsAdded, setFriendsAdded] = useState([])
     const [groupsAdded, setGroupsAdded] = useState([])
@@ -95,20 +95,21 @@ const CreateEvents = props => {
             endDate: endDate
         })
         // Post request to create-events-page
-        fetch("/create-events/", {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: eventInfo
-        }).then(res => res.json())
-            .then(response => console.log('Form Submitted Successfully:', response))
-            .catch(error => console.error('Error:', error))
+        axios.post('/create-events', {
+            title: name,
+            description: description,
+            members: friends,
+            groups: groups,
+            startTime: startDate,
+            endTime: endDate
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });   
     }
-
-    // const displayDate = () => {
-    //     console.log(date)
-    // }
-    // displayDate();
-
     const handleNameChange = (e) => {
         // console.log(e.target.value);
         setName(e.target.value);
