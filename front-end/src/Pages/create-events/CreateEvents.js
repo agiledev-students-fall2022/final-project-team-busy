@@ -90,8 +90,8 @@ const CreateEvents = props => {
         axios.post('/create-events', {
             title: name,
             description: description,
-            members: friends,
-            groups: groups,
+            members: friendsAdded,
+            groups: groupsAdded,
             startTime: startDate,
             endTime: endDate
         })
