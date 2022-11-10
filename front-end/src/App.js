@@ -62,7 +62,7 @@ function App() {
               <Route path="/friends" element={<Friends />} />
               <Route path="/create-group" element={<CreateGroups />} />
               <Route path="/events" element={<Events />} />
-              <Route path="/create-event" element={<CreateEvents />} />
+              <Route path="/create-events" element={<CreateEvents />} />
               <Route path="/groups" element={<Groups />} />
               <Route
                 path="/addpersonalcalendar"

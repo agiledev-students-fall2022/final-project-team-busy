@@ -57,7 +57,7 @@ const Events = () => {
 
         <Button
           component={Link}
-          to="/create-event"
+          to="/create-events"
           sx={{ display: "block" }}
           className="events-button"
           variant="contained"
