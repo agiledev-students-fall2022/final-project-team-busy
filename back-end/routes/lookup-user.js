@@ -31,7 +31,7 @@ router.get('/:username', (req,res) => {
         res.status(200).send(user);
     }
     else{
-        res.status(404).send("No user found");
+        res.status(404).json({error: "No User Found"});
     }
 })
 
