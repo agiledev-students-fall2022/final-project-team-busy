@@ -7,14 +7,14 @@ const router = express.Router();
     {
         id: 1234,
         title: "Group Study Session!",
-        dscription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem labore nulla, nihil deserunt adipisci sit ab vero facere, suscipit magnam quidem quibusdam porro facilis ullam necessitatibus, dolor quis dicta tenetur enim.",
+        description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem labore nulla, nihil deserunt adipisci sit ab vero facere, suscipit magnam quidem quibusdam porro facilis ullam necessitatibus, dolor quis dicta tenetur enim.",
         members: ["Alan", "Beth", "Chris"],
         groups: ["nycbuds"]
     },
     {
         id: 2456,
         title: "Book Club",
-        dscription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem labore nulla, nihil deserunt adipisci sit ab vero facere, suscipit magnam quidem quibusdam porro facilis ullam necessitatibus, dolor quis dicta tenetur enim.",
+        description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem labore nulla, nihil deserunt adipisci sit ab vero facere, suscipit magnam quidem quibusdam porro facilis ullam necessitatibus, dolor quis dicta tenetur enim.",
         members: ["Steve", "Elizabeth"],
         groups: ["nycbuds", "welikepizza"]
 
@@ -22,7 +22,7 @@ const router = express.Router();
     {
         id: 3456,
         title: "Company Meeting",
-        dscription: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem labore nulla, nihil deserunt adipisci sit ab vero facere, suscipit magnam quidem quibusdam porro facilis ullam necessitatibus, dolor quis dicta tenetur enim.",
+        description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem labore nulla, nihil deserunt adipisci sit ab vero facere, suscipit magnam quidem quibusdam porro facilis ullam necessitatibus, dolor quis dicta tenetur enim.",
         members: ["Mr. CEO", "Ajay", "Demi"],
         groups: ["biking"]
 
