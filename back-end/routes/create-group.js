@@ -1,5 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const data = require('../mock-data/friend-mock-data.json')
+
+router.get("/", (req, res) => {
+    res.send(data)
+})
 
 router.post("/", (req, res) => {
     const { name, dp, friendsAdded } = req.body
