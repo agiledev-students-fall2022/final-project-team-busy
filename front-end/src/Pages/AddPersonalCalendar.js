@@ -1,13 +1,12 @@
 import TextField from '@mui/material/TextField';
-// import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
-// import dayjs from 'dayjs';
 import { useState } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DateTimePicker } from '@mui/x-date-pickers'
 import './AddPersonalCalendar.css'
 import { Button } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 
 
@@ -20,22 +19,26 @@ const AddPersonalCalendar = (props) => {
     const [nameChanges, setNameChanges] = useState(0);
 
     const handleSubmission = () => {
-        console.log("Form submitted")
+        axios.post('/create-events', {
+            title: name,
+            description: description,
+            startTime: startDate,
+            endTime: endDate
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });          
     }
 
-    // const displayDate = () => {
-    //     console.log(date)
-    // }
-    // displayDate();
-
     const handleNameChange = (e) => {
-        // console.log(e.target.value);
         setName(e.target.value);
         setNameChanges(nameChanges + 1);
     }
 
     const handleDescriptionChange = (e) => {
-        // console.log(e.target.value);
         setDescription(e.target.value);
     }
 

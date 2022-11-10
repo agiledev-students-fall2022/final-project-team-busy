@@ -86,14 +86,6 @@ const CreateEvents = props => {
         setTimeout(() => {
             setCreated(false);
         }, 1500);
-        const eventInfo = JSON.stringify({
-            title: name,
-            description: description,
-            friendsAdded: friendsAdded,
-            groupsAdded: groupsAdded,
-            startDate: startDate,
-            endDate: endDate
-        })
         // Post request to create-events-page
         axios.post('/create-events', {
             title: name,

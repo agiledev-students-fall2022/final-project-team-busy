@@ -14,8 +14,8 @@ const group_data = require('../mock-data/group-mock-data.json')
 const eventsSchema = Joi.object({
      title: Joi.string().required(),
      description: Joi.string(),
-     members: Joi.array().unique().items(Joi.string()).required(),
-     groups: Joi.array().unique().items(Joi.string()).required(),
+     members: Joi.array().unique().items(Joi.string()),
+     groups: Joi.array().unique().items(Joi.string()),
      startTime: Joi.date().required(),
      endTime: Joi.date().required().greater(Joi.ref("startTime"))
 })
