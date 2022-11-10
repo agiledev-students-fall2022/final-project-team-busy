@@ -22,15 +22,17 @@ const CreateGroups = () => {
     const [friendsChecked, setChecked] = useState([1]);
     const [created, setCreated] = useState(false);
 
-    const friends_mock_data = 'https://my.api.mockaroo.com/friend_mock_data.json?key=8d411320'
     const [friends, setFriends] = useState([])
     useEffect(() => {
-        fetch(friends_mock_data)
-            .then((response) => response.json())
-            .then((actualData) => setFriends(actualData))
-            .catch((err) => {
-                console.log(err.message);
-            });
+        fetch("/create-group/", {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' },
+        }).then(response => response.json())
+            .then(response => {
+                console.log('Mock Data Loaded Successfully.')
+                setFriends(response);
+            })
+            .catch(error => console.error('Error:', error))
     }, []);
     const [friendsAdded, setAdded] = useState([friends[1]])
 
