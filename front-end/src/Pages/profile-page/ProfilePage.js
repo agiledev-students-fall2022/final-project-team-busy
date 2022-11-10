@@ -15,7 +15,7 @@ const ProfilePage = ({dp, bio}) => {
             <div className='heading-and-home-button-header'>
                 <div className='heading-and-username'>
                     <h2 className='profile-heading'>Profile</h2>
-                    <span className='username'>@username</span>
+                    <span className='username'>SpongeBob SquarePants</span>
                 </div>
                 <div className='home-button'>
                     <IconButton aria-label="home" component={Link} to="/home">
