@@ -1,31 +1,42 @@
 const express = require("express");
 const app = express();
-require("dotenv").config({ silent: true }); // load environmental variables from a hidden file named .env
-const morgan = require("morgan"); // middleware for nice logging of incoming HTTP requests
+require("dotenv").config({ silent: true });
+const morgan = require("morgan");
+const mongoose = require("mongoose");
 
-// use the morgan middleware to log all incoming http requests
-app.use(morgan("dev")); // morgan has a few logging default styles - dev is a nice concise color-coded style
+app.use(morgan("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// use express's builtin body-parser middleware to parse any data included in a request
-app.use(express.json()); // decode JSON-formatted incoming POST data
-app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
-
-const auth = require("./routes/auth")
-const createGroup = require("./routes/create-group")
-const lookupUser = require("./routes/lookup-user")
-const lookupGroup = require("./routes/lookup-groups")
+const auth = require("./routes/auth");
+const createGroup = require("./routes/create-group");
+const lookupUser = require("./routes/lookup-user");
+const lookupGroup = require("./routes/lookup-groups");
 const changeSettings = require("./routes/change-settings");
-const lookupEvent = require("./routes/lookup-events")
+const lookupEvent = require("./routes/lookup-events");
 const createEvents = require("./routes/create-events");
 
+mongoose.connect(
+  process.env.ATLAS_URI,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  (err) => {
+    if (err) {
+      console.log("error in mongodb connection");
+    } else {
+      console.log("mongodb is connected");
+    }
+  }
+);
+
 app.use("/create-events", createEvents);
-app.use("/auth", auth)
-app.use("/create-group", createGroup)
-app.use("/lookupuser", lookupUser)
-app.use("/lookupgroup", lookupGroup)
-app.use("/lookupevent", lookupEvent)
+app.use("/auth", auth);
+app.use("/create-group", createGroup);
+app.use("/lookupuser", lookupUser);
+app.use("/lookupgroup", lookupGroup);
+app.use("/lookupevent", lookupEvent);
 app.use("/changeSettings", changeSettings);
-
-
 
 module.exports = app;
