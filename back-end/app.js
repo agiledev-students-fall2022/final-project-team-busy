@@ -8,6 +8,10 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+require("./data/eventModel");
+require("./data/groupModel");
+require("./data/userModel");
+
 const auth = require("./routes/auth");
 const createGroup = require("./routes/create-group");
 const lookupUser = require("./routes/lookup-user");
