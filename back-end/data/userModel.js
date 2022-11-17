@@ -13,7 +13,7 @@ const userSchema = new Schema(
     first: { type: String },
     last: { type: String },
     bio: { type: String },
-    accountSetting: settingsSchema,
+    accountSettings: settingsSchema,
     groups: [{ type: mongoose.Schema.Types.ObjectId, ref: "Group" }],
     friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     events: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
