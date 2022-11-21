@@ -26,15 +26,16 @@ const FriendList = ({friends, checked, handleToggle}) => {
     return (
         <List dense sx={{ width: '100%', bgcolor: 'background.paper', paddingTop: '2.5px', marginLeft: '-5px' }}>
             {friends && friends.map((friend) => {
-                const labelId = `checkbox-list-secondary-label-${friend.id}`;
+                const pos = friends.indexOf(friend);
+                const labelId = `checkbox-list-secondary-label-${pos}`;
                 return (
                     <ListItem
-                        key={friend.id}
+                        key={pos}
                         secondaryAction={
                             <Checkbox
                                 edge="end"
-                                onChange={handleToggle(friend.id)}
-                                checked={checked.indexOf(friend.id) !== -1}
+                                onChange={handleToggle(pos)}
+                                checked={checked.indexOf(pos) !== -1}
                                 inputProps={{ 'aria-labelledby': labelId }}
                             />
                         }
