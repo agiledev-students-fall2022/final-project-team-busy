@@ -12,7 +12,7 @@ import ConfirmationMessage from '../../Components/confirmation-messages/Confirma
 import { useEffect } from 'react';
 import axios from 'axios';
 
-const CreateEvents = props => {
+const CreateEvents = ({ friends, groups }) => {
     let currentDate = new Date().toLocaleString()
     const [startDate, setStartDate] = useState(currentDate)
     const [endDate, setEndDate] = useState(currentDate)
@@ -23,20 +23,20 @@ const CreateEvents = props => {
     const [groupsChecked, setGroupsChecked] = useState([]);
     const [created, setCreated] = useState(false);
 
-    const [friends, setFriends] = useState([])
-    const [groups, setGroups] = useState([])
-    useEffect(() => {
-        fetch("/create-events/", {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-        }).then(response => response.json())
-            .then(response => {
-                console.log('Mock Data Loaded Successfully.')
-                setFriends(response.friends);
-                setGroups(response.groups);
-            })
-        .catch(error => console.error('Error:', error))
-    }, []);
+    // const [friends, setFriends] = useState([])
+    // const [groups, setGroups] = useState([])
+    // useEffect(() => {
+    //     fetch("/create-events/", {
+    //         method: 'GET',
+    //         headers: { 'Content-Type': 'application/json' },
+    //     }).then(response => response.json())
+    //         .then(response => {
+    //             console.log('Mock Data Loaded Successfully.')
+    //             setFriends(response.friends);
+    //             setGroups(response.groups);
+    //         })
+    //         .catch(error => console.error('Error:', error))
+    // }, []);
     const [friendsAdded, setFriendsAdded] = useState([])
     const [groupsAdded, setGroupsAdded] = useState([])
 
@@ -95,12 +95,12 @@ const CreateEvents = props => {
             startTime: startDate,
             endTime: endDate
         })
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });   
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
     const handleNameChange = (e) => {
         // console.log(e.target.value);

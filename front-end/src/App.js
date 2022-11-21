@@ -7,6 +7,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
+import { useEffect } from "react";
 import Login from "./Pages/login/Login";
 import SignUp from "./Pages/login/SignUp";
 import ProtectedRoute from "./Components/ProtectedRoute";
@@ -35,6 +36,22 @@ function App() {
   const [dp, setDP] = useState(ProfilePic);
   const [bio, setBio] = useState(defaultBio);
 
+  const [friends, setFriends] = useState([])
+  const [groups, setGroups] = useState([])
+
+  useEffect(() => {
+    fetch("/", {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    }).then(response => response.json())
+      .then(response => {
+        console.log('Friend + Group Data Loaded Successfully.')
+        setFriends(response.friends);
+        setGroups(response.groups);
+      })
+      .catch(error => console.error('Error:', error))
+  }, []);
+
   const handleLogin = () => {
     setUser({ id: 1, name: "John Doe" });
   };
@@ -60,9 +77,9 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/lookup" element={<LookUp />} />
               <Route path="/friends" element={<Friends />} />
-              <Route path="/create-group" element={<CreateGroups />} />
+              <Route path="/create-group" element={<CreateGroups friends={friends} />} />
               <Route path="/events" element={<Events />} />
-              <Route path="/create-events" element={<CreateEvents />} />
+              <Route path="/create-events" element={<CreateEvents friends={friends} groups={groups} />} />
               <Route path="/groups" element={<Groups />} />
               <Route
                 path="/addpersonalcalendar"

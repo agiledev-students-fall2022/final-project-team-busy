@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 
 
-const CreateGroups = () => {
+const CreateGroups = ({ friends}) => {
     const [name, setName] = useState('');
     const [dp, setDP] = useState();
     const [dpURL, setDPURL] = useState();
@@ -22,18 +22,18 @@ const CreateGroups = () => {
     const [friendsChecked, setChecked] = useState([1]);
     const [created, setCreated] = useState(false);
 
-    const [friends, setFriends] = useState([])
-    useEffect(() => {
-        fetch("/create-group/", {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-        }).then(response => response.json())
-            .then(response => {
-                console.log('Mock Data Loaded Successfully.')
-                setFriends(response);
-            })
-            .catch(error => console.error('Error:', error))
-    }, []);
+    // const [friends, setFriends] = useState([])
+    // useEffect(() => {
+    //     fetch("/create-group/", {
+    //         method: 'GET',
+    //         headers: { 'Content-Type': 'application/json' },
+    //     }).then(response => response.json())
+    //         .then(response => {
+    //             console.log('Friend Data Loaded Successfully.')
+    //             setFriends(response);
+    //         })
+    //         .catch(error => console.error('Error:', error))
+    // }, []);
     const [friendsAdded, setAdded] = useState([friends[1]])
 
     const handleNameChange = (e) => {
