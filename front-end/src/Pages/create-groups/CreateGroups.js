@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 
 
-const CreateGroups = ({ friends}) => {
+const CreateGroups = ({ friends, groups, setGroups}) => {
     const [name, setName] = useState('');
     const [dp, setDP] = useState();
     const [dpURL, setDPURL] = useState();
@@ -65,6 +65,10 @@ const CreateGroups = ({ friends}) => {
         }).then(res => res.json())
             .then(response => console.log('Form Submitted Successfully:', response))
             .catch(error => console.error('Error:', error))
+        
+        const groupsUpdated = [...groups]
+        groupsUpdated.push(groupInfo);
+        setGroups(groupsUpdated);
     }
 
     const handleToggle = (value) => () => {

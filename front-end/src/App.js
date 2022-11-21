@@ -40,7 +40,7 @@ function App() {
   const [groups, setGroups] = useState([])
 
   useEffect(() => {
-    fetch("/", {
+    fetch("/create-events", {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     }).then(response => response.json())
@@ -77,7 +77,7 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/lookup" element={<LookUp />} />
               <Route path="/friends" element={<Friends />} />
-              <Route path="/create-group" element={<CreateGroups friends={friends} />} />
+              <Route path="/create-group" element={<CreateGroups friends={friends} groups={groups} setGroups={setGroups} />} />
               <Route path="/events" element={<Events />} />
               <Route path="/create-events" element={<CreateEvents friends={friends} groups={groups} />} />
               <Route path="/groups" element={<Groups />} />

@@ -25,22 +25,24 @@ router.post("/", async (req, res) => {
         creator: "5f9f1b0b1b9d8c2b8c8b8b8b",
         profilePic: dp,
     }, (err, group) => {
-        if (err) {
-            res.status(400).json("Error creating group")
+        if(err) {
+            res.status(400).json({error: "Failed to create group"})
+            console.log(err)
         } else {
-            res.status(201).json(group)
+            res.status(201).json({group})
+            console.log(group)
         }
-    })
+    });
 
-    res.status(200).json({
-        name: name,
-        dp: dp,
-        friendsAdded: friendsAdded
-    })
+    // res.status(200).json({
+    //     name: name,
+    //     dp: dp,
+    //     friendsAdded: friendsAdded
+    // })
 
-    res.status(400).json({
-        error: "Unable to create a group at the moment. Please try again later."
-    })
+    // res.status(400).json({
+    //     error: "Unable to create a group at the moment. Please try again later."
+    // })
 });
 
 module.exports = router;
