@@ -34,7 +34,7 @@ const CreateGroups = ({ friends, groups, setGroups}) => {
     //         })
     //         .catch(error => console.error('Error:', error))
     // }, []);
-    const [friendsAdded, setAdded] = useState([friends[1]])
+    const [friendsAdded, setAdded] = useState([friends[1]._id.$oid]);
 
     const handleNameChange = (e) => {
         // console.log(e.target.value);
@@ -58,7 +58,8 @@ const CreateGroups = ({ friends, groups, setGroups}) => {
             events: [],
             groupName: name,
             desc: "",
-            creator: friends[0]._id
+            creator: friends[Math.floor(Math.random() * friends.length)]._id.$oid,
+            profilePic: dpURL
         })
         fetch("/create-group/", {
             method: 'POST',
@@ -87,7 +88,7 @@ const CreateGroups = ({ friends, groups, setGroups}) => {
 
         let newAdded = []
         newChecked.forEach(friendNum => {
-            newAdded.push(friends[friendNum])
+            newAdded.push(friends[friendNum]._id.$oid)
         })
         setAdded(newAdded)
         console.log(newAdded)

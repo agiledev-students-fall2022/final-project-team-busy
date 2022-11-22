@@ -27,6 +27,7 @@ const FriendList = ({friends, checked, handleToggle}) => {
         <List dense sx={{ width: '100%', bgcolor: 'background.paper', paddingTop: '2.5px', marginLeft: '-5px' }}>
             {friends && friends.map((friend) => {
                 const pos = friends.indexOf(friend);
+                const name = ((friend.first || friend.last) ? `${friend.first} ${friend.last}` : friend.groupName);
                 const labelId = `checkbox-list-secondary-label-${pos}`;
                 return (
                     <ListItem
@@ -48,7 +49,7 @@ const FriendList = ({friends, checked, handleToggle}) => {
                                     alt={`Avatar n°${friend.value + 1}`}
                                 />
                             </ListItemAvatar>
-                            <ListItemText id={labelId} primary={friend.first + " " + friend.last} />
+                            <ListItemText id={labelId} primary={name} />
                         </ListItemButton>
                     </ListItem>
                 );

@@ -9,21 +9,21 @@ router.get("/", (req, res) => {
 })
 
 router.post("/", async (req, res) => {
-    const { name, dp, friendsAdded } = req.body
+    const { members, events, groupName, desc, creator, profilePic } = req.body
 
-    if (!name || friendsAdded.length === 0) {
+    if (!groupName || members.length === 0) {
         res.status(400).json({
             error: "Please enter name and add friends to create a group."
         })
     }
 
     const group = await Group.create({
-        members: [],
-        events: [],
-        groupName: name,
-        desc: "",
-        creator: "5f9f1b0b1b9d8c2b8c8b8b8b",
-        profilePic: dp,
+        members: members,
+        events: events,
+        groupName: groupName,
+        desc: desc,
+        creator: creator,
+        profilePic: profilePic,
     }, (err, group) => {
         if(err) {
             res.status(400).json({error: "Failed to create group"})
