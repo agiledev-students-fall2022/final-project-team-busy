@@ -54,9 +54,11 @@ const CreateGroups = ({ friends, groups, setGroups}) => {
             setCreated(false);
         }, 1500);
         const groupInfo = JSON.stringify({
-            name: name,
-            dp: dpURL,
-            friendsAdded: friendsAdded
+            members: friendsAdded,
+            events: [],
+            groupName: name,
+            desc: "",
+            creator: friends[0]._id
         })
         fetch("/create-group/", {
             method: 'POST',
