@@ -58,7 +58,7 @@ const CreateGroups = ({ friends, groups, setGroups}) => {
             events: [],
             groupName: name,
             desc: "",
-            creator: friends[Math.floor(Math.random() * friends.length)]._id.$oid,
+            creator: friends[Math.floor(Math.random() * friends.length)]._id.$oid, // Placeholder creator ID
             profilePic: dpURL
         })
         fetch("/create-group/", {
