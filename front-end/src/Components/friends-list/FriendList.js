@@ -44,11 +44,11 @@ const FriendList = ({friends, checked, handleToggle}) => {
                         <ListItemButton>
                             <ListItemAvatar>
                                 <Avatar
-                                    src={friend.dp}
+                                    src={friend.profilePic}
                                     alt={`Avatar n°${friend.value + 1}`}
                                 />
                             </ListItemAvatar>
-                            <ListItemText id={labelId} primary={friend.name} />
+                            <ListItemText id={labelId} primary={friend.first + " " + friend.last} />
                         </ListItemButton>
                     </ListItem>
                 );
