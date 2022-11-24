@@ -4,6 +4,13 @@
 const express = require("express");
 const router = express.Router();
 const Joi = require("joi");
+const mongoose = require("mongoose");
+
+
+// Database Models needed
+const User = mongoose.model("User");
+const Event = mongoose.model("Event");
+const Group = mongoose.model("Group");
 
 
 // Data validation schema for Events
@@ -22,13 +29,43 @@ router.get("/", (req, res) => {
 })
 
 // Post request to add events to the page
-router.post("/", (req, res) => {
-     const { title, description, friendsAdded, groupsAdded, startDate, endDate } = req.body
+router.post("/", async (req, res) => {
+     const { startTime, endTime, owner, users, groups, desc, title} = req.body
      const { error } = eventsSchema.validate(req.body);
-     if (error) {
-          res.status(500).send(error);
+     if (!error) {
+          const wrongUser = false, wrongGroup= false;
+          const userIds = users.map(async (curr) => {
+               const res = await User.findOne({username: curr});
+               wrongUser = res ? false : true; 
+               return res._id;
+          })
+          const groupIds = groups.map(async (curr) => {
+               const res = await Group.findOne({groupName: curr});
+               wrongGroup = res ? false : true;
+               return res._id;
+          })
+          if (!wrongUser && !wrongGroup) {
+               const ownerId = await User.findOne({username: owner})._id;
+               new Event({
+                    startTime: startTime,
+                    endTime: endTime,
+                    owner: ownerId,
+                    users: userIds,
+                    groups: groupIds,
+                    desc: desc,
+                    title: title 
+               }).save((err) => {
+                    if (err) {
+                         res.status(500).send({message: "Database Error"})
+                    } else {
+                         res.sendStatus(200)
+                    }
+               })
+          } else {
+               res.status(500).send({message: "Username or group doesn't exist"})
+          }
      } else {
-          res.sendStatus(200);
+          res.status(500).send({message: error});
      }
 })
 module.exports = router;
