@@ -5,19 +5,16 @@ const express = require("express");
 const router = express.Router();
 const Joi = require("joi");
 
-// We get mock data here
-const friend_data = require('../mock-data/friend-mock-data.json')
-const group_data = require('../mock-data/group-mock-data.json')
-
 
 // Data validation schema for Events
 const eventsSchema = Joi.object({
-     title: Joi.string().required(),
-     description: Joi.string(),
-     members: Joi.array().unique().items(Joi.string()),
-     groups: Joi.array().unique().items(Joi.string()),
      startTime: Joi.date().required(),
-     endTime: Joi.date().required().greater(Joi.ref("startTime"))
+     endTime: Joi.date().required().greater(Joi.ref("startTime")),
+     owner: Joi.string().required(),
+     users: Joi.array().unique().items(Joi.string()),
+     groups: Joi.array().unique().items(Joi.string()),
+     desc: Joi.string(),
+     title: Joi.string().required(),
 })
 
 router.get("/", (req, res) => {
