@@ -26,15 +26,17 @@ const FriendList = ({friends, checked, handleToggle}) => {
     return (
         <List dense sx={{ width: '100%', bgcolor: 'background.paper', paddingTop: '2.5px', marginLeft: '-5px' }}>
             {friends && friends.map((friend) => {
-                const labelId = `checkbox-list-secondary-label-${friend.id}`;
+                const pos = friends.indexOf(friend);
+                const name = ((friend.first || friend.last) ? `${friend.first} ${friend.last}` : friend.groupName);
+                const labelId = `checkbox-list-secondary-label-${pos}`;
                 return (
                     <ListItem
-                        key={friend.id}
+                        key={pos}
                         secondaryAction={
                             <Checkbox
                                 edge="end"
-                                onChange={handleToggle(friend.id)}
-                                checked={checked.indexOf(friend.id) !== -1}
+                                onChange={handleToggle(pos)}
+                                checked={checked.indexOf(pos) !== -1}
                                 inputProps={{ 'aria-labelledby': labelId }}
                             />
                         }
@@ -43,11 +45,11 @@ const FriendList = ({friends, checked, handleToggle}) => {
                         <ListItemButton>
                             <ListItemAvatar>
                                 <Avatar
-                                    src={friend.dp}
+                                    src={friend.profilePic}
                                     alt={`Avatar n°${friend.value + 1}`}
                                 />
                             </ListItemAvatar>
-                            <ListItemText id={labelId} primary={friend.name} />
+                            <ListItemText id={labelId} primary={name} />
                         </ListItemButton>
                     </ListItem>
                 );
