@@ -3,63 +3,114 @@ const router = express.Router();
 const Joi = require("joi");
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+const protect = require("../middleware/authMiddleware");
 
 const schema = Joi.object({
+  first: Joi.string(),
+  last: Joi.string(),
   email: Joi.string().email({ minDomainSegments: 2 }).required(),
   password: Joi.string().min(8).required(),
   passwordConfirm: Joi.ref("password"),
 });
 
-router.post("/login", (req, res) => {
-  const { error, value } = schema.validate(req.body);
-
-  if (error) {
-    return res.status(400).json({ error: error.message });
-  }
-
-  //(temp) will be replaced by checking if user exists in DB
-  if (value.email != "test@gmail.com" || value.password != "password123") {
-    return res.status(400).json({ error: "Incorrect email or password" });
-  }
-
-  //(temp) respond with user info
-  res.status(200).json({
-    name: "John Doe",
-    id: 1234,
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: "1h",
   });
-});
+};
 
 router.post("/register", async (req, res) => {
   const { error, value } = schema.validate(req.body);
 
   if (error) {
-    return res.status(400).json({ error: error.message });
+    console.log(error.message);
+    return res.status(400).json({ message: error.message });
   }
 
-  //temporary test
-  // const user = await User.create({
-  //   username: "Test",
-  //   first: "Bryan",
-  //   last: "Chavez",
-  //   bio: "lorem ipsum dolor",
-  //   accountSetting: {
-  //     email: "test@gmail.com",
-  //     passHash: "password123",
-  //   },
-  // });
+  //check if user exists
+  const userExists = await User.findOne({
+    "accountSettings.email": value.email,
+  });
 
-  // if (user) {
-  //   res.status(201).send("");
-  //   console.log("Successfully registered");
-  // } else {
-  //   res.status(400).send("");
-  //   console.log("Filed register");
-  // }
+  if (userExists) {
+    console.log("User already exists");
+    return res.status(400).json({ message: "User already exists" });
+  }
 
-  //(temp) respond with user info
-  res.status(201).json({
-    name: "John Doe",
-    id: 2345,
+  const salt = await bcrypt.genSalt(10);
+  const passwordHash = await bcrypt.hash(value.password, salt);
+
+  //create user
+  const user = await User.create({
+    first: value.first,
+    last: value.last,
+    accountSettings: {
+      email: value.email,
+      passwordHash,
+    },
+  });
+
+  if (user) {
+    return res.status(201).json({
+      id: user.id,
+      email: user.email,
+    });
+  } else {
+    console.log("Invalid user data");
+    return res.status(400).json({ message: "Invalid user data" });
+  }
+});
+
+router.post("/login", async (req, res) => {
+  const { error, value } = schema.validate(req.body);
+
+  if (error) {
+    console.log(error.message);
+    return res.status(400).json({ message: error.message });
+  }
+
+  //check for user
+  const user = await User.findOne({
+    "accountSettings.email": value.email,
+  });
+
+  if (
+    user &&
+    (await bcrypt.compare(value.password, user.accountSettings.passwordHash))
+  ) {
+    const token = generateToken(user._id);
+    res.cookie("token", token, {
+      httpOnly: true,
+      // secure: true,
+      // maxAge: 1000000,
+      // signed: true,
+    });
+    return res.status(200).json({
+      first: user.first,
+      last: user.last,
+      accountSettings: user.accountSettings,
+      id: user.id,
+    });
+  } else {
+    console.log("Invalid email or password");
+    return res.status(400).json({ message: "Invalid email or password" });
+  }
+});
+
+router.post("/logout", protect, async (req, res) => {
+  return res
+    .clearCookie("token")
+    .status(200)
+    .json({ message: "Successfully logged out" });
+});
+
+router.get("/me", protect, async (req, res) => {
+  const { id, accountSettings } = await User.findById(req.user.id);
+  return res.status(200).json({
+    id: id,
+    email: accountSettings.email,
   });
 });
 

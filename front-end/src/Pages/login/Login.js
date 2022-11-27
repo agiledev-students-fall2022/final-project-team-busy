@@ -5,7 +5,6 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import PasswordInput from "../../Components/PasswordInput";
 import "./login.css";
-
 import authService from "../../services/authService";
 import { useForm, Controller } from "react-hook-form";
 import ErrorIcon from "@mui/icons-material/Error";
@@ -58,12 +57,11 @@ const Login = ({ onLogin }) => {
         email: data.email,
         password: data.password,
       });
-      console.log(res);
-      onLogin();
+      onLogin(res);
       navigate("/home", { replace: true });
     } catch (error) {
-      console.log(error.response.data.error);
-      setServerMessage(error.response.data.error);
+      console.log(error.response.data.message);
+      setServerMessage(error.response.data.message);
     }
   };
 

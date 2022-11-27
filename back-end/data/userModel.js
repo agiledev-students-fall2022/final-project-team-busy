@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 const settingsSchema = new Schema({
   calendarPrivacy: { type: String, required: true, default: "public" },
   email: { type: String, required: true },
-  passHash: { type: String, required: true },
+  passwordHash: { type: String, required: true },
 });
 
 const userSchema = new Schema(

@@ -17,8 +17,10 @@ const login = async ({ email, password }) => {
   return res.data;
 };
 
-const register = async ({ email, password, passwordConfirm }) => {
+const register = async ({ first, last, email, password, passwordConfirm }) => {
   const res = await axios.post(BASE_URL + "register", {
+    first,
+    last,
     email,
     password,
     passwordConfirm,
@@ -27,9 +29,21 @@ const register = async ({ email, password, passwordConfirm }) => {
   return res.data;
 };
 
+const logout = async () => {
+  const res = await axios.post(BASE_URL + "logout", {});
+  return res.data;
+};
+
+const getMe = async () => {
+  const res = await axios.get(BASE_URL + "me", {});
+  return res.data;
+};
+
 const authService = {
   login,
   register,
+  logout,
+  getMe,
 };
 
 export default authService;
