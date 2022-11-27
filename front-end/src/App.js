@@ -28,6 +28,7 @@ import FriendCalendar from "./Pages/FriendCalendar";
 import AccountSettings from "./Pages/account-settings/AccountSettings";
 import ProfilePic from "./Pages/profile-page/profile-page-dp.jpeg";
 import GroupCal from "./Pages/GroupCal";
+import authService from "./services/authService";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -35,7 +36,12 @@ function App() {
     "Who lives in a pineapple under the sea? SpongeBob SquarePants! Absorbent and yellow and porous is he SpongeBob SquarePants! If nautical nonsense be something you wish SpongeBob SquarePants! Then drop on the deck and flop like a fish! SpongeBob SquarePants!";
   const [dp, setDP] = useState(ProfilePic);
   const [bio, setBio] = useState(defaultBio);
-
+  
+  const handleLogin = (userData) => {
+    console.log(userData);
+    setUser(userData);
+  }
+  
   const [friends, setFriends] = useState([])
   const [groups, setGroups] = useState([])
 
@@ -52,23 +58,21 @@ function App() {
       .catch(error => console.error('Error:', error))
   }, []);
 
-  const handleLogin = () => {
-    setUser({ id: 1, name: "John Doe" });
-  };
-
   const handleLogout = () => {
     setUser(null);
+    authService.logout();
   };
 
+  console.log(user);
   return (
     <div className="App">
       <Router>
         <div className="app-wrapper">
           <Routes>
-            <Route path="/" element={<Navigate replace to={"/login"} />} />
+            <Route path="/" element={<Navigate replace to={"/home"} />} />
             <Route path="/login" element={<Login onLogin={handleLogin} />} />
             <Route path="/sign-up" element={<SignUp onLogin={handleLogin} />} />
-            <Route element={<ProtectedRoute user={user} />}>
+            <Route element={<ProtectedRoute user={user} setUser={setUser} />}>
               <Route
                 path="/profile"
                 element={<ProfilePage dp={dp} bio={bio} />}
