@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 
 
-const CreateGroups = () => {
+const CreateGroups = ({ friends, groups, setGroups}) => {
     const [name, setName] = useState('');
     const [dp, setDP] = useState();
     const [dpURL, setDPURL] = useState();
@@ -22,19 +22,19 @@ const CreateGroups = () => {
     const [friendsChecked, setChecked] = useState([1]);
     const [created, setCreated] = useState(false);
 
-    const [friends, setFriends] = useState([])
-    useEffect(() => {
-        fetch("/create-group/", {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
-        }).then(response => response.json())
-            .then(response => {
-                console.log('Mock Data Loaded Successfully.')
-                setFriends(response);
-            })
-            .catch(error => console.error('Error:', error))
-    }, []);
-    const [friendsAdded, setAdded] = useState([friends[1]])
+    // const [friends, setFriends] = useState([])
+    // useEffect(() => {
+    //     fetch("/create-group/", {
+    //         method: 'GET',
+    //         headers: { 'Content-Type': 'application/json' },
+    //     }).then(response => response.json())
+    //         .then(response => {
+    //             console.log('Friend Data Loaded Successfully.')
+    //             setFriends(response);
+    //         })
+    //         .catch(error => console.error('Error:', error))
+    // }, []);
+    const [friendsAdded, setAdded] = useState([friends[1]._id.$oid]);
 
     const handleNameChange = (e) => {
         // console.log(e.target.value);
@@ -54,9 +54,12 @@ const CreateGroups = () => {
             setCreated(false);
         }, 1500);
         const groupInfo = JSON.stringify({
-            name: name,
-            dp: dpURL,
-            friendsAdded: friendsAdded
+            members: friendsAdded,
+            events: [],
+            groupName: name,
+            desc: "",
+            creator: friends[Math.floor(Math.random() * friends.length)]._id.$oid, // Placeholder creator ID
+            profilePic: dpURL
         })
         fetch("/create-group/", {
             method: 'POST',
@@ -65,6 +68,10 @@ const CreateGroups = () => {
         }).then(res => res.json())
             .then(response => console.log('Form Submitted Successfully:', response))
             .catch(error => console.error('Error:', error))
+        
+        const groupsUpdated = [...groups]
+        groupsUpdated.push(groupInfo);
+        setGroups(groupsUpdated);
     }
 
     const handleToggle = (value) => () => {
@@ -81,7 +88,7 @@ const CreateGroups = () => {
 
         let newAdded = []
         newChecked.forEach(friendNum => {
-            newAdded.push(friends[friendNum])
+            newAdded.push(friends[friendNum]._id.$oid)
         })
         setAdded(newAdded)
         console.log(newAdded)
