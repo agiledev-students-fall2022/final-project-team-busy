@@ -1,4 +1,5 @@
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 const BASE_URL = "http://localhost:5000/auth/";
 
