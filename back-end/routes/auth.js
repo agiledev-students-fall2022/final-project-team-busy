@@ -8,6 +8,7 @@ const bcrypt = require("bcryptjs");
 const protect = require("../middleware/authMiddleware");
 
 const schema = Joi.object({
+  username: Joi.string().min(6).required(),
   first: Joi.string(),
   last: Joi.string(),
   email: Joi.string().email({ minDomainSegments: 2 }).required(),
@@ -30,13 +31,22 @@ router.post("/register", async (req, res) => {
   }
 
   //check if user exists
-  const userExists = await User.findOne({
+  const userEmailExists = await User.findOne({
     "accountSettings.email": value.email,
   });
 
-  if (userExists) {
-    console.log("User already exists");
-    return res.status(400).json({ message: "User already exists" });
+  if (userEmailExists) {
+    console.log("Email already in use");
+    return res.status(400).json({ message: "Email already in use" });
+  }
+
+  const userNameExists = await User.findOne({
+    username: value.username,
+  });
+
+  if (userNameExists) {
+    console.log("Username already in use");
+    return res.status(400).json({ message: "Username already in use" });
   }
 
   const salt = await bcrypt.genSalt(10);
@@ -44,6 +54,7 @@ router.post("/register", async (req, res) => {
 
   //create user
   const user = await User.create({
+    username: value.username,
     first: value.first,
     last: value.last,
     accountSettings: {
@@ -83,7 +94,7 @@ router.post("/login", async (req, res) => {
     const token = generateToken(user._id);
     res.cookie("token", token, {
       httpOnly: true,
-      // secure: true,
+      secure: true,
       // maxAge: 1000000,
       // signed: true,
     });
