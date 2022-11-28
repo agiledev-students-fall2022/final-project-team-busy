@@ -28,8 +28,13 @@ const SignUp = ({ onLogin }) => {
     first: {
       required: "First name is required",
     },
-    last: {
-      required: "Last name is required",
+    last: {},
+    username: {
+      required: "Username is required",
+      minLength: {
+        value: 6,
+        message: "Username must be at least 6 characters",
+      },
     },
     email: {
       required: "Email is required",
@@ -72,6 +77,7 @@ const SignUp = ({ onLogin }) => {
   const onSubmit = async (data) => {
     try {
       const res = await authService.register({
+        username: data.username,
         first: data.first,
         last: data.last,
         email: data.email,
@@ -106,12 +112,20 @@ const SignUp = ({ onLogin }) => {
       />
       <TextField
         fullWidth
-        required
         label="Last name"
         type="text"
         {...register("last", validation.last)}
         error={!!errors.last}
         helperText={errors.last?.message}
+      />
+      <TextField
+        fullWidth
+        required
+        label="Username"
+        type="text"
+        {...register("username", validation.username)}
+        error={!!errors.username}
+        helperText={errors.username?.message}
       />
       <TextField
         fullWidth

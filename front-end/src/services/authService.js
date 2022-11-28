@@ -18,10 +18,18 @@ const login = async ({ email, password }) => {
   return res.data;
 };
 
-const register = async ({ first, last, email, password, passwordConfirm }) => {
+const register = async ({
+  username,
+  first,
+  last,
+  email,
+  password,
+  passwordConfirm,
+}) => {
   const res = await axios.post(
     BASE_URL + "register",
     {
+      username,
       first,
       last,
       email,
