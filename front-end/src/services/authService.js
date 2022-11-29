@@ -1,7 +1,7 @@
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-const BASE_URL = "http://localhost:5000/auth/";
+const BASE_URL = "http://localhost:3001/auth/";
 
 const login = async ({ email, password }) => {
   const res = await axios.post(

@@ -31,31 +31,32 @@ import GroupCal from "./Pages/GroupCal";
 import authService from "./services/authService";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({ name: "John Doe" });
   const defaultBio =
     "Who lives in a pineapple under the sea? SpongeBob SquarePants! Absorbent and yellow and porous is he SpongeBob SquarePants! If nautical nonsense be something you wish SpongeBob SquarePants! Then drop on the deck and flop like a fish! SpongeBob SquarePants!";
   const [dp, setDP] = useState(ProfilePic);
   const [bio, setBio] = useState(defaultBio);
-  
+
   const handleLogin = (userData) => {
     console.log(userData);
     setUser(userData);
-  }
-  
-  const [friends, setFriends] = useState([])
-  const [groups, setGroups] = useState([])
+  };
+
+  const [friends, setFriends] = useState([]);
+  const [groups, setGroups] = useState([]);
 
   useEffect(() => {
-    fetch("/create-events", {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    }).then(response => response.json())
-      .then(response => {
-        console.log('Friend + Group Data Loaded Successfully.')
+    fetch("http://localhost:3001/create-events", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log("Friend + Group Data Loaded Successfully.");
         setFriends(response.friends);
         setGroups(response.groups);
       })
-      .catch(error => console.error('Error:', error))
+      .catch((error) => console.error("Error:", error));
   }, []);
 
   const handleLogout = () => {
@@ -81,9 +82,21 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/lookup" element={<LookUp />} />
               <Route path="/friends" element={<Friends />} />
-              <Route path="/create-group" element={<CreateGroups friends={friends} groups={groups} setGroups={setGroups} />} />
+              <Route
+                path="/create-group"
+                element={
+                  <CreateGroups
+                    friends={friends}
+                    groups={groups}
+                    setGroups={setGroups}
+                  />
+                }
+              />
               <Route path="/events" element={<Events />} />
-              <Route path="/create-events" element={<CreateEvents friends={friends} groups={groups} />} />
+              <Route
+                path="/create-events"
+                element={<CreateEvents friends={friends} groups={groups} />}
+              />
               <Route path="/groups" element={<Groups />} />
               <Route
                 path="/addpersonalcalendar"
