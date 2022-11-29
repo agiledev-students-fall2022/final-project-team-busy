@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
                return res._id;
           })
           if (!wrongUser && !wrongGroup) {
-               const ownerId = await User.findOne({username: owner})._id;
+               const ownerId= jwt.verify(token, process.env.JWT_SECRET).id;
                new Event({
                     startTime: startTime,
                     endTime: endTime,

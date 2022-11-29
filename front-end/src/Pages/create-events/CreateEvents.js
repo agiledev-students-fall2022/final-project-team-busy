@@ -87,7 +87,7 @@ const CreateEvents = ({ friends, groups }) => {
             setCreated(false);
         }, 1500);
         // Post request to create-events-page
-        axios.post('/create-events', {
+        axios.post('http://localhost:3001/create-events', {
             startTime: startDate,
             endTime: endDate,
             members: friendsAdded,
