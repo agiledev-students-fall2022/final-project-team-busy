@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./lookup.css";
 import ToggleButton from "../Components/ToggleButton";
@@ -12,7 +12,42 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 
 const LookUp = () => {
+ const usersList = [
+    {
+        first_name: "John",
+        last_name: "Doe",
+        username: "johnny123",
+    },
+    {
+        first_name: "Peter",
+        last_name: "Pan",
+        username: "peters345",
+
+    },
+    {
+        first_name: "Jennifer",
+        last_name: "Lopez",
+        username: "jenny718",
+
+    },
+];
   const [state, setState] = useState("Searching Users");
+  const [query, setQuery] = useState("");
+  const [data, setData] = useState("");
+
+  // useEffect(()=> {console.log(query)}, [query])
+
+  const onQueryChange = (e) => {
+    setQuery(e.target.value);
+    //console.log(query);
+  }
+
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    console.log(query)
+  }
+
+
 
   return (
     <div className="lookup-page">
@@ -47,16 +82,22 @@ const LookUp = () => {
       </div>
 
       <div className="searching">
+        <form onSubmit = {handleSubmit}> 
         <TextField
           id="outlined-basic"
           label={state}
           variant="outlined"
           sx={{ width: { xs: "35ch", sm: "50ch", md: "70ch" } }}
+          onInput = {(e) => onQueryChange(e)}
           InputProps={{ endAdornment: <SearchIcon /> }}
         />
+        </form>
+        <p>{query}</p>
       </div>
     </div>
   );
 };
+
+
 
 export default LookUp;
