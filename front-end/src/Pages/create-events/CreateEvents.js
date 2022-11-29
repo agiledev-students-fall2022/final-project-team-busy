@@ -88,12 +88,12 @@ const CreateEvents = ({ friends, groups }) => {
         }, 1500);
         // Post request to create-events-page
         axios.post('/create-events', {
-            title: name,
-            description: description,
+            startTime: startDate,
+            endTime: endDate,
             members: friendsAdded,
             groups: groupsAdded,
-            startTime: startDate,
-            endTime: endDate
+            description: description,
+            title: name
         })
             .then(function (response) {
                 console.log(response);

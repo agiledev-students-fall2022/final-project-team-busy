@@ -3,6 +3,7 @@ const app = express();
 require("dotenv").config({ silent: true });
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const session = require("express-session");
 
 app.use(morgan("dev"));
 app.use(express.json());
@@ -34,6 +35,13 @@ mongoose.connect(
     }
   }
 );
+
+// Added cookie middleware
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false
+}))
 
 app.use("/create-events", createEvents); // TODO: Change it to appropriate name
 app.use("/auth", auth);
