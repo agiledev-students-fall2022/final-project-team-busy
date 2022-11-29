@@ -4,7 +4,6 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
 
-
 //temp user data 
 //  const usersList = [
 //     {
@@ -40,6 +39,3 @@ router.get('/:username', async (req,res) => {
 })
 
 module.exports = router;
-
-
-

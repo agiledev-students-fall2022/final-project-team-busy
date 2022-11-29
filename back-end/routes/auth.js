@@ -7,13 +7,18 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const protect = require("../middleware/authMiddleware");
 
-const schema = Joi.object({
+const registerSchema = Joi.object({
   username: Joi.string().min(6).required(),
-  first: Joi.string(),
+  first: Joi.string().required(),
   last: Joi.string(),
   email: Joi.string().email({ minDomainSegments: 2 }).required(),
   password: Joi.string().min(8).required(),
   passwordConfirm: Joi.ref("password"),
+});
+
+const loginSchema = Joi.object({
+  email: Joi.string().email({ minDomainSegments: 2 }).required(),
+  password: Joi.string().min(8).required(),
 });
 
 const generateToken = (id) => {
@@ -23,7 +28,7 @@ const generateToken = (id) => {
 };
 
 router.post("/register", async (req, res) => {
-  const { error, value } = schema.validate(req.body);
+  const { error, value } = registerSchema.validate(req.body);
 
   if (error) {
     console.log(error.message);
@@ -75,7 +80,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const { error, value } = schema.validate(req.body);
+  const { error, value } = loginSchema.validate(req.body);
 
   if (error) {
     console.log(error.message);
