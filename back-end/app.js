@@ -1,13 +1,24 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 require("dotenv").config({ silent: true });
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const cookieParser = require("cookie-parser");
 const session = require("express-session");
 
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+    allowedHeaders: "Content-Type,Authorization",
+  })
+);
+app.options("*", cors());
+app.use(cookieParser());
 
 require("./data/eventModel");
 require("./data/groupModel");

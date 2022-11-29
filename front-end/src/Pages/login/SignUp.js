@@ -5,9 +5,9 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import PasswordInput from "../../Components/PasswordInput";
 import "./login.css";
-
 import authService from "../../services/authService";
 import { useForm, Controller } from "react-hook-form";
+import ErrorIcon from "@mui/icons-material/Error";
 
 const SignUp = ({ onLogin }) => {
   const {
@@ -25,6 +25,17 @@ const SignUp = ({ onLogin }) => {
   const watchPassword = watch("password", false);
 
   const validation = {
+    first: {
+      required: "First name is required",
+    },
+    last: {},
+    username: {
+      required: "Username is required",
+      minLength: {
+        value: 6,
+        message: "Username must be at least 6 characters",
+      },
+    },
     email: {
       required: "Email is required",
       pattern: {
@@ -40,8 +51,7 @@ const SignUp = ({ onLogin }) => {
       },
     },
     passwordConfirm: {
-      validate: (value) =>
-        value === watchPassword || "The passwords do not match",
+      validate: (value) => value === watchPassword || "Passwords do not match",
     },
   };
 
@@ -49,6 +59,7 @@ const SignUp = ({ onLogin }) => {
     main: false,
     confirm: false,
   });
+  const [serverMessage, setServerMessage] = useState(null);
 
   const navigate = useNavigate();
 
@@ -63,19 +74,59 @@ const SignUp = ({ onLogin }) => {
     e.preventDefault();
   };
 
-  const onSubmit = (data) => {
-    authService.register({
-      email: data.email,
-      password: data.password,
-      passwordConfirm: data.passwordConfirm,
-    });
-    onLogin();
-    navigate("/home", { replace: true });
+  const onSubmit = async (data) => {
+    try {
+      const res = await authService.register({
+        username: data.username,
+        first: data.first,
+        last: data.last,
+        email: data.email,
+        password: data.password,
+        passwordConfirm: data.passwordConfirm,
+      });
+      console.log(res);
+      navigate("/login", { replace: true });
+    } catch (error) {
+      console.log(error.response.data.message);
+      setServerMessage(error.response.data.message);
+    }
   };
 
   return (
     <Box maxWidth="sm" component="form" className="form-card">
       <h2>Sign Up</h2>
+      {serverMessage && (
+        <div className="form-warning-container">
+          <ErrorIcon />
+          <span>{serverMessage}</span>
+        </div>
+      )}
+      <TextField
+        fullWidth
+        required
+        label="First name"
+        type="text"
+        {...register("first", validation.first)}
+        error={!!errors.first}
+        helperText={errors.first?.message}
+      />
+      <TextField
+        fullWidth
+        label="Last name"
+        type="text"
+        {...register("last", validation.last)}
+        error={!!errors.last}
+        helperText={errors.last?.message}
+      />
+      <TextField
+        fullWidth
+        required
+        label="Username"
+        type="text"
+        {...register("username", validation.username)}
+        error={!!errors.username}
+        helperText={errors.username?.message}
+      />
       <TextField
         fullWidth
         required

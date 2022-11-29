@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "./lookup.css";
 import ToggleButton from "../Components/ToggleButton";
@@ -10,9 +10,57 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
+import axios from "axios";
 
 const LookUp = () => {
+  const usersList = [
+    {
+      first: "John",
+      last: "Doe",
+      username: "johnny123",
+    },
+    {
+      first_name: "Peter",
+      last_name: "Pan",
+      username: "peters345",
+    },
+    {
+      first_name: "Jennifer",
+      last_name: "Lopez",
+      username: "jenny718",
+    },
+  ];
   const [state, setState] = useState("Searching Users");
+  const [query, setQuery] = useState("");
+  const [result, setResult] = useState("");
+  const [serverMessage, setServerMessage] = useState("");
+
+  // useEffect(()=> {console.log(query)}, [query])
+
+  const onQueryChange = (e) => {
+    setQuery(e.target.value);
+    //console.log(query);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.get(
+        "http://localhost:3001/lookupuser/" + query,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+
+      setResult(res.data);
+    } catch (err) {
+      console.log(err.response.data.error);
+      setResult("");
+      setServerMessage(err.response.data.error);
+    }
+  };
 
   return (
     <div className="lookup-page">
@@ -47,13 +95,25 @@ const LookUp = () => {
       </div>
 
       <div className="searching">
-        <TextField
-          id="outlined-basic"
-          label={state}
-          variant="outlined"
-          sx={{ width: { xs: "35ch", sm: "50ch", md: "70ch" } }}
-          InputProps={{ endAdornment: <SearchIcon /> }}
-        />
+        <form onSubmit={handleSubmit}>
+          <TextField
+            id="outlined-basic"
+            label={state}
+            variant="outlined"
+            sx={{ width: { xs: "35ch", sm: "50ch", md: "70ch" } }}
+            onInput={(e) => onQueryChange(e)}
+            InputProps={{ endAdornment: <SearchIcon /> }}
+          />
+        </form>
+        {result ? (
+          <p>
+            {result.first} {result.last}
+          </p>
+        ) : (
+          ""
+        )}
+
+        {serverMessage && !result ? serverMessage : ""}
       </div>
     </div>
   );
