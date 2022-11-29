@@ -25,13 +25,13 @@ const ProtectedRoute = ({
     checkLogin();
   }, []);
 
-  // if (isLoading) {
-  //   return <p>Loading...</p>;
-  // }
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
-  // if (!user) {
-  //   return <Navigate to={redirectPath} replace />;
-  // }
+  if (!user) {
+    return <Navigate to={redirectPath} replace />;
+  }
 
   return children ? children : <Outlet />;
 };

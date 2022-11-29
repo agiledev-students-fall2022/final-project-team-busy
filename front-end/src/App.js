@@ -31,7 +31,7 @@ import GroupCal from "./Pages/GroupCal";
 import authService from "./services/authService";
 
 function App() {
-  const [user, setUser] = useState({ name: "John Doe" });
+  const [user, setUser] = useState(null);
   const defaultBio =
     "Who lives in a pineapple under the sea? SpongeBob SquarePants! Absorbent and yellow and porous is he SpongeBob SquarePants! If nautical nonsense be something you wish SpongeBob SquarePants! Then drop on the deck and flop like a fish! SpongeBob SquarePants!";
   const [dp, setDP] = useState(ProfilePic);
