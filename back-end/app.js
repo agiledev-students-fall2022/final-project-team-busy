@@ -46,7 +46,8 @@ mongoose.connect(
   }
 );
 
-app.use("/create-events", createEvents);
+
+app.use("/create-events", createEvents); // TODO: Change it to appropriate name
 app.use("/auth", auth);
 app.use("/create-group", createGroup);
 app.use("/lookupuser", lookupUser);

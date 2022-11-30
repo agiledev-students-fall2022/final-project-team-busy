@@ -80,34 +80,33 @@ const CreateEvents = ({ friends, groups }) => {
     console.log(newAdded);
   };
 
-  const handleSubmission = (e) => {
-    e.preventDefault();
-    setCreated(true);
-    setTimeout(() => {
-      setCreated(false);
-    }, 1500);
-    // Post request to create-events-page
-    axios
-      .post("http://localhost:3001/create-events", {
-        title: name,
-        description: description,
-        members: friendsAdded,
-        groups: groupsAdded,
-        startTime: startDate,
-        endTime: endDate,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-  const handleNameChange = (e) => {
-    // console.log(e.target.value);
-    setName(e.target.value);
-    setNameChanges(nameChanges + 1);
-  };
+    const handleSubmission = (e) => {
+        e.preventDefault();
+        setCreated(true);
+        setTimeout(() => {
+            setCreated(false);
+        }, 1500);
+        // Post request to create-events-page
+        axios.post('http://localhost:3001/create-events', {
+            startTime: startDate,
+            endTime: endDate,
+            members: friendsAdded,
+            groups: groupsAdded,
+            description: description,
+            title: name
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    const handleNameChange = (e) => {
+        // console.log(e.target.value);
+        setName(e.target.value);
+        setNameChanges(nameChanges + 1);
+    }
 
   const handleDescriptionChange = (e) => {
     // console.log(e.target.value);
