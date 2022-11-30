@@ -21,19 +21,6 @@ const CreateGroups = ({ friends, groups, setGroups}) => {
     const [nameChanges, setNameChanges] = useState(0);
     const [friendsChecked, setChecked] = useState([1]);
     const [created, setCreated] = useState(false);
-
-    // const [friends, setFriends] = useState([])
-    // useEffect(() => {
-    //     fetch("/create-group/", {
-    //         method: 'GET',
-    //         headers: { 'Content-Type': 'application/json' },
-    //     }).then(response => response.json())
-    //         .then(response => {
-    //             console.log('Friend Data Loaded Successfully.')
-    //             setFriends(response);
-    //         })
-    //         .catch(error => console.error('Error:', error))
-    // }, []);
     const [friendsAdded, setAdded] = useState([friends[1]._id.$oid]);
 
     const handleNameChange = (e) => {
@@ -61,7 +48,7 @@ const CreateGroups = ({ friends, groups, setGroups}) => {
             creator: friends[Math.floor(Math.random() * friends.length)]._id.$oid, // Placeholder creator ID
             profilePic: dpURL
         })
-        fetch("/create-group/", {
+        fetch("http://localhost:3001/create-group", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: groupInfo

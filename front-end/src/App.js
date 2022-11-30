@@ -46,7 +46,7 @@ function App() {
   const [groups, setGroups] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/create-events", {
+    fetch("http://localhost:3001/load-friends-and-groups", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
     })

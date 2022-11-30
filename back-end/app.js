@@ -24,6 +24,7 @@ require("./data/groupModel");
 require("./data/userModel");
 
 const auth = require("./routes/auth");
+const loadFriendsAndGroups = require("./routes/load-friends-and-groups");
 const createGroup = require("./routes/create-group");
 const lookupUser = require("./routes/lookup-user");
 const lookupGroup = require("./routes/lookup-groups");
@@ -49,6 +50,7 @@ mongoose.connect(
 
 app.use("/create-events", createEvents); // TODO: Change it to appropriate name
 app.use("/auth", auth);
+app.use("/load-friends-and-groups", loadFriendsAndGroups);
 app.use("/create-group", createGroup);
 app.use("/lookupuser", lookupUser);
 app.use("/lookupgroup", lookupGroup);
