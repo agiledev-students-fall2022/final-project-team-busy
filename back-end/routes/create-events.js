@@ -24,10 +24,6 @@ const eventsSchema = Joi.object({
      title: Joi.string().required(),
 })
 
-router.get("/", (req, res) => {
-     res.send({ friends: friend_data, groups: group_data });
-})
-
 // Post request to add events to the page
 router.post("/", async (req, res) => {
      const { startTime, endTime, owner, users, groups, desc, title} = req.body
