@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 import { IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
-function Home() {
+function Home({ user }) {
   return (
     <div className="intro">
       <div className="heading-and-add-button-header">
         <div>
-          <h1 className="heading">Your Calendar</h1>
+          <h1 className="heading">{user.first}'s Calendar</h1>
         </div>
         <div className="add-button">
           <IconButton
