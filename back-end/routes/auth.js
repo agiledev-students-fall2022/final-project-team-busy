@@ -123,10 +123,13 @@ router.post("/logout", protect, async (req, res) => {
 });
 
 router.get("/me", protect, async (req, res) => {
-  const { id, accountSettings } = await User.findById(req.user.id);
+  const user = req.user;
   return res.status(200).json({
-    id: id,
-    email: accountSettings.email,
+    id: user.id,
+    username: user.username,
+    first: user.first,
+    last: user.last,
+    accountSettings: user.accountSettings,
   });
 });
 

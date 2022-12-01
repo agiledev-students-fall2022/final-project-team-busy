@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -7,7 +7,6 @@ import {
   Navigate,
 } from "react-router-dom";
 
-import { useEffect } from "react";
 import Login from "./Pages/login/Login";
 import SignUp from "./Pages/login/SignUp";
 import ProtectedRoute from "./Components/ProtectedRoute";
@@ -32,13 +31,10 @@ import authService from "./services/authService";
 
 function App() {
   const [user, setUser] = useState(null);
-  const defaultBio =
-    "Who lives in a pineapple under the sea? SpongeBob SquarePants! Absorbent and yellow and porous is he SpongeBob SquarePants! If nautical nonsense be something you wish SpongeBob SquarePants! Then drop on the deck and flop like a fish! SpongeBob SquarePants!";
-  const [dp, setDP] = useState(ProfilePic);
-  const [bio, setBio] = useState(defaultBio);
+  const [dp, setDP] = useState(user?.profilePic || ProfilePic);
+  const [bio, setBio] = useState(user?.bio || "");
 
   const handleLogin = (userData) => {
-    console.log(userData);
     setUser(userData);
   };
 
@@ -60,11 +56,15 @@ function App() {
   }, []);
 
   const handleLogout = () => {
+    console.log("Logged out");
     setUser(null);
     authService.logout();
   };
 
-  console.log(user);
+  useEffect(() => {
+    console.log("Logged in as: ", user);
+  }, [user]);
+
   return (
     <div className="App">
       <Router>
@@ -76,10 +76,10 @@ function App() {
             <Route element={<ProtectedRoute user={user} setUser={setUser} />}>
               <Route
                 path="/profile"
-                element={<ProfilePage dp={dp} bio={bio} />}
+                element={<ProfilePage user={user} onLogout={handleLogout} />}
               />
               <Route path="/add-external-calendar" element={<AddExtCal />} />
-              <Route path="/home" element={<Home />} />
+              <Route path="/home" element={<Home user={user} />} />
               <Route path="/lookup" element={<LookUp />} />
               <Route path="/friends" element={<Friends />} />
               <Route
@@ -109,7 +109,9 @@ function App() {
               <Route path="/FriendProfile" element={<FriendProfile />} />
               <Route
                 path="/account-settings"
-                element={<AccountSettings setDP={setDP} setBio={setBio} />}
+                element={
+                  <AccountSettings user={user} setDP={setDP} setBio={setBio} />
+                }
               />
             </Route>
           </Routes>
