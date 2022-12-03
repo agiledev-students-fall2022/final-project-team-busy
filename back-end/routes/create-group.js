@@ -55,6 +55,18 @@ router.post("/", async (req, res) => {
                     user.save()
                 }
             })
+            // Find each member by id and add group to their groups array
+            members.forEach(member => {
+                const user = User.findById(member, (err, user) => {
+                    if(err) {
+                        res.status(400).json({error: "Failed to find user"})
+                        console.log(err)
+                    } else {
+                        user.groups.push(group._id)
+                        user.save()
+                    }
+                })
+            })
             res.status(201).json({group})
             console.log(group)
         }
