@@ -75,7 +75,7 @@ const CreateGroups = ({ user, friends, groups, setGroups}) => {
 
         let newAdded = []
         newChecked.forEach(friendNum => {
-            newAdded.push(friends[friendNum]._id.$oid)
+            newAdded.push(friends[friendNum]._id)
         })
         setAdded(newAdded)
         console.log(newAdded)
