@@ -1,10 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const friend_data = require("../mock-data/friend-mock-data");
-const group_data = require("../mock-data/group-mock-data");
+const mongoose = require("mongoose");
+const User = mongoose.model("User");
+const Group = mongoose.model("Group");
 
-router.get("/", (req, res) => {
-    res.send({ friends: friend_data, groups: group_data });
-})
+// load users from users collection and groups from groups collection
+router.get("/", async (req, res) => {
+    const users = await User.find({});
+    const groups = await Group.find({});
+    res.json({ users, groups });
+});
 
 module.exports = router;

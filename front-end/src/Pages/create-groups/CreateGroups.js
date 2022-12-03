@@ -21,7 +21,7 @@ const CreateGroups = ({ user, friends, groups, setGroups}) => {
     const [nameChanges, setNameChanges] = useState(0);
     const [friendsChecked, setChecked] = useState([1]);
     const [created, setCreated] = useState(false);
-    const [friendsAdded, setAdded] = useState([friends[1]._id.$oid]);
+    const [friendsAdded, setAdded] = useState([friends[1].id]);
 
     const handleNameChange = (e) => {
         // console.log(e.target.value);
@@ -75,7 +75,7 @@ const CreateGroups = ({ user, friends, groups, setGroups}) => {
 
         let newAdded = []
         newChecked.forEach(friendNum => {
-            newAdded.push(friends[friendNum]._id.$oid)
+            newAdded.push(friends[friendNum].id)
         })
         setAdded(newAdded)
         console.log(newAdded)
