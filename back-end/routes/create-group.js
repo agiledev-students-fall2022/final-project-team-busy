@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require('../mock-data/friend-mock-data.json')
 const mongoose = require("mongoose");
 const Group = mongoose.model("Group");
+const User = mongoose.model("User");
 const Joi = require("joi");
 
 const groupSchema = Joi.object({
@@ -44,6 +45,16 @@ router.post("/", async (req, res) => {
             res.status(400).json({error: "Failed to create group"})
             console.log(err)
         } else {
+            // Find user by creator id and add group to their groups array
+            const user = User.findById(creator, (err, user) => {
+                if(err) {
+                    res.status(400).json({error: "Failed to find user"})
+                    console.log(err)
+                } else {
+                    user.groups.push(group._id)
+                    user.save()
+                }
+            })
             res.status(201).json({group})
             console.log(group)
         }

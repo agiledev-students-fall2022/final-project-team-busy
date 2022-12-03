@@ -86,6 +86,7 @@ function App() {
                 path="/create-group"
                 element={
                   <CreateGroups
+                    user={user}
                     friends={friends}
                     groups={groups}
                     setGroups={setGroups}

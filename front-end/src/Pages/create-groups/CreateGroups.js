@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 
 
-const CreateGroups = ({ friends, groups, setGroups}) => {
+const CreateGroups = ({ user, friends, groups, setGroups}) => {
     const [name, setName] = useState('');
     const [dp, setDP] = useState();
     const [dpURL, setDPURL] = useState();
@@ -41,11 +41,11 @@ const CreateGroups = ({ friends, groups, setGroups}) => {
             setCreated(false);
         }, 1500);
         const groupInfo = JSON.stringify({
-            members: friendsAdded,
+            members: friendsAdded.concat(user.id),
             events: [],
             groupName: name,
             desc: "",
-            creator: friends[Math.floor(Math.random() * friends.length)]._id.$oid, // Placeholder creator ID
+            creator: user.id,
             profilePic: dpURL
         })
         fetch("http://localhost:3001/create-group", {
