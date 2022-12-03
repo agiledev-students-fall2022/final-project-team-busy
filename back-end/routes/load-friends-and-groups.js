@@ -6,9 +6,9 @@ const Group = mongoose.model("Group");
 
 // load users from users collection and groups from groups collection
 router.get("/", async (req, res) => {
-    const friends = await User.find({});
+    const users = await User.find({});
     const groups = await Group.find({});
-    res.json({ friends, groups });
+    res.json({ users, groups });
 });
 
 module.exports = router;

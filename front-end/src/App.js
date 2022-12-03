@@ -38,8 +38,9 @@ function App() {
     setUser(userData);
   };
 
-  const [friends, setFriends] = useState([]);
-  const [groups, setGroups] = useState([]);
+  // Load all app users and groups
+  const [allUsers, setAllUsers] = useState([]);
+  const [allGroups, setAllGroups] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3001/load-friends-and-groups", {
@@ -48,12 +49,33 @@ function App() {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log("Friend + Group Data Loaded Successfully.");
-        setFriends(response.friends);
-        setGroups(response.groups);
+        console.log("User + Group Data Loaded Successfully.");
+        setAllUsers(response.users);
+        setAllGroups(response.groups);
       })
       .catch((error) => console.error("Error:", error));
   }, []);
+
+  // Get current user's friends and groups
+  const [friends, setFriends] = useState([]);
+  const [groups, setGroups] = useState([]);
+
+  useEffect(() => {
+    const loadFriendsAndGroups = async () => {
+      await user
+      if (user) {
+        const friendsList = allUsers.filter((u) => {
+          return user.friends.includes(u._id);
+        });
+        setFriends(friendsList);
+        const groupsList = allGroups.filter((g) => {
+          return user.groups.includes(g._id);
+        });
+        setGroups(groupsList);
+      }
+    };
+    loadFriendsAndGroups();
+  }, [user, allUsers, allGroups]);
 
   const handleLogout = () => {
     console.log("Logged out");
