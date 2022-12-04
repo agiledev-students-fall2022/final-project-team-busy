@@ -130,6 +130,7 @@ router.get("/me", protect, async (req, res) => {
     first: user.first,
     last: user.last,
     accountSettings: user.accountSettings,
+    events: user.events,
     friends: user.friends,
     groups: user.groups,
   });
