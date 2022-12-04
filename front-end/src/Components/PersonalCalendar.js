@@ -1,6 +1,7 @@
 import Calendar from "./Calendar";
 
 const PersonalCalendar = ({ user, events }) => {
+  if (!events) return;
   const personalEvents = events.map((e) => {
     return {
       id: e.id,

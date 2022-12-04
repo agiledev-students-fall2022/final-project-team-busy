@@ -54,11 +54,13 @@ function App() {
       setFriends(user.friends);
       setGroups(user.groups);
       setEvents(user.events);
-      setGroupEvents(
-        user.events.filter((e) => {
-          return e.users.length > 0;
-        })
-      );
+      if (user.events) {
+        setGroupEvents(
+          user.events.filter((e) => {
+            return e.users.length > 0;
+          })
+        );
+      }
     }
   }, [user]);
 
@@ -111,7 +113,10 @@ function App() {
               />
 
               <Route path="/FriendCalendar" element={<FriendCalendar />} />
-              <Route path="/GroupProfile/:_id" element={<GroupProfile groups={groups} friends={friends} />} />
+              <Route
+                path="/GroupProfile/:_id"
+                element={<GroupProfile groups={groups} friends={friends} />}
+              />
               <Route path="/GroupCalendar/:_id" element={<GroupCal />} />
               <Route path="/FriendProfile" element={<FriendProfile />} />
               <Route
