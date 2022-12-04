@@ -33,49 +33,14 @@ function App() {
   const [user, setUser] = useState(null);
   const [dp, setDP] = useState(user?.profilePic || ProfilePic);
   const [bio, setBio] = useState(user?.bio || "");
+  const [friends, setFriends] = useState([]);
+  const [groups, setGroups] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [groupEvents, setGroupEvents] = useState([]);
 
   const handleLogin = (userData) => {
     setUser(userData);
   };
-
-  // Load all app users and groups
-  const [allUsers, setAllUsers] = useState([]);
-  const [allGroups, setAllGroups] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3001/load-friends-and-groups", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        console.log("User + Group Data Loaded Successfully.");
-        setAllUsers(response.users);
-        setAllGroups(response.groups);
-      })
-      .catch((error) => console.error("Error:", error));
-  }, []);
-
-  // Get current user's friends and groups
-  const [friends, setFriends] = useState([]);
-  const [groups, setGroups] = useState([]);
-
-  useEffect(() => {
-    const loadFriendsAndGroups = async () => {
-      await user
-      if (user) {
-        const friendsList = allUsers.filter((u) => {
-          return user.friends.includes(u._id);
-        });
-        setFriends(friendsList);
-        const groupsList = allGroups.filter((g) => {
-          return user.groups.includes(g._id);
-        });
-        setGroups(groupsList);
-      }
-    };
-    loadFriendsAndGroups();
-  }, [user, allUsers, allGroups]);
 
   const handleLogout = () => {
     console.log("Logged out");
@@ -84,9 +49,22 @@ function App() {
   };
 
   useEffect(() => {
-    console.log("Logged in as: ", user);
+    if (user) {
+      console.log("Logged in as: ", user.username);
+      setFriends(user.friends);
+      setGroups(user.groups);
+      setEvents(user.events);
+      setGroupEvents(
+        user.events.filter((e) => {
+          return e.users.length > 0;
+        })
+      );
+    }
   }, [user]);
 
+  useEffect(() => {
+    console.log(groups);
+  }, [groups]);
   return (
     <div className="App">
       <Router>
@@ -101,7 +79,10 @@ function App() {
                 element={<ProfilePage user={user} onLogout={handleLogout} />}
               />
               <Route path="/add-external-calendar" element={<AddExtCal />} />
-              <Route path="/home" element={<Home user={user} />} />
+              <Route
+                path="/home"
+                element={<Home user={user} events={events} />}
+              />
               <Route path="/lookup" element={<LookUp />} />
               <Route path="/friends" element={<Friends />} />
               <Route
@@ -115,7 +96,10 @@ function App() {
                   />
                 }
               />
-              <Route path="/events" element={<Events />} />
+              <Route
+                path="/events"
+                element={<Events groupEvents={groupEvents} />}
+              />
               <Route
                 path="/create-events"
                 element={<CreateEvents friends={friends} groups={groups} />}
