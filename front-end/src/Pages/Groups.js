@@ -36,7 +36,7 @@ const Groups = ({ groups }) => {
                 </Grid>
                 {groups.map((group) => (
                     <Grid item>
-                        <Link to={`/groupCalendar/${group._id}`} style={{ textDecoration: 'none' }}>
+                        <Link to={`/GroupProfile/${group._id}`} style={{ textDecoration: 'none' }}>
                             <GroupCard key={group._id} name={group.groupName} profilePic={group.profilePic ? group.profilePic : ""} />
                         </Link>
                     </Grid>

@@ -2,7 +2,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0px;
+    margin: 1px 0px;
+}
+
+.group-handle{
+    margin: 0;
+}
+
+.group-handle h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    text-align: center;
 }
 
 .intro { 
@@ -10,14 +21,30 @@
     text-align: center;
 }
 
-.handle{
-    text-decoration: underline;
-    text-decoration-color:black;
+.friends {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 20px 0px;
+    flex-direction: column;
+    margin: 0;
+    font-size: 115%;
 }
 
-.bio{
-    text-align: left;
-    
+.friends ol {
+    margin-bottom: 0;
+}
+
+.friends h4 {
+    margin: 0 0 -18.5px 13px;
+    font-weight: 500;
+    font-size: larger;
+}
+
+.friends .others {
+    margin: 2.5px 0 0 40px;
+    font-size: inherit;
 }
 
 .groupc{
