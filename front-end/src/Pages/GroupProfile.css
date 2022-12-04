@@ -48,15 +48,21 @@
 }
 
 .groupc{
-    margin-top: 50px;
-
+    margin: 50px 15px 0 15px;
 }
 
 .group-button{
     width:100%;
-
 }
 
 .home{
     text-align: right;
+}
+
+.leave-group{
+    margin: 13.5px 15px 0 15px;
+}
+
+.leave-button{
+    width:100%;
 }

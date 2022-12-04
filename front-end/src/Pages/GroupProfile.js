@@ -20,6 +20,10 @@ const GroupProfile = ({ groups, friends }) => {
     // Get the group name
     const groupName = group.groupName;
 
+    const handleLeaveRequest = () => {
+        console.log("Leave request sent");
+    }
+
     return (
         <div className='intro'>
             <div className='home'>
@@ -51,6 +55,10 @@ const GroupProfile = ({ groups, friends }) => {
                 <Link to={`/GroupCalendar/${group._id}`} >
                     <Button variant="contained" className='group-button'>Group's Calendar</Button>
                 </Link>
+            </div>
+
+            <div className='leave-group'>
+                <Button variant="contained" className='leave-button' onClick={handleLeaveRequest}>Leave Group</Button>
             </div>
 
         </div>
