@@ -20,7 +20,7 @@ const AddPersonalCalendar = (props) => {
     axios
       .post("http://localhost:3001/create-events", {
         title: name,
-        description: description,
+        desc: description,
         startTime: startDate,
         endTime: endDate,
       })

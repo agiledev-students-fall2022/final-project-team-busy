@@ -10,28 +10,7 @@ import Container from "@mui/material/Container";
 import HomeIcon from "@mui/icons-material/Home";
 import { IconButton } from "@mui/material";
 
-const Events = () => {
-  const events = [
-    {
-      id: 1234,
-      title: "Group Study Session!",
-      description:
-        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem labore nulla, nihil deserunt adipisci sit ab vero facere, suscipit magnam quidem quibusdam porro facilis ullam necessitatibus, dolor quis dicta tenetur enim.",
-    },
-    {
-      id: 2456,
-      title: "Book Club",
-      description:
-        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem labore nulla, nihil deserunt adipisci sit ab vero facere, suscipit magnam quidem quibusdam porro facilis ullam necessitatibus, dolor quis dicta tenetur enim.",
-    },
-    {
-      id: 3456,
-      title: "Company Meeting",
-      description:
-        "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem labore nulla, nihil deserunt adipisci sit ab vero facere, suscipit magnam quidem quibusdam porro facilis ullam necessitatibus, dolor quis dicta tenetur enim.",
-    },
-  ];
-
+const Events = ({ groupEvents }) => {
   return (
     <Container maxWidth="md" className="events-container">
       <div className="events-flex">
@@ -67,12 +46,12 @@ const Events = () => {
       </div>
       <h3 className="align-left">Event List</h3>
       <Stack>
-        {events.map((event) => (
+        {groupEvents.map((event) => (
           <EventCard
             id={event.id}
             key={event.id}
             title={event.title}
-            description={event.description}
+            description={event.desc}
           />
         ))}
       </Stack>
