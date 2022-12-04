@@ -120,7 +120,7 @@ function App() {
                 path="/create-events"
                 element={<CreateEvents friends={friends} groups={groups} />}
               />
-              <Route path="/groups" element={<Groups />} />
+              <Route path="/groups" element={<Groups groups={groups} />} />
               <Route
                 path="/addpersonalcalendar"
                 element={<AddPersonalCalendar />}

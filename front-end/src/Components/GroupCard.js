@@ -1,22 +1,25 @@
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
-import {faker} from '@faker-js/faker';
 import Avatar from '@mui/material/Avatar';
-import AvatarGroup from '@mui/material/AvatarGroup';
+import { blue } from '@mui/material/colors';
 
-
-function GroupCard() {
+const GroupCard = ({ name, profilePic }) => {
     return ( 
-        <Card style={{width: '95vw'}} >
+        <Card style={{
+            width: '95vw', 
+            border: '2.5px solid deepskyblue',
+            margin: '-4px'
+            }} >
             <CardHeader 
-            title={faker.word.noun()}
-            avatar={(<AvatarGroup max={4}>
-                <Avatar src={faker.image.avatar()} />
-                <Avatar src={faker.image.avatar()} />
-                <Avatar src={faker.image.avatar()} />
-                <Avatar src={faker.image.avatar()} />
-                <Avatar src={faker.image.avatar()} />
-              </AvatarGroup>)}
+            title={name}
+            avatar= {
+                <Avatar 
+                src={profilePic} 
+                alt={name}
+                sx={{bgcolor: blue[500]}}>
+                    {name[0].toUpperCase()}
+                </Avatar>
+            }
             action
             />
         </Card>
