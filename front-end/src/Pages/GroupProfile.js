@@ -58,7 +58,13 @@ const GroupProfile = ({ groups, friends }) => {
             </div>
 
             <div className='leave-group'>
-                <Button variant="contained" className='leave-button' onClick={handleLeaveRequest}>Leave Group</Button>
+                <Button variant="contained" className='leave-button' onClick={
+                    () => {
+                        if (window.confirm("Are you sure you want to leave this group?")) {
+                            handleLeaveRequest();
+                        }
+                    }
+                }>Leave Group</Button>
             </div>
 
         </div>
