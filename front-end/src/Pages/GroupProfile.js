@@ -3,11 +3,11 @@ import "./GroupProfile.css";
 import { Button } from '@mui/material';
 import { IconButton } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { blue } from '@mui/material/colors';
 
 
-const GroupProfile = ({ groups, friends }) => {
+const GroupProfile = ({ groups, friends, user }) => {
     // Get the group id from the url
     const groupId = window.location.pathname.split("/")[2];
     // Find the group with the id
@@ -20,9 +20,31 @@ const GroupProfile = ({ groups, friends }) => {
     // Get the group name
     const groupName = group.groupName;
 
-    const handleLeaveRequest = () => {
-        console.log("Leave request sent");
+    const handleLeaveRequest = (e) => {
+        const leaveRequest = JSON.stringify({
+            groupId: groupId,
+            userId: user.id,
+            requestType: "leave",
+        });
+        fetch(`http://localhost:3001/GroupProfile/${groupId}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: leaveRequest,
+        })
+            .then((res) => res.json())
+            .then((response) => console.log("Form Submitted Successfully:", response))
+            .catch((error) => console.error("Error:", error));
     }
+
+    const navigate = useNavigate();
+    function refreshPage() {
+        setTimeout(()=>{
+            navigate("/groups");
+            window.location.reload(false);
+        }, 500);
+        console.log('page to reload')
+    }
+    
 
     return (
         <div className='intro'>
@@ -62,6 +84,7 @@ const GroupProfile = ({ groups, friends }) => {
                     () => {
                         if (window.confirm("Are you sure you want to leave this group?")) {
                             handleLeaveRequest();
+                            refreshPage();
                         }
                     }
                 }>Leave Group</Button>

@@ -34,7 +34,7 @@ const Groups = ({ groups }) => {
                 <Grid item>
                     <Button variant='contained' style={{ width: "95vw" }} onClick={() => navigate('/create-group')}>Create Group</Button>
                 </Grid>
-                {groups.map((group) => (
+                {groups && groups.map((group) => (
                     <Grid item>
                         <Link to={`/GroupProfile/${group._id}`} style={{ textDecoration: 'none' }}>
                             <GroupCard key={group._id} name={group.groupName} profilePic={group.profilePic ? group.profilePic : ""} />
