@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import "./lookup.css";
 import ToggleButton from "../Components/ToggleButton";
 import SearchBar from "../Components/SearchBar";
+import UserCard from "../Components/UserCard";
+
 import { IconButton } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
@@ -11,6 +13,8 @@ import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
+import GroupsCard from "../Components/GroupsCard";
+
 
 const LookUp = () => {
   const usersList = [
@@ -30,7 +34,7 @@ const LookUp = () => {
       username: "jenny718",
     },
   ];
-  const [state, setState] = useState("Searching Users");
+  const [state, setState] = useState("Users");
   const [query, setQuery] = useState("");
   const [result, setResult] = useState("");
   const [serverMessage, setServerMessage] = useState("");
@@ -79,14 +83,14 @@ const LookUp = () => {
 
       <div className="toggle-button">
         <Button
-          onClick={() => setState("Searching Users")}
+          onClick={() => setState("Users")}
           className="user"
           variant="contained"
         >
           Users
         </Button>
         <Button
-          onClick={() => setState("Searching Groups")}
+          onClick={() => setState("Groups")}
           className="groups"
           variant="contained"
         >
@@ -98,7 +102,7 @@ const LookUp = () => {
         <form onSubmit={handleSubmit}>
           <TextField
             id="outlined-basic"
-            label={state}
+            label= {"Searching " + state}
             variant="outlined"
             sx={{ width: { xs: "35ch", sm: "50ch", md: "70ch" } }}
             onInput={(e) => onQueryChange(e)}
@@ -115,6 +119,7 @@ const LookUp = () => {
 
         {serverMessage && !result ? serverMessage : ""}
       </div>
+
     </div>
   );
 };
