@@ -20,19 +20,13 @@ router.get("/", (req, res) => {
   res.send(data);
 });
 
-router.post("/", protect, async (req, res) => {
+router.post("/", async (req, res) => {
   const { members, events, groupName, desc, creator, profilePic } = req.body;
 
   const { error } = groupSchema.validate(req.body);
   if (error) {
     res.status(400).json({ message: error.details[0].message });
   }
-
-  // if (!groupName || members.length === 0) {
-  //     res.status(400).json({
-  //         error: "Please enter name and add friends to create a group."
-  //     })
-  // }
 
   const group = await Group.create(
     {
@@ -48,16 +42,16 @@ router.post("/", protect, async (req, res) => {
         res.status(400).json({ error: "Failed to create group" });
         console.log(err);
       } else {
-        // Find user by creator id and add group to their groups array
-        const user = User.findById(creator, (err, user) => {
-          if (err) {
-            res.status(400).json({ error: "Failed to find user" });
-            console.log(err);
-          } else {
-            user.groups.push(group._id);
-            user.save();
-          }
-        });
+        // // Find user by creator id and add group to their groups array
+        // const user = User.findById(creator, (err, user) => {
+        //   if (err) {
+        //     res.status(400).json({ error: "Failed to find user" });
+        //     console.log(err);
+        //   } else {
+        //     user.groups.push(group._id);
+        //     user.save();
+        //   }
+        // });
         // Find each member by id and add group to their groups array
         members.forEach((member) => {
           const user = User.findById(member, (err, user) => {
