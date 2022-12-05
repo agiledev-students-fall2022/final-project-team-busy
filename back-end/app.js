@@ -31,6 +31,7 @@ const lookupGroup = require("./routes/lookup-groups");
 const changeSettings = require("./routes/change-settings");
 const lookupEvent = require("./routes/lookup-events");
 const createEvents = require("./routes/create-events");
+const groupProfile = require("./routes/group-profile");
 
 mongoose.connect(
   process.env.ATLAS_URI,
@@ -56,5 +57,6 @@ app.use("/lookupuser", lookupUser);
 app.use("/lookupgroup", lookupGroup);
 app.use("/lookupevent", lookupEvent);
 app.use("/changeSettings", changeSettings);
+app.use(`/GroupProfile/`, groupProfile);
 
 module.exports = app;

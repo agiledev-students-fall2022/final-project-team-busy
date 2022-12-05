@@ -115,9 +115,9 @@ function App() {
               <Route path="/FriendCalendar" element={<FriendCalendar />} />
               <Route
                 path="/GroupProfile/:_id"
-                element={<GroupProfile groups={groups} friends={friends} />}
+                element={<GroupProfile groups={groups} friends={friends} user={user} />}
               />
-              <Route path="/GroupCalendar/:_id" element={<GroupCal />} />
+              <Route path="/GroupCalendar/:_id" element={<GroupCal groups={groups} events={events} user={user} />} />
               <Route path="/FriendProfile" element={<FriendProfile />} />
               <Route
                 path="/account-settings"
