@@ -64,6 +64,29 @@ router.post("/", protect, async (req, res) => {
           { $push: { events: newEvent.id } }
         );
 
+        if (users.length > 0) {
+          users.forEach(async (userId) => {
+            await User.findByIdAndUpdate(userId, {
+              $push: { events: newEvent.id },
+            });
+          });
+        }
+
+        if (groups.length > 0) {
+          groups.forEach(async (groupId) => {
+            const currentGroup = await Group.findByIdAndUpdate(groupId, {
+              $push: { events: newEvent.id },
+            });
+            if (currentGroup.members.length > 0) {
+              currentGroup.members.forEach(async (memberId) => {
+                await User.findByIdAndUpdate(memberId, {
+                  $push: { events: newEvent.id },
+                });
+              });
+            }
+          });
+        }
+
         return res.status(200).json({ message: "Successfully created event" });
       } catch (err) {
         console.log("error:", err);
