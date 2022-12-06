@@ -64,9 +64,6 @@ function App() {
     }
   }, [user]);
 
-  useEffect(() => {
-    console.log(groups);
-  }, [groups]);
   return (
     <div className="App">
       <Router>
@@ -115,9 +112,16 @@ function App() {
               <Route path="/FriendCalendar" element={<FriendCalendar />} />
               <Route
                 path="/GroupProfile/:_id"
-                element={<GroupProfile groups={groups} friends={friends} user={user} />}
+                element={
+                  <GroupProfile groups={groups} friends={friends} user={user} />
+                }
               />
-              <Route path="/GroupCalendar/:_id" element={<GroupCal groups={groups} events={events} user={user} />} />
+              <Route
+                path="/GroupCalendar/:_id"
+                element={
+                  <GroupCal groups={groups} events={events} user={user} />
+                }
+              />
               <Route path="/FriendProfile" element={<FriendProfile />} />
               <Route
                 path="/account-settings"
