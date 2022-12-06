@@ -1,4 +1,4 @@
-import Calendar from "./Calendar";
+import Calendar from "./Calendar/Calendar";
 
 const PersonalCalendar = ({ user, events }) => {
   if (!events) return;
@@ -9,6 +9,9 @@ const PersonalCalendar = ({ user, events }) => {
       start: new Date(e.startTime),
       end: new Date(e.endTime),
       desc: e.desc,
+      users: e.users,
+      groups: e.groups,
+      owner: e.owner,
     };
   });
   return <Calendar events={personalEvents} />;
