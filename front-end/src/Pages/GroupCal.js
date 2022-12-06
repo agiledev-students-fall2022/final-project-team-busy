@@ -1,7 +1,6 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import HomeButton from "../Components/HomeButton";
 import GroupCalendar from "../Components/GroupCalendar";
-import { faker } from "@faker-js/faker";
 
 // This the Group Calendar page here
 const GroupCal = ({ groups, events}) => {
@@ -11,6 +10,12 @@ const GroupCal = ({ groups, events}) => {
     const group = groups.find((group) => group._id === groupId);
     // Get the group name
     const groupName = group.groupName;
+    // Get all the events for the group
+    const groupEvents = group.events;
+    // Go through groupEvents and find events from the events array that match the event id
+    const groupEventsArray = groupEvents.map((event) => {
+        return events.find((event2) => event2._id === event);
+    });
 
     return (
         <Grid 
@@ -29,7 +34,7 @@ const GroupCal = ({ groups, events}) => {
                 <HomeButton />
             </Grid>
             <Grid item>
-                <GroupCalendar />
+                <GroupCalendar events={groupEventsArray} />
             </Grid>
         </Grid>
      );
