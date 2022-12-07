@@ -17,23 +17,6 @@ import GroupsLookup from "../Components/GroupsLookup";
 
 
 const LookUp = () => {
-  const usersList = [
-    {
-      first: "John",
-      last: "Doe",
-      username: "johnny123",
-    },
-    {
-      first_name: "Peter",
-      last_name: "Pan",
-      username: "peters345",
-    },
-    {
-      first_name: "Jennifer",
-      last_name: "Lopez",
-      username: "jenny718",
-    },
-  ];
   const [state, setState] = useState("Users");
   const [query, setQuery] = useState("");
   const [result, setResult] = useState("");
@@ -48,26 +31,43 @@ const LookUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (state === "Users") {
+      try {
+        const res = await axios.get(
+          "http://localhost:3001/lookupuser/" + query,
+          {},
+          {
+            withCredentials: true,
+          }
+        );
 
-    try {
-      const res = await axios.get(
-        "http://localhost:3001/lookupuser/" + query,
-        {},
-        {
-          withCredentials: true,
-        }
-      );
+        setResult(res.data);
+      } catch (err) {
+        console.log(err.response.data.error);
+        setResult("");
+        setServerMessage(err.response.data.error);
+      }
+    } else if (state === "Groups") {
+      try {
+        const res = await axios.get(
+          "http://localhost:3001/lookupgroup/" + query,
+          {},
+          {
+            withCredentials: true,
+          }
+        );
 
-      setResult(res.data);
-    } catch (err) {
-      console.log(err.response.data.error);
-      setResult("");
-      setServerMessage(err.response.data.error);
+        setResult(res.data);
+      } catch (err) {
+        console.log(err.response.data.error);
+        setResult("");
+        setServerMessage(err.response.data.error);
+      }
     }
   };
 
 
-  if (state === "Users"){
+  if (state === "Users") {
     return (
       <div className="lookup-page">
         <div className="heading-and-home-button-header">
@@ -82,7 +82,7 @@ const LookUp = () => {
             </IconButton>
           </div>
         </div>
-  
+
         <div className="toggle-button">
           <Button
             onClick={() => setState("Users")}
@@ -99,12 +99,12 @@ const LookUp = () => {
             Groups
           </Button>
         </div>
-  
+
         <div className="searching">
           <form onSubmit={handleSubmit}>
             <TextField
               id="outlined-basic"
-              label= {"Searching " + state}
+              label={"Searching " + state}
               variant="outlined"
               sx={{ width: { xs: "35ch", sm: "50ch", md: "70ch" } }}
               onInput={(e) => onQueryChange(e)}
@@ -112,22 +112,20 @@ const LookUp = () => {
             />
           </form>
           {result ? (
-            <p>
-              {result.first} {result.last}
-            </p>
+            <UserCard first={result.first} last={result.last} username={result.username} />
           ) : (
             ""
           )}
-  
-          {serverMessage && !result ? serverMessage : ""}
+
+          {serverMessage && !result ? (
+            <p style={{ "marginTop": '15px', "fontSize": 'larger' }}>{serverMessage}</p>
+          ) : ""}
         </div>
-        <UserCard first = {"Niel"} last = {"Chonoolal"} username = {"@nielywheely"}/>
-  
       </div>
     );
   }
-  
-  if (state === "Groups"){
+
+  if (state === "Groups") {
     return (
       <div className="lookup-page">
         <div className="heading-and-home-button-header">
@@ -142,7 +140,7 @@ const LookUp = () => {
             </IconButton>
           </div>
         </div>
-  
+
         <div className="toggle-button">
           <Button
             onClick={() => setState("Users")}
@@ -159,12 +157,12 @@ const LookUp = () => {
             Groups
           </Button>
         </div>
-  
+
         <div className="searching">
           <form onSubmit={handleSubmit}>
             <TextField
               id="outlined-basic"
-              label= {"Searching " + state}
+              label={"Searching " + state}
               variant="outlined"
               sx={{ width: { xs: "35ch", sm: "50ch", md: "70ch" } }}
               onInput={(e) => onQueryChange(e)}
@@ -172,21 +170,20 @@ const LookUp = () => {
             />
           </form>
           {result ? (
-            <p>
-              {result.first} {result.last}
-            </p>
+            <GroupsLookup groupname={result.groupName} label={"Hi"} />
           ) : (
             ""
           )}
-  
-          {serverMessage && !result ? serverMessage : ""}
+
+          {serverMessage && !result ? (
+            <p style={{ "marginTop": '15px', "fontSize": 'larger' }}>{serverMessage}</p>
+          ) : ""}
         </div>
         <div>
-        <GroupsLookup groupname = {"TeamBusy"} label = {"Hi"} />
 
         </div>
-        
-  
+
+
       </div>
     );
   }

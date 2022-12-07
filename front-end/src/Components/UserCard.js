@@ -5,8 +5,12 @@ import CardHeader from '@mui/material/CardHeader';
 
 
 const UserCard = (props) =>{
+  // Ensure that props exist before rendering
+  if (!props.first || !props.last || !props.username) {
+    return "";
+  }
     return(        
-        <Card style={{width: '95vw'}} >
+        <Card style={{width: '85vw', "marginTop": "15px", textAlign: "left"}} >
             <CardHeader
              avatar={
                 <Avatar>

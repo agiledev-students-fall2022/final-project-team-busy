@@ -5,8 +5,12 @@ import CardHeader from '@mui/material/CardHeader';
 import { Button } from "@mui/material";
 
 const GroupsLookup = (props) =>{
+    // Ensure that props exist before rendering
+    if (!props.groupname) {
+      return "";
+    }
     return(
-        <Card style={{width: '95vw'}}> 
+        <Card style={{width: '85vw', textAlign: 'left'}}> 
             <CardHeader
              avatar={
                 <Avatar>
