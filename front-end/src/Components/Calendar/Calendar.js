@@ -4,8 +4,9 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import CalendarModal from "./CalendarModal";
 import { useEffect, useState } from "react";
+import eventsService from "../../services/eventsService";
 
-const Calendar = ({ events }) => {
+const Calendar = ({ events, handleDelete }) => {
   const [currentEvent, setCurrentEvent] = useState(null);
   const localizer = momentLocalizer(moment);
 
@@ -19,6 +20,9 @@ const Calendar = ({ events }) => {
 
   useEffect(() => {
     if (currentEvent) {
+      // console.log(currentEvent.id);
+      // const res = eventsService.getEvent(currentEvent.id);
+      // console.log(res);
       // console.log(currentEvent);
     }
   }, [currentEvent]);
@@ -27,7 +31,11 @@ const Calendar = ({ events }) => {
   return (
     <>
       {currentEvent && (
-        <CalendarModal event={currentEvent} handleClose={clearCurrentEvent} />
+        <CalendarModal
+          event={currentEvent}
+          handleClose={clearCurrentEvent}
+          handleDelete={handleDelete}
+        />
       )}
       <BigCalendar
         className="calendar"

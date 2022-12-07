@@ -29,8 +29,7 @@ const createGroup = require("./routes/create-group");
 const lookupUser = require("./routes/lookup-user");
 const lookupGroup = require("./routes/lookup-groups");
 const changeSettings = require("./routes/change-settings");
-const lookupEvent = require("./routes/lookup-events");
-const createEvents = require("./routes/create-events");
+const events = require("./routes/events");
 const groupProfile = require("./routes/group-profile");
 
 mongoose.connect(
@@ -48,14 +47,12 @@ mongoose.connect(
   }
 );
 
-
-app.use("/create-events", createEvents); // TODO: Change it to appropriate name
 app.use("/auth", auth);
+app.use("/events", events);
 app.use("/load-friends-and-groups", loadFriendsAndGroups);
 app.use("/create-group", createGroup);
 app.use("/lookupuser", lookupUser);
 app.use("/lookupgroup", lookupGroup);
-app.use("/lookupevent", lookupEvent);
 app.use("/changeSettings", changeSettings);
 app.use(`/GroupProfile/`, groupProfile);
 
