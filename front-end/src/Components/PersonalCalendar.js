@@ -1,6 +1,6 @@
 import Calendar from "./Calendar/Calendar";
 
-const PersonalCalendar = ({ user, events }) => {
+const PersonalCalendar = ({ user, events, handleDelete }) => {
   if (!events) return;
   const personalEvents = events.map((e) => {
     return {
@@ -14,7 +14,7 @@ const PersonalCalendar = ({ user, events }) => {
       owner: e.owner,
     };
   });
-  return <Calendar events={personalEvents} />;
+  return <Calendar events={personalEvents} handleDelete={handleDelete} />;
 };
 
 export default PersonalCalendar;

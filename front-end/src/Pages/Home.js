@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
-function Home({ user, events }) {
+function Home({ user, events, handleDelete }) {
   return (
     <div className="intro">
       <div className="heading-and-add-button-header">
@@ -22,7 +22,11 @@ function Home({ user, events }) {
           </IconButton>
         </div>
       </div>
-      <PersonalCalendar user={user} events={events} />
+      <PersonalCalendar
+        user={user}
+        events={events}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 }

@@ -30,3 +30,8 @@
   width: 100%;
   height: 100%;
 }
+
+.modal-button {
+  width: 100%;
+  margin: 1rem 0;
+}
