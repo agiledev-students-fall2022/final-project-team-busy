@@ -2,8 +2,9 @@
 import Card from '@mui/material/Card';
 import Avatar from '@mui/material/Avatar';
 import CardHeader from '@mui/material/CardHeader';
+import { Button } from "@mui/material";
 
-const GroupsCard = (props) =>{
+const GroupsLookup = (props) =>{
     return(
         <Card style={{width: '95vw'}}> 
             <CardHeader
@@ -18,4 +19,4 @@ const GroupsCard = (props) =>{
     )
 }
 
-export default GroupsCard; 
+export default GroupsLookup; 

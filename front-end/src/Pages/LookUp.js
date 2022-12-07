@@ -13,7 +13,7 @@ import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
-import GroupsCard from "../Components/GroupsCard";
+import GroupsLookup from "../Components/GroupsLookup";
 
 
 const LookUp = () => {
@@ -66,62 +66,130 @@ const LookUp = () => {
     }
   };
 
-  return (
-    <div className="lookup-page">
-      <div className="heading-and-home-button-header">
-        <div>
-          <h2 className="heading">Look Up</h2>
+
+  if (state === "Users"){
+    return (
+      <div className="lookup-page">
+        <div className="heading-and-home-button-header">
+          <div>
+            <h2 className="heading">Look Up</h2>
+          </div>
+          <div className="home-button">
+            <IconButton aria-label="home" component={Link} to="/home">
+              <HomeIcon
+                sx={{ height: 45, width: 45, ":hover": { cursor: "pointer" } }}
+              />
+            </IconButton>
+          </div>
         </div>
-        <div className="home-button">
-          <IconButton aria-label="home" component={Link} to="/home">
-            <HomeIcon
-              sx={{ height: 45, width: 45, ":hover": { cursor: "pointer" } }}
+  
+        <div className="toggle-button">
+          <Button
+            onClick={() => setState("Users")}
+            className="user"
+            variant="contained"
+          >
+            Users
+          </Button>
+          <Button
+            onClick={() => setState("Groups")}
+            className="groups"
+            variant="contained"
+          >
+            Groups
+          </Button>
+        </div>
+  
+        <div className="searching">
+          <form onSubmit={handleSubmit}>
+            <TextField
+              id="outlined-basic"
+              label= {"Searching " + state}
+              variant="outlined"
+              sx={{ width: { xs: "35ch", sm: "50ch", md: "70ch" } }}
+              onInput={(e) => onQueryChange(e)}
+              InputProps={{ endAdornment: <SearchIcon /> }}
             />
-          </IconButton>
+          </form>
+          {result ? (
+            <p>
+              {result.first} {result.last}
+            </p>
+          ) : (
+            ""
+          )}
+  
+          {serverMessage && !result ? serverMessage : ""}
         </div>
+        <UserCard first = {"Niel"} last = {"Chonoolal"} username = {"@nielywheely"}/>
+  
       </div>
+    );
+  }
+  
+  if (state === "Groups"){
+    return (
+      <div className="lookup-page">
+        <div className="heading-and-home-button-header">
+          <div>
+            <h2 className="heading">Look Up</h2>
+          </div>
+          <div className="home-button">
+            <IconButton aria-label="home" component={Link} to="/home">
+              <HomeIcon
+                sx={{ height: 45, width: 45, ":hover": { cursor: "pointer" } }}
+              />
+            </IconButton>
+          </div>
+        </div>
+  
+        <div className="toggle-button">
+          <Button
+            onClick={() => setState("Users")}
+            className="user"
+            variant="contained"
+          >
+            Users
+          </Button>
+          <Button
+            onClick={() => setState("Groups")}
+            className="groups"
+            variant="contained"
+          >
+            Groups
+          </Button>
+        </div>
+  
+        <div className="searching">
+          <form onSubmit={handleSubmit}>
+            <TextField
+              id="outlined-basic"
+              label= {"Searching " + state}
+              variant="outlined"
+              sx={{ width: { xs: "35ch", sm: "50ch", md: "70ch" } }}
+              onInput={(e) => onQueryChange(e)}
+              InputProps={{ endAdornment: <SearchIcon /> }}
+            />
+          </form>
+          {result ? (
+            <p>
+              {result.first} {result.last}
+            </p>
+          ) : (
+            ""
+          )}
+  
+          {serverMessage && !result ? serverMessage : ""}
+        </div>
+        <div>
+        <GroupsLookup groupname = {"TeamBusy"} label = {"Hi"} />
 
-      <div className="toggle-button">
-        <Button
-          onClick={() => setState("Users")}
-          className="user"
-          variant="contained"
-        >
-          Users
-        </Button>
-        <Button
-          onClick={() => setState("Groups")}
-          className="groups"
-          variant="contained"
-        >
-          Groups
-        </Button>
+        </div>
+        
+  
       </div>
-
-      <div className="searching">
-        <form onSubmit={handleSubmit}>
-          <TextField
-            id="outlined-basic"
-            label= {"Searching " + state}
-            variant="outlined"
-            sx={{ width: { xs: "35ch", sm: "50ch", md: "70ch" } }}
-            onInput={(e) => onQueryChange(e)}
-            InputProps={{ endAdornment: <SearchIcon /> }}
-          />
-        </form>
-        {result ? (
-          <p>
-            {result.first} {result.last}
-          </p>
-        ) : (
-          ""
-        )}
-
-        {serverMessage && !result ? serverMessage : ""}
-      </div>
-
-    </div>
-  );
+    );
+  }
 };
 
 export default LookUp;
