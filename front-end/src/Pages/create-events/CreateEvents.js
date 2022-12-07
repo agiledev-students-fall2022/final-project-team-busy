@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import ConfirmationMessage from "../../Components/confirmation-messages/ConfirmationMessage";
 import { useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CreateEvents = ({ friends, groups }) => {
   let currentDate = new Date().toLocaleString();
@@ -22,21 +23,6 @@ const CreateEvents = ({ friends, groups }) => {
   const [friendsChecked, setFriendsChecked] = useState([]);
   const [groupsChecked, setGroupsChecked] = useState([]);
   const [created, setCreated] = useState(false);
-
-  // const [friends, setFriends] = useState([])
-  // const [groups, setGroups] = useState([])
-  // useEffect(() => {
-  //     fetch("/create-events/", {
-  //         method: 'GET',
-  //         headers: { 'Content-Type': 'application/json' },
-  //     }).then(response => response.json())
-  //         .then(response => {
-  //             console.log('Mock Data Loaded Successfully.')
-  //             setFriends(response.friends);
-  //             setGroups(response.groups);
-  //         })
-  //         .catch(error => console.error('Error:', error))
-  // }, []);
 
   const [friendsAdded, setFriendsAdded] = useState([]);
   const [groupsAdded, setGroupsAdded] = useState([]);
@@ -61,14 +47,6 @@ const CreateEvents = ({ friends, groups }) => {
     console.log(newAdded);
   };
 
-  // useEffect(() => {
-  //   console.log(friendsAdded);
-  // }, [friendsAdded]);
-
-  // useEffect(() => {
-  //   console.log(groupsAdded);
-  // }, [groupsAdded]);
-
   const handleToggleGroups = (value) => () => {
     const currentIndex = groupsChecked.indexOf(value);
     const newChecked = [...groupsChecked];
@@ -88,6 +66,15 @@ const CreateEvents = ({ friends, groups }) => {
     setGroupsAdded(newAdded);
     console.log(newAdded);
   };
+
+  const navigate = useNavigate();
+  function refreshPage() {
+    setTimeout(() => {
+      navigate("/events");
+      window.location.reload(false);
+    }, 500);
+    console.log('page to reload')
+  }
 
   const handleSubmission = (e) => {
     e.preventDefault();
@@ -111,6 +98,8 @@ const CreateEvents = ({ friends, groups }) => {
       .catch(function (error) {
         console.log(error);
       });
+
+      refreshPage();
   };
   const handleNameChange = (e) => {
     // console.log(e.target.value);
