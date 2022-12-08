@@ -45,7 +45,7 @@ function Friends() {
         >
             {friends.map((e, i) => {
                 return (<Grid item >
-                    <Link to= '/FriendProfile'>
+                    <Link to={`/user/${e.id}`}>
                         <FriendCard key={i} data={e} />
                     </Link>
                 </Grid>)
