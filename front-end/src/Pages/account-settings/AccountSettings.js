@@ -2,32 +2,24 @@ import React, { useState } from "react";
 import "./AccountSettings.css";
 import { Button, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import AccountSettingsConfirmation from "../../Components/confirmation-messages/AccountSettingsConfirmation";
+import PasswordInput from "../../Components/PasswordInput";
+
 
 const AccountSettings = ({ user, setDP, setBio }) => {
-  const [calendarPrivacy, setCalendarPrivacy] = useState("public");
+//  const [calendarPrivacy, setCalendarPrivacy] = useState("public");
+  const [newPass, setNewPass] = useState("");
   const [newBio, setNewBio] = useState("");
   const [changesSaved, saveChanges] = useState(false);
 
-  const handleCalendarPrivacy = () => {
-    if (calendarPrivacy === "public") {
-      setCalendarPrivacy("private");
-    } else {
-      setCalendarPrivacy("public");
-    }
-  };
-
-  const handleChanges = () => {
-    saveChanges(true);
-    setTimeout(() => {
-      saveChanges(false);
-    }, 1500);
-  };
-
-  const handleDPChange = (e) => {
-    setDP(URL.createObjectURL(e.target.files[0]));
-    handleChanges();
-  };
+//  const handleCalendarPrivacy = () => {
+//    if (calendarPrivacy === "public") {
+//      setCalendarPrivacy("private");
+//    } else {
+//      setCalendarPrivacy("public");
+//    }
+//  };
 
   const getNewBio = (e) => {
     setNewBio(e.target.value);
@@ -38,19 +30,45 @@ const AccountSettings = ({ user, setDP, setBio }) => {
     handleChanges();
   };
 
+  const handlePassword = () => {
+    PasswordInput();
+    setNewPass(newPass);
+    handleChanges();
+  };
+
+  const handleDPChange = (e) => {
+    setDP(URL.createObjectURL(e.target.files[0]));
+    handleChanges();
+  };
+
+  const handleChanges = (e) => {
+    saveChanges(true);
+    setTimeout(() => {
+      saveChanges(false);
+    }, 1500);
+    axios
+      .post("http://localhost:3001/account-settings", {
+        password: newPass,
+        bio: newBio
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <div className="account-settings-page">
       <h2 className="account-settings-heading">Account Settings</h2>
       <div className="top-buttons-container">
-        <Button
-          className="calendar-privacy-button"
-          variant="outlined"
-          onClick={handleCalendarPrivacy}
+        <Button 
+          className="change-password-button" 
+          variant="contained"
+          onClick={handlePassword}
         >
-          Set Calendar to {calendarPrivacy}
-        </Button>
-        <Button className="change-password-button" variant="contained">
-          Change Password
+          Change Password {newPass}
         </Button>
       </div>
       <div className="edit-bio">
@@ -67,6 +85,7 @@ const AccountSettings = ({ user, setDP, setBio }) => {
       </div>
       <div className="bottom-buttons-container">
         <Button
+          id="POST"
           className="change-bio-button"
           variant="contained"
           onClick={handleBioChange}
