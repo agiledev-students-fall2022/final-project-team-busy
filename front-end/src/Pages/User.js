@@ -25,6 +25,12 @@ const User = () => {
 				console.log(err);
 			});
 	}, []);
+
+    const handleClick = () => {
+        axios.post('/friends/add', {
+
+        })
+    }
 	return (
 		<div className="intro">
 			<div className="home">
@@ -74,11 +80,9 @@ const User = () => {
 						</Button>
 					</Link>
 				) : (
-					<Link to="/FriendCalendar">
-						<Button variant="contained" className="friend-button">
-							Add friend
-						</Button>
-					</Link>
+                    <Button variant="contained" className="friend-button" onClick={handleClick}>
+                        Add friend
+                    </Button>
 				)}
 			</div>
 		</div>
