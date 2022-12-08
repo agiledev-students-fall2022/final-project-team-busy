@@ -49,7 +49,7 @@ const LookUp = () => {
     } else if (state === "Groups") {
       try {
         const res = await axios.get(
-          "http://localhost:3001/lookupgroup/" + query,
+          "/lookupgroup/" + query,
           {},
           {
             withCredentials: true,
