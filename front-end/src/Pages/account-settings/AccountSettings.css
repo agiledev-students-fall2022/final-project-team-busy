@@ -44,3 +44,11 @@
 .edit-bio {
     flex: 1;
 }
+
+#pass {
+    margin: auto;
+}
+
+#bio {
+    margin: auto;
+}

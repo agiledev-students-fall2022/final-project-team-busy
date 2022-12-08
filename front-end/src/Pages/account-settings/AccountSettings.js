@@ -81,6 +81,8 @@ const AccountSettings = ({ user, setDP, setBio }) => {
           id="pass"
           label="new password"
           variant="outlined"
+          multiline
+          minRows={1}
           sx={{ minWidth: 310, borderRadius: "0px" }}
           value={newPass}
           onChange={getNewPass}
