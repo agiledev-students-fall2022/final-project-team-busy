@@ -111,6 +111,7 @@ const LookUp = () => {
           </form>
           {result ? (
             <UserCard
+              id={result.id}
               first={result.first}
               last={result.last}
               username={result.username}
