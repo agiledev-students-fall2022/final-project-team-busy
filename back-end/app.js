@@ -2,12 +2,16 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 require("dotenv").config({ silent: true });
-const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 
-app.use(morgan("dev"));
+if (process.env.NODE_ENV !== "production") {
+  console.log("using morgan");
+  const morgan = require("morgan");
+  app.use(morgan("dev"));
+}
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(

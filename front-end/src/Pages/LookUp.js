@@ -15,7 +15,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
 import GroupsLookup from "../Components/GroupsLookup";
 
-
 const LookUp = () => {
   const [state, setState] = useState("Users");
   const [query, setQuery] = useState("");
@@ -34,7 +33,7 @@ const LookUp = () => {
     if (state === "Users") {
       try {
         const res = await axios.get(
-          "http://localhost:3001/lookupuser/" + query,
+          "/lookupuser/" + query,
           {},
           {
             withCredentials: true,
@@ -65,7 +64,6 @@ const LookUp = () => {
       }
     }
   };
-
 
   if (state === "Users") {
     return (
@@ -112,14 +110,22 @@ const LookUp = () => {
             />
           </form>
           {result ? (
-            <UserCard first={result.first} last={result.last} username={result.username} />
+            <UserCard
+              first={result.first}
+              last={result.last}
+              username={result.username}
+            />
           ) : (
             ""
           )}
 
           {serverMessage && !result ? (
-            <p style={{ "marginTop": '15px', "fontSize": 'larger' }}>{serverMessage}</p>
-          ) : ""}
+            <p style={{ marginTop: "15px", fontSize: "larger" }}>
+              {serverMessage}
+            </p>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     );
@@ -176,14 +182,14 @@ const LookUp = () => {
           )}
 
           {serverMessage && !result ? (
-            <p style={{ "marginTop": '15px', "fontSize": 'larger' }}>{serverMessage}</p>
-          ) : ""}
+            <p style={{ marginTop: "15px", fontSize: "larger" }}>
+              {serverMessage}
+            </p>
+          ) : (
+            ""
+          )}
         </div>
-        <div>
-
-        </div>
-
-
+        <div></div>
       </div>
     );
   }
