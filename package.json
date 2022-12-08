@@ -5,6 +5,9 @@
   "scripts": {
     "server": "cd back-end && nodemon server",
     "client": "cd front-end && npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "prebuild": "cd back-end && npm install",
+    "postbuild": "cd front-end && npm install && npm run build",
+    "start": "cd back-end && npm start"
   }
 }
