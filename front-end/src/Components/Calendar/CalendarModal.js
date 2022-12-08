@@ -46,14 +46,14 @@ const CalendarModal = ({ event, handleClose, handleDelete }) => {
           {event.end.toLocaleDateString("en-US", options)}
         </p>
 
-        <Button
+        {handleDelete && (<Button
           onClick={onDelete}
           className="modal-button"
           variant="contained"
           sx={{ mt: 2 }}
         >
           Delete Event
-        </Button>
+        </Button>) }
       </Card>
     );
   };

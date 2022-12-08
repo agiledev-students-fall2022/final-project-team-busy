@@ -25,5 +25,23 @@ router.get('/:id', protect, async(req,res) => {
 
 })
 
+// Get all the events
+router.get('/:id/events', protect, async(req,res) => {
+    try {
+        const user = await User.findById(req.params.id).populate('events');
+       
+        res.status(200).json({
+            message: "Success",
+            events: user.events,
+        })
+    }
+    catch (err) {
+        res.status(500).json({
+            message: "An error happened",
+            error: err
+        })
+    }
+
+})
 
 module.exports = router;
