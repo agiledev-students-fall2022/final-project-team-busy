@@ -28,7 +28,7 @@ const loadFriendsAndGroups = require("./routes/load-friends-and-groups");
 const createGroup = require("./routes/create-group");
 const lookupUser = require("./routes/lookup-user");
 const lookupGroup = require("./routes/lookup-groups");
-const changeSettings = require("./routes/change-settings");
+const accountSettings = require("./routes/account-settings");
 const lookupEvent = require("./routes/lookup-events");
 const createEvents = require("./routes/create-events");
 const groupProfile = require("./routes/group-profile");
@@ -56,7 +56,7 @@ app.use("/create-group", createGroup);
 app.use("/lookupuser", lookupUser);
 app.use("/lookupgroup", lookupGroup);
 app.use("/lookupevent", lookupEvent);
-app.use("/changeSettings", changeSettings);
+app.use("/account-settings", accountSettings);
 app.use(`/GroupProfile/`, groupProfile);
 
 module.exports = app;
