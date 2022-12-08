@@ -1,6 +1,6 @@
 import Calendar from "./Calendar/Calendar";
 
-const GroupCalendar = ({ events }) => {
+const GroupCalendar = ({ events, handleDelete }) => {
   // From the groupEvents, get the events for the calendar
   const calEvents = events.map((event) => {
     return {
@@ -12,7 +12,7 @@ const GroupCalendar = ({ events }) => {
     };
   });
 
-  return <Calendar events={calEvents} />;
+  return <Calendar events={calEvents} handleDelete={handleDelete} />;
 };
 
 export default GroupCalendar;

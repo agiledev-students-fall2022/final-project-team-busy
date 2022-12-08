@@ -2,11 +2,16 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 require("dotenv").config({ silent: true });
-const morgan = require("morgan");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 
-app.use(morgan("dev"));
+if (process.env.NODE_ENV !== "production") {
+  console.log("using morgan");
+  const morgan = require("morgan");
+  app.use(morgan("dev"));
+}
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
@@ -28,10 +33,11 @@ const loadFriendsAndGroups = require("./routes/load-friends-and-groups");
 const createGroup = require("./routes/create-group");
 const lookupUser = require("./routes/lookup-user");
 const lookupGroup = require("./routes/lookup-groups");
-const accountSettings = require("./routes/account-settings");
-const lookupEvent = require("./routes/lookup-events");
-const createEvents = require("./routes/create-events");
+const changeSettings = require("./routes/change-settings");
+const events = require("./routes/events");
 const groupProfile = require("./routes/group-profile");
+const friends = require("./routes/friends");
+const user = require("./routes/user");
 
 mongoose.connect(
   process.env.ATLAS_URI,
@@ -48,15 +54,24 @@ mongoose.connect(
   }
 );
 
-
-app.use("/create-events", createEvents); // TODO: Change it to appropriate name
 app.use("/auth", auth);
+app.use("/events", events);
 app.use("/load-friends-and-groups", loadFriendsAndGroups);
 app.use("/create-group", createGroup);
 app.use("/lookupuser", lookupUser);
 app.use("/lookupgroup", lookupGroup);
-app.use("/lookupevent", lookupEvent);
-app.use("/account-settings", accountSettings);
+app.use("/changeSettings", changeSettings);
 app.use(`/GroupProfile/`, groupProfile);
+app.use("/friends", friends);
+app.use("/user", user);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.resolve(__dirname, "../front-end/build")));
+  app.get("*", function (req, res) {
+    res.sendFile(
+      path.resolve(__dirname, "../", "front-end", "build", "index.html")
+    );
+  });
+}
 
 module.exports = app;

@@ -12,6 +12,7 @@ import { Button } from "@mui/material";
 import ConfirmationMessage from "../../Components/confirmation-messages/ConfirmationMessage";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CreateGroups = ({ user, friends, groups, setGroups }) => {
   const [name, setName] = useState("");
@@ -33,6 +34,15 @@ const CreateGroups = ({ user, friends, groups, setGroups }) => {
     setDPURL(URL.createObjectURL(e.target.files[0]));
   };
 
+  const navigate = useNavigate();
+  function refreshPage() {
+    setTimeout(() => {
+      navigate("/groups");
+      window.location.reload(false);
+    }, 500);
+    console.log("page to reload");
+  }
+
   const handleSubmission = (e) => {
     e.preventDefault();
     setCreated(true);
@@ -47,7 +57,7 @@ const CreateGroups = ({ user, friends, groups, setGroups }) => {
       creator: user.id,
       profilePic: dpURL,
     });
-    fetch("http://localhost:3001/create-group", {
+    fetch("/create-group", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: groupInfo,
@@ -59,6 +69,7 @@ const CreateGroups = ({ user, friends, groups, setGroups }) => {
     const groupsUpdated = [...groups];
     groupsUpdated.push(groupInfo);
     setGroups(groupsUpdated);
+    refreshPage();
   };
 
   const handleToggle = (value) => () => {
