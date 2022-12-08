@@ -60,7 +60,7 @@ app.use("/load-friends-and-groups", loadFriendsAndGroups);
 app.use("/create-group", createGroup);
 app.use("/lookupuser", lookupUser);
 app.use("/lookupgroup", lookupGroup);
-app.use("/account-settings", accountSettings);
+app.use("/change-settings", changeSettings);
 app.use(`/GroupProfile/`, groupProfile);
 app.use("/friends", friends);
 app.use("/user", user);

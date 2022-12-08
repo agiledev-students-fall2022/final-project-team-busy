@@ -6,6 +6,7 @@ import axios from "axios";
 import AccountSettingsConfirmation from "../../Components/confirmation-messages/AccountSettingsConfirmation";
 import PasswordInput from "../../Components/PasswordInput";
 
+const BASE_URL = "/account-settings/";
 
 const AccountSettings = ({ user, setDP, setBio }) => {
 //  const [calendarPrivacy, setCalendarPrivacy] = useState("public");
@@ -47,7 +48,7 @@ const AccountSettings = ({ user, setDP, setBio }) => {
       saveChanges(false);
     }, 1500);
     axios
-      .post("http://localhost:3001/account-settings", {
+      .post(BASE_URL = "/auth/", {
         password: newPass,
         bio: newBio
       })
