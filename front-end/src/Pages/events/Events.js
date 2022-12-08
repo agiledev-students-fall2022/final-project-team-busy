@@ -11,6 +11,9 @@ import HomeIcon from "@mui/icons-material/Home";
 import { IconButton } from "@mui/material";
 
 const Events = ({ groupEvents }) => {
+  const handleClick = (event) => {
+    console.log(event);
+  };
   return (
     <Container maxWidth="md" className="events-container">
       <div className="events-flex">
@@ -48,6 +51,7 @@ const Events = ({ groupEvents }) => {
       <Stack>
         {groupEvents.map((event) => (
           <EventCard
+            onClick={handleClick}
             id={event.id}
             key={event.id}
             title={event.title}
