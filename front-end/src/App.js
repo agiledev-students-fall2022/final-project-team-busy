@@ -124,7 +124,7 @@ function App() {
                 element={<AddPersonalCalendar />}
               />
 
-              <Route path="/FriendCalendar" element={<FriendCalendar />} />
+              <Route path="/user/:id/calendar" element={<FriendCalendar />} />
               <Route
                 path="/GroupProfile/:_id"
                 element={

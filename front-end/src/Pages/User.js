@@ -78,13 +78,12 @@ const User = () => {
 			</div>
 			<div className="friendc">
 				{isFriend ? (
-					<Link to="/FriendCalendar">
+					<Link to='calendar'>
 						<Button variant="contained" className="friend-button">
 							Calendar
 						</Button>
 					</Link>
 				) : (
-					<Link to="/FriendCalendar">
 						<Button
 							variant="contained"
 							className="friend-button"
@@ -92,7 +91,6 @@ const User = () => {
 						>
 							Add friend
 						</Button>
-					</Link>
 				)}
 			</div>
 		</div>
