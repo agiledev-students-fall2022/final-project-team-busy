@@ -97,7 +97,7 @@ function App() {
                   />
                 }
               />
-              <Route path="/lookup" element={<LookUp />} />
+              <Route path="/lookup" element={<LookUp user={user} />} />
               <Route path="/friends" element={<Friends />} />
               <Route
                 path="/create-group"
