@@ -7,8 +7,9 @@ const User = mongoose.model("User");
 //Build GET request 
 router.get('/:username', async (req,res) => {
     try{
-        const {first, last, username} = await User.findOne({username: req.params.username})
+        const {id, first, last, username} = await User.findOne({username: req.params.username})
         return res.status(200).json({
+            id: id,
             first: first,
             last: last,
             username: username, 
