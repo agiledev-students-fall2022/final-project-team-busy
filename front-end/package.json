@@ -30,6 +30,10 @@
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:3001/",
+  "allowedHosts": [
+    "localhost:3001",
+    "busy-8qzj4.ondigitalocean.app"
+  ],
   "eslintConfig": {
     "extends": [
       "react-app",
