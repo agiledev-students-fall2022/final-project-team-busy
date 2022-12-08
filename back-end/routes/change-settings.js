@@ -28,9 +28,11 @@ router.post("/Password", protect, async (req, res) => {
   if (error) {
     res.status(400).send("Invalid Password, please try again");
   } 
-    
+  const doc = await User.findById( { _id: req.body.owner.id } )
+  doc.pass = newPass
+  doc.save() 
+  console.log(req, res)
   res.status(200).send("Success");
-
 });
 
 //build POST request change bio
@@ -40,7 +42,9 @@ router.post("/Bio", async (req, res) => {
   if (error) {
     res.status(400).send("Invalid bio, please try again");
   } 
-    
+  const doc = await User.findById( { _id: req.body.owner.id } )
+  doc.bio = newBio
+  doc.save() 
   console.log(req, res)
   res.status(200).send("Success");
 });

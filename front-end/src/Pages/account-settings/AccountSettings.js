@@ -6,7 +6,7 @@ import axios from "axios";
 import AccountSettingsConfirmation from "../../Components/confirmation-messages/AccountSettingsConfirmation";
 import PasswordInput from "../../Components/PasswordInput";
 
-const BASE_URL = "/account-settings/";
+const BASE_URL = "/";
 
 const AccountSettings = ({ user, setDP, setBio }) => {
 //  const [calendarPrivacy, setCalendarPrivacy] = useState("public");
@@ -26,13 +26,17 @@ const AccountSettings = ({ user, setDP, setBio }) => {
     setNewBio(e.target.value);
   };
 
+  const getNewPass = (e) => {
+    setNewBio(e.target.value);
+  };
+
   const handleBioChange = () => {
     setBio(newBio);
     handleChanges();
   };
 
   const handlePassword = () => {
-    PasswordInput();
+    //PasswordInput();
     setNewPass(newPass);
     handleChanges();
   };
@@ -48,7 +52,7 @@ const AccountSettings = ({ user, setDP, setBio }) => {
       saveChanges(false);
     }, 1500);
     axios
-      .post(BASE_URL = "/auth/", {
+      .post(BASE_URL + "change-settings", {
         password: newPass,
         bio: newBio
       })
@@ -71,6 +75,16 @@ const AccountSettings = ({ user, setDP, setBio }) => {
         >
           Change Password {newPass}
         </Button>
+      </div>
+      <div className="new-pass">
+        <TextField
+          id="pass"
+          label="new password"
+          variant="outlined"
+          sx={{ minWidth: 310, borderRadius: "0px" }}
+          value={newPass}
+          onChange={getNewPass}
+        />
       </div>
       <div className="edit-bio">
         <TextField
