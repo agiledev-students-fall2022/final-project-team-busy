@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 const UserCard = (props) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    console.log("/user/" + props.id);
     navigate("/user/" + props.id);
   }
 
