@@ -60,12 +60,7 @@ app.use("/load-friends-and-groups", loadFriendsAndGroups);
 app.use("/create-group", createGroup);
 app.use("/lookupuser", lookupUser);
 app.use("/lookupgroup", lookupGroup);
-<<<<<<<<< Temporary merge branch 1
-app.use("/lookupevent", lookupEvent);
-app.use("/account-settings", accountSettings);
-=========
 app.use("/changeSettings", changeSettings);
->>>>>>>>> Temporary merge branch 2
 app.use(`/GroupProfile/`, groupProfile);
 app.use("/friends", friends);
 app.use("/user", user);
