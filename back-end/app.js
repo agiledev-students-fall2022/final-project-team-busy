@@ -38,6 +38,7 @@ const events = require("./routes/events");
 const groupProfile = require("./routes/group-profile");
 const friends = require("./routes/friends");
 const user = require("./routes/user");
+const lookUpForGroupJoin = require("./routes/group-join-from-lookup");
 
 mongoose.connect(
   process.env.ATLAS_URI,
@@ -64,6 +65,7 @@ app.use("/changeSettings", changeSettings);
 app.use(`/GroupProfile/`, groupProfile);
 app.use("/friends", friends);
 app.use("/user", user);
+app.use("/group-join-from-lookup", lookUpForGroupJoin);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.resolve(__dirname, "../front-end/build")));
