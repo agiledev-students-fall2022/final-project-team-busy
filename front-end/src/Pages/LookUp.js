@@ -15,7 +15,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
 import GroupsLookup from "../Components/GroupsLookup";
 
-const LookUp = () => {
+const LookUp = ({ user }) => {
   const [state, setState] = useState("Users");
   const [query, setQuery] = useState("");
   const [result, setResult] = useState("");
@@ -177,7 +177,7 @@ const LookUp = () => {
             />
           </form>
           {result ? (
-            <GroupsLookup groupname={result.groupName} label={"Hi"} />
+            <GroupsLookup user={user} groupID={result.groupID} groupname={result.groupName} label={"Hi"} />
           ) : (
             ""
           )}

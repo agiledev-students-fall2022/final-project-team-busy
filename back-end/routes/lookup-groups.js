@@ -8,6 +8,7 @@ router.get("/:groupname", async (req, res) => {
   try {
     const group = await Group.findOne({ groupName: req.params.groupname });
     return res.status(200).json({
+      groupID: group._id,
       groupName: group.groupName,
     });
   } catch (err) {
