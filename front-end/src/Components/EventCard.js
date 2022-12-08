@@ -7,10 +7,10 @@ const EventCard = ({ id, title, description }) => {
     <Card className="events-card">
       <div className="events-header">
         <h3 className="events-title">{title}</h3>
-        <Button variant="contained">Request</Button>
+        {/* <Button variant="contained">Request</Button> */}
       </div>
 
-      <span>ID: {id}</span>
+      {/* <span>ID: {id}</span> */}
       <p className="events-card-desc">{description}</p>
       <a className="card-link" href="#">
         Read more
