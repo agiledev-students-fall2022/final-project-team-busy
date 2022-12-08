@@ -10,8 +10,8 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import ConfirmationMessage from "../../Components/confirmation-messages/ConfirmationMessage";
 import { useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import eventService from "../../services/eventsService";
 
 const CreateEvents = ({ friends, groups }) => {
   let currentDate = new Date().toLocaleString();
@@ -44,7 +44,6 @@ const CreateEvents = ({ friends, groups }) => {
       newAdded.push(friends[friendNum].id);
     });
     setFriendsAdded(newAdded);
-    console.log(newAdded);
   };
 
   const handleToggleGroups = (value) => () => {
@@ -64,7 +63,6 @@ const CreateEvents = ({ friends, groups }) => {
       newAdded.push(groups[groupNum].id);
     });
     setGroupsAdded(newAdded);
-    console.log(newAdded);
   };
 
   const navigate = useNavigate();
@@ -73,33 +71,28 @@ const CreateEvents = ({ friends, groups }) => {
       navigate("/events");
       window.location.reload(false);
     }, 500);
-    console.log('page to reload')
+    // console.log("page to reload");
   }
 
-  const handleSubmission = (e) => {
+  const handleSubmission = async (e) => {
     e.preventDefault();
     setCreated(true);
     setTimeout(() => {
       setCreated(false);
     }, 1500);
     // Post request to create-events-page
-    axios
-      .post("http://localhost:3001/create-events", {
-        startTime: startDate,
-        endTime: endDate,
-        users: friendsAdded,
-        groups: groupsAdded,
-        desc: description,
-        title: name,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
 
-      refreshPage();
+    const res = await eventService.createEvent({
+      startTime: startDate,
+      endTime: endDate,
+      users: friendsAdded,
+      groups: groupsAdded,
+      desc: description,
+      title: name,
+    });
+
+    console.log(res.data);
+    refreshPage();
   };
   const handleNameChange = (e) => {
     // console.log(e.target.value);

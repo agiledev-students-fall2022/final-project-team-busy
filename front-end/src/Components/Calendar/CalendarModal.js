@@ -1,11 +1,11 @@
 import "./CalendarModal.css";
 import { Card } from "@mui/material";
+import { Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useState } from "react";
 import { createPortal } from "react-dom";
+import eventService from "../../services/eventsService";
 
-const CalendarModal = ({ event, handleClose }) => {
-  console.log("currentevent:", event);
+const CalendarModal = ({ event, handleClose, handleDelete }) => {
   const options = {
     weekday: "short",
     year: "2-digit",
@@ -13,6 +13,11 @@ const CalendarModal = ({ event, handleClose }) => {
     day: "numeric",
     hour: "numeric",
     minute: "numeric",
+  };
+
+  const onDelete = async () => {
+    handleClose();
+    handleDelete(event.id);
   };
 
   const Backdrop = ({ handleClose }) => {
@@ -40,6 +45,15 @@ const CalendarModal = ({ event, handleClose }) => {
           <strong>End: </strong>
           {event.end.toLocaleDateString("en-US", options)}
         </p>
+
+        <Button
+          onClick={onDelete}
+          className="modal-button"
+          variant="contained"
+          sx={{ mt: 2 }}
+        >
+          Delete Event
+        </Button>
       </Card>
     );
   };

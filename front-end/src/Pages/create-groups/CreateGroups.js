@@ -40,7 +40,7 @@ const CreateGroups = ({ user, friends, groups, setGroups }) => {
       navigate("/groups");
       window.location.reload(false);
     }, 500);
-    console.log('page to reload')
+    console.log("page to reload");
   }
 
   const handleSubmission = (e) => {
@@ -57,7 +57,7 @@ const CreateGroups = ({ user, friends, groups, setGroups }) => {
       creator: user.id,
       profilePic: dpURL,
     });
-    fetch("http://localhost:3001/create-group", {
+    fetch("/create-group", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: groupInfo,

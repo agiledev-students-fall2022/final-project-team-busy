@@ -6,7 +6,7 @@ import { DateTimePicker } from "@mui/x-date-pickers";
 import "./AddPersonalCalendar.css";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import eventsService from "../services/eventsService";
 
 const AddPersonalCalendar = (props) => {
   let currentDate = new Date().toLocaleString();
@@ -16,20 +16,14 @@ const AddPersonalCalendar = (props) => {
   const [description, setDescription] = useState("");
   const [nameChanges, setNameChanges] = useState(0);
 
-  const handleSubmission = () => {
-    axios
-      .post("http://localhost:3001/create-events", {
-        title: name,
-        desc: description,
-        startTime: startDate,
-        endTime: endDate,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+  const handleSubmission = async () => {
+    const res = await eventsService.createEvent({
+      title: name,
+      desc: description,
+      startTime: startDate,
+      endTime: endDate,
+    });
+    console.log(res.data);
   };
 
   const handleNameChange = (e) => {

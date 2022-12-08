@@ -22,12 +22,13 @@ import ProfilePage from "./Pages/profile-page/ProfilePage";
 import Events from "./Pages/events/Events";
 import Groups from "./Pages/Groups";
 import GroupProfile from "./Pages/GroupProfile";
-import FriendProfile from "./Pages/FriendProfile";
+import User from "./Pages/User";
 import FriendCalendar from "./Pages/FriendCalendar";
 import AccountSettings from "./Pages/account-settings/AccountSettings";
 import ProfilePic from "./Pages/profile-page/profile-page-dp.jpeg";
 import GroupCal from "./Pages/GroupCal";
 import authService from "./services/authService";
+import eventService from "./services/eventsService";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -64,6 +65,14 @@ function App() {
     }
   }, [user]);
 
+  const handleDeleteEvent = async (eventId) => {
+    try {
+      await eventService.deleteEvent(eventId);
+      setEvents(events.filter((e) => e.id !== eventId));
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="App">
       <Router>
@@ -80,7 +89,13 @@ function App() {
               <Route path="/add-external-calendar" element={<AddExtCal />} />
               <Route
                 path="/home"
-                element={<Home user={user} events={events} />}
+                element={
+                  <Home
+                    user={user}
+                    events={events}
+                    handleDelete={handleDeleteEvent}
+                  />
+                }
               />
               <Route path="/lookup" element={<LookUp />} />
               <Route path="/friends" element={<Friends />} />
@@ -119,10 +134,15 @@ function App() {
               <Route
                 path="/GroupCalendar/:_id"
                 element={
-                  <GroupCal groups={groups} events={events} user={user} />
+                  <GroupCal
+                    groups={groups}
+                    events={events}
+                    user={user}
+                    handleDelete={handleDeleteEvent}
+                  />
                 }
               />
-              <Route path="/FriendProfile" element={<FriendProfile />} />
+              <Route path="/user/:id" element={<User />} />
               <Route
                 path="/account-settings"
                 element={
