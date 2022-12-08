@@ -112,7 +112,7 @@ const LookUp = () => {
             />
           </form>
           {result ? (
-            <UserCard first={result.first} last={result.last} username={result.username} />
+            <UserCard id={result.id} first={result.first} last={result.last} username={result.username} />
           ) : (
             ""
           )}
