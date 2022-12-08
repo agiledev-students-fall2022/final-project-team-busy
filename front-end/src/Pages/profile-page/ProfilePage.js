@@ -60,14 +60,6 @@ const ProfilePage = ({ user, onLogout }) => {
         </Button>
         <Button
           variant="contained"
-          className="add-external-calendar-button"
-          component={Link}
-          to="/add-external-calendar"
-        >
-          Add External Calendar
-        </Button>
-        <Button
-          variant="contained"
           className="account-settings-button"
           onClick={onLogout}
         >

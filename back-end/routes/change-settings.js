@@ -39,11 +39,10 @@ router.post("/Bio", async (req, res) => {
   const { error } = bioSchema.validate(req.body.bio);
   if (error) {
     res.status(400).send("Invalid bio, please try again");
-  } else {
-
-    console.log(req, res)
-    res.status(200).send("Success");
-  }
+  } 
+    
+  console.log(req, res)
+  res.status(200).send("Success");
 });
 
 //build POST request to change privacy [FUNCTIONALITY REMOVED]
