@@ -15,7 +15,7 @@ const User = () => {
   const [isFriend, setIsFriend] = useState();
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/user/${id}`)
+      .get(`/user/${id}`)
       .then((res) => {
         console.log(res);
         setUser(res.data.user);

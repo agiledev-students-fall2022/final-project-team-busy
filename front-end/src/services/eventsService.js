@@ -1,7 +1,7 @@
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-const BASE_URL = "http://localhost:3001/events/";
+const BASE_URL = "/events/";
 
 const getEvent = async (id) => {
   const res = await axios.get(
