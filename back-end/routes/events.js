@@ -40,7 +40,6 @@ router.get("/:id", protect, async (req, res) => {
       event.users.some((id) => id.toString() === req.user.id);
 
     if (userAuthorized) {
-      console.log("found event:", event);
       return res.status(200).json({ event: event });
     }
   } catch (err) {
@@ -127,7 +126,6 @@ router.delete("/:id", protect, async (req, res) => {
   const eventId = req.params.id;
   try {
     const event = await Event.findById(eventId);
-    console.log(event);
     if (req.user.id === event.owner.toString()) {
       await User.findByIdAndUpdate(req.user.id, {
         $pull: { events: eventId },
@@ -157,7 +155,6 @@ router.delete("/:id", protect, async (req, res) => {
       }
 
       await event.delete();
-      console.log("deleted event");
       return res.status(200).json({ message: "Successfully deleted event" });
     } else {
       return res.status(401).json({ message: "Unauthorized" });
