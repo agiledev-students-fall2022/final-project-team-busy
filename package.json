@@ -9,5 +9,8 @@
     "prebuild": "cd back-end && npm install",
     "postbuild": "cd front-end && npm install && npm run build",
     "start": "cd back-end && npm start"
+  },
+  "dependencies": {
+    "http-proxy-middleware": "^2.0.6"
   }
 }
