@@ -1,6 +1,8 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=8737523&assignment_repo_type=AssignmentRepo)
 # Busy?
 
+**Live app:** https://busy-8qzj4.ondigitalocean.app
+
 ## Project Description
 
 Busy? is a mobile app that allows users to create schedules and share their availability with friends and their community. With a simple but efficient system of coordination, busy people can finally find the time to connect with each other!
