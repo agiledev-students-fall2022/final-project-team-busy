@@ -27,7 +27,7 @@ const AccountSettings = ({ user, setDP, setBio }) => {
   };
 
   const getNewPass = (e) => {
-    setNewBio(e.target.value);
+    setNewPass(e.target.value);
   };
 
   const handleBioChange = () => {
@@ -73,7 +73,7 @@ const AccountSettings = ({ user, setDP, setBio }) => {
           variant="contained"
           onClick={handlePassword}
         >
-          Change Password {newPass}
+          Change Password
         </Button>
       </div>
       <div className="new-pass">

@@ -33,8 +33,8 @@ import eventService from "./services/eventsService";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [dp, setDP] = useState(user?.profilePic || ProfilePic);
-  const [bio, setBio] = useState(user?.bio || "");
+  const [dp, setDP] = useState(user?.profilePic || "");
+  const [bio, setBio] = useState(user?.bio || "Bio not set");
   const [friends, setFriends] = useState([]);
   const [groups, setGroups] = useState([]);
   const [events, setEvents] = useState([]);
@@ -94,7 +94,7 @@ function App() {
             <Route element={<ProtectedRoute user={user} setUser={setUser} />}>
               <Route
                 path="/profile"
-                element={<ProfilePage user={user} onLogout={handleLogout} />}
+                element={<ProfilePage user={user} onLogout={handleLogout} defaultBio={bio} defaultDP={dp} />}
               />
               <Route path="/add-external-calendar" element={<AddExtCal />} />
               <Route
