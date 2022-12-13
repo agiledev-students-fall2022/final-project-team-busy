@@ -8,7 +8,7 @@ import { IconButton } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import { Link } from "react-router-dom";
 
-const ProfilePage = ({ user, onLogout }) => {
+const ProfilePage = ({ user, onLogout, defaultBio, defaultDP }) => {
   return (
     <div className="profile-page">
       <div className="heading-and-home-button-header">
@@ -27,28 +27,22 @@ const ProfilePage = ({ user, onLogout }) => {
       <div className="profile-pic-container">
         <Avatar
           alt="Profile Picture"
-          //   src={user.profilePic}
+            src={user.profilePic ? user.profilePic : defaultDP}
           sx={{
-            width: 175,
-            height: 175,
+            width: 125,
+            height: 125,
             bgcolor: deepOrange[500],
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            fontSize: 50,
           }}
         >
-          <GroupsIcon
-            sx={{
-              width: 42.5,
-              height: 42.5,
-              position: "relative",
-              bottom: "1.5%",
-            }}
-          />
+          {user.username[0]}
         </Avatar>
       </div>
       <h4 className="bio-heading">Bio: </h4>
-      <section className="bio-text">{user.bio}</section>
+      <section className="bio-text">{user.bio ? user.bio : defaultBio}</section>
       <div className="external-buttons">
         <Button
           variant="contained"
