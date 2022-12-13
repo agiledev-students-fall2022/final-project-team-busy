@@ -5,10 +5,10 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import "./AddPersonalCalendar.css";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import eventsService from "../services/eventsService";
 
-const AddPersonalCalendar = (props) => {
+const AddPersonalCalendar = ({ handleAddEvent }) => {
   let currentDate = new Date().toLocaleString();
   const [startDate, setStartDate] = useState(currentDate);
   const [endDate, setEndDate] = useState(currentDate);
@@ -16,14 +16,20 @@ const AddPersonalCalendar = (props) => {
   const [description, setDescription] = useState("");
   const [nameChanges, setNameChanges] = useState(0);
 
+  const navigate = useNavigate();
   const handleSubmission = async () => {
-    const res = await eventsService.createEvent({
-      title: name,
-      desc: description,
-      startTime: startDate,
-      endTime: endDate,
-    });
-    console.log(res.data);
+    try {
+      const data = await eventsService.createEvent({
+        title: name,
+        desc: description,
+        startTime: startDate,
+        endTime: endDate,
+      });
+      handleAddEvent(data.event);
+      navigate(-1);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleNameChange = (e) => {

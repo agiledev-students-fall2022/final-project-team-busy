@@ -23,24 +23,32 @@ const eventsSchema = Joi.object({
   title: Joi.string().required(),
 });
 
-// Post request to add events to the page
-
-// router.get("/:event", protect, async (req, res) => {
-
-// })
-
 router.get("/:id", protect, async (req, res) => {
   const eventId = req.params.id;
-
   try {
-    const event = await Event.findById(eventId);
+    const event = await Event.findById(eventId)
+      .populate({ path: "groups", select: "id groupName members" })
+      .populate({ path: "owner", select: "id first last username" })
+      .populate({ path: "users", select: "id first last username" });
 
-    const userAuthorized =
-      event.owner.toString() === req.user.id ||
+    let userAuthorized =
+      event.owner.id.toString() === req.user.id ||
       event.users.some((id) => id.toString() === req.user.id);
+
+    const checkEventInUserGroups = () => {
+      return req.user.groups.some((group) => {
+        const groupEvents = group.events.map((event) => event.toString());
+        return groupEvents.includes(eventId);
+      });
+    };
+
+    userAuthorized = userAuthorized || checkEventInUserGroups();
 
     if (userAuthorized) {
       return res.status(200).json({ event: event });
+    } else {
+      console.log("User unauthorized");
+      return res.status(401).json({ message: "Unauthorized" });
     }
   } catch (err) {
     console.error(err);
@@ -83,12 +91,14 @@ router.post("/", protect, async (req, res) => {
           title: title,
         });
 
-        await User.findByIdAndUpdate(owner, { $push: { events: newEvent.id } });
+        await User.findByIdAndUpdate(owner, {
+          $addToSet: { events: newEvent.id },
+        });
 
         if (users.length > 0) {
           users.forEach(async (userId) => {
             await User.findByIdAndUpdate(userId, {
-              $push: { events: newEvent.id },
+              $addToSet: { events: newEvent.id },
             });
           });
         }
@@ -101,14 +111,14 @@ router.post("/", protect, async (req, res) => {
             if (currentGroup.members.length > 0) {
               currentGroup.members.forEach(async (memberId) => {
                 await User.findByIdAndUpdate(memberId, {
-                  $push: { events: newEvent.id },
+                  $addToSet: { events: newEvent.id },
                 });
               });
             }
           });
         }
 
-        return res.status(200).json({ message: "Successfully created event" });
+        return res.status(200).json({ event: newEvent });
       } catch (err) {
         console.log("error:", err);
         return res.status(500).send({ message: "Database error" });

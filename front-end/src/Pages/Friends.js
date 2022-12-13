@@ -2,7 +2,6 @@ import { Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import FriendCard from "../Components/FriendCard";
 import HomeButton from "../Components/HomeButton";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -40,10 +39,8 @@ function Friends() {
       >
         {friends.map((e, i) => {
           return (
-            <Grid item>
-              <Link to={`/user/${e.id}`}>
-                <FriendCard key={i} data={e} />
-              </Link>
+            <Grid item key={e.id}>
+              <FriendCard id={e.id} key={e.id} data={e} />
             </Grid>
           );
         })}

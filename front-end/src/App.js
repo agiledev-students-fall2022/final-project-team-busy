@@ -20,6 +20,7 @@ import Friends from "./Pages/Friends";
 import AddPersonalCalendar from "./Pages/AddPersonalCalendar";
 import ProfilePage from "./Pages/profile-page/ProfilePage";
 import Events from "./Pages/events/Events";
+import Event from "./Pages/events/Event";
 import Groups from "./Pages/Groups";
 import GroupProfile from "./Pages/GroupProfile";
 import User from "./Pages/User";
@@ -39,6 +40,15 @@ function App() {
   const [events, setEvents] = useState([]);
   const [groupEvents, setGroupEvents] = useState([]);
 
+  const filterGroupEvents = () => {
+    if (user.events) {
+      setGroupEvents(
+        user.events.filter((e) => {
+          return e.users.length > 0 || e.groups.length > 0;
+        })
+      );
+    }
+  };
   const handleLogin = (userData) => {
     setUser(userData);
   };
@@ -55,13 +65,8 @@ function App() {
       setFriends(user.friends);
       setGroups(user.groups);
       setEvents(user.events);
-      if (user.events) {
-        setGroupEvents(
-          user.events.filter((e) => {
-            return e.users.length > 0;
-          })
-        );
-      }
+
+      filterGroupEvents();
     }
   }, [user]);
 
@@ -72,6 +77,11 @@ function App() {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleAddEvent = (event) => {
+    events.push(event);
+    filterGroupEvents();
   };
   return (
     <div className="App">
@@ -114,14 +124,24 @@ function App() {
                 path="/events"
                 element={<Events groupEvents={groupEvents} />}
               />
+              <Route path="/events/:id" element={<Event />} />
+
               <Route
                 path="/create-events"
-                element={<CreateEvents friends={friends} groups={groups} />}
+                element={
+                  <CreateEvents
+                    friends={friends}
+                    groups={groups}
+                    handleAddEvent={handleAddEvent}
+                  />
+                }
               />
               <Route path="/groups" element={<Groups groups={groups} />} />
               <Route
                 path="/addpersonalcalendar"
-                element={<AddPersonalCalendar />}
+                element={
+                  <AddPersonalCalendar handleAddEvent={handleAddEvent} />
+                }
               />
 
               <Route path="/user/:id/calendar" element={<FriendCalendar />} />

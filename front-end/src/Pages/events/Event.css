@@ -1,0 +1,28 @@
+.event-btns {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.event-btns button {
+  width: 100%;
+}
+
+.event-group-card,
+.event-user-card {
+  width: 100% !important;
+}
+
+.event-list {
+  width: 100%;
+}
+
+.event-container {
+  padding: 2rem;
+}
+
+.event-text {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
