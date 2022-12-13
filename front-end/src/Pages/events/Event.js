@@ -65,15 +65,19 @@ const EventDetails = () => {
 
           <List className="event-list">
             {event.users.map((user) => (
-              <ListItem>
-                <FriendCard data={user} className="event-user-card" />
+              <ListItem key={user.id}>
+                <FriendCard
+                  id={user.id}
+                  data={user}
+                  className="event-user-card"
+                />
               </ListItem>
             ))}
           </List>
           <h3>Groups Added</h3>
           <List>
             {event.groups.map((group) => (
-              <ListItem>
+              <ListItem key={group.id}>
                 <GroupCard
                   className="event-group-card"
                   id={group.id}
