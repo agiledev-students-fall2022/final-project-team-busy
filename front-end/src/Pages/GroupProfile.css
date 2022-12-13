@@ -1,0 +1,68 @@
+.profile-pic-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1px 0px;
+}
+
+.group-handle{
+    margin: 0;
+}
+
+.group-handle h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    text-align: center;
+}
+
+.intro { 
+    padding: 10px;
+    text-align: center;
+}
+
+.friends {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 20px 0px;
+    flex-direction: column;
+    margin: 0;
+    font-size: 115%;
+}
+
+.friends ol {
+    margin-bottom: 0;
+}
+
+.friends h4 {
+    margin: 0 0 -18.5px 13px;
+    font-weight: 500;
+    font-size: larger;
+}
+
+.friends .others {
+    margin: 2.5px 0 0 40px;
+    font-size: inherit;
+}
+
+.groupc{
+    margin: 50px 15px 0 15px;
+}
+
+.group-button{
+    width:100%;
+}
+
+.home{
+    text-align: right;
+}
+
+.leave-group{
+    margin: 13.5px 15px 0 15px;
+}
+
+.leave-button{
+    width:100%;
+}

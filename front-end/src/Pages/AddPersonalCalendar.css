@@ -1,0 +1,11 @@
+.create-event-heading {
+    text-align: center;
+    margin: 0;
+}
+
+.create-personal-event {
+    display: flex;
+    flex-direction: column;
+    gap: 13.5px;
+    padding: 25px;
+}

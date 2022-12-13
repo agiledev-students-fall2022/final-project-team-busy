@@ -1,0 +1,32 @@
+.create-event-heading {
+    text-align: center;
+    margin: 0;
+}
+
+.create-events-page {
+    display: flex;
+    flex-direction: column;
+    gap: 13.5px;
+    padding: 25px;
+}
+
+p {
+    text-align: left;
+    margin-top: 1.5px;
+    margin-bottom: 0;
+    position: relative;
+    left: 5px;
+}
+
+.form-submit-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.form-submit-buttons .cancel-button, 
+.form-submit-buttons .create-event-button
+{
+    flex: 1;
+}

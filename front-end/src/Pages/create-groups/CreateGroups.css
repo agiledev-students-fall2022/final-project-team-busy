@@ -1,0 +1,31 @@
+.create-group-heading {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: -13.5px;
+}
+
+.create-groups-page {
+    display: flex;
+    flex-direction: column;
+    gap: 12.5px;
+    padding: 25px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 8.5px;
+}
+
+.form-submit-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+.form-submit-buttons .cancel-button, 
+.form-submit-buttons .create-group-button
+{
+    flex: 1;
+}
