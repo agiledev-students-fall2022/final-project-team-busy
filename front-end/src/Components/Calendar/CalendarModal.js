@@ -3,10 +3,12 @@ import { Card } from "@mui/material";
 import { Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { createPortal } from "react-dom";
-import eventService from "../../services/eventsService";
+import DeleteIcon from "@mui/icons-material/Delete";
+import InfoIcon from "@mui/icons-material/Info";
+import { Link } from "react-router-dom";
 
 const CalendarModal = ({ event, handleClose, handleDelete }) => {
-  const options = {
+  const dateOptions = {
     weekday: "short",
     year: "2-digit",
     month: "numeric",
@@ -39,21 +41,35 @@ const CalendarModal = ({ event, handleClose, handleDelete }) => {
         </p>
         <p>
           <strong>Start: </strong>
-          {event.start.toLocaleDateString("en-US", options)}
+          {event.start.toLocaleDateString("en-US", dateOptions)}
         </p>
         <p>
           <strong>End: </strong>
-          {event.end.toLocaleDateString("en-US", options)}
+          {event.end.toLocaleDateString("en-US", dateOptions)}
         </p>
 
-        {handleDelete && (<Button
-          onClick={onDelete}
+        <Button
+          component={Link}
+          to={`/events/${event.id}`}
           className="modal-button"
           variant="contained"
           sx={{ mt: 2 }}
         >
-          Delete Event
-        </Button>) }
+          <InfoIcon sx={{ mr: 1 }} />
+          Details
+        </Button>
+        {handleDelete && (
+          <Button
+            onClick={onDelete}
+            className="modal-button"
+            variant="contained"
+            sx={{ mt: 2 }}
+            color="error"
+          >
+            <DeleteIcon sx={{ mr: 1 }} />
+            Delete
+          </Button>
+        )}
       </Card>
     );
   };

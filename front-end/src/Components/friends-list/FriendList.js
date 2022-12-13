@@ -8,21 +8,6 @@ import Checkbox from "@mui/material/Checkbox";
 import Avatar from "@mui/material/Avatar";
 
 const FriendList = ({ friends, checked, handleToggle }) => {
-  // const [checked, setChecked] = useState([1]);
-
-  // const handleToggle = (value) => () => {
-  //     const currentIndex = checked.indexOf(value);
-  //     const newChecked = [...checked];
-
-  //     if (currentIndex === -1) {
-  //         newChecked.push(value);
-  //     } else {
-  //         newChecked.splice(currentIndex, 1);
-  //     }
-
-  //     setChecked(newChecked);
-  // };
-
   return (
     <List
       dense

@@ -2,6 +2,7 @@ import Calendar from "./Calendar/Calendar";
 
 const PersonalCalendar = ({ user, events, handleDelete }) => {
   if (!events) return;
+
   const personalEvents = events.map((e) => {
     return {
       id: e.id,

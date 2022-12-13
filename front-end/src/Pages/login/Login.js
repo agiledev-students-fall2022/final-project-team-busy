@@ -108,9 +108,9 @@ const Login = ({ onLogin }) => {
       >
         Log in
       </Button>
-      <Button className="form-button" variant="contained">
+      {/* <Button className="form-button" variant="contained">
         Continue with Google
-      </Button>
+      </Button> */}
       <p>
         Don't have an account? <Link to="/sign-up">Sign up</Link>{" "}
       </p>

@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import eventService from "../../services/eventsService";
 
-const CreateEvents = ({ friends, groups }) => {
+const CreateEvents = ({ friends, groups, handleAddEvent }) => {
   let currentDate = new Date().toLocaleString();
   const [startDate, setStartDate] = useState(currentDate);
   const [endDate, setEndDate] = useState(currentDate);
@@ -66,23 +66,11 @@ const CreateEvents = ({ friends, groups }) => {
   };
 
   const navigate = useNavigate();
-  function refreshPage() {
-    setTimeout(() => {
-      navigate("/events");
-      window.location.reload(false);
-    }, 500);
-    // console.log("page to reload");
-  }
 
   const handleSubmission = async (e) => {
     e.preventDefault();
-    setCreated(true);
-    setTimeout(() => {
-      setCreated(false);
-    }, 1500);
-    // Post request to create-events-page
 
-    const res = await eventService.createEvent({
+    const data = await eventService.createEvent({
       startTime: startDate,
       endTime: endDate,
       users: friendsAdded,
@@ -91,8 +79,8 @@ const CreateEvents = ({ friends, groups }) => {
       title: name,
     });
 
-    console.log(res.data);
-    refreshPage();
+    handleAddEvent(data.event);
+    navigate(-1);
   };
   const handleNameChange = (e) => {
     // console.log(e.target.value);

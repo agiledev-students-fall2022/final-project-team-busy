@@ -1,8 +1,8 @@
-.events-card-desc {
+.event-card-desc {
   margin: 0.8rem 0;
 }
 
-.events-card {
+.event-card {
   text-align: left;
   padding: 1rem 1.5rem;
   width: 90%;
@@ -11,8 +11,23 @@
   cursor: pointer;
 }
 
-.events-header {
+.event-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.event-card-title {
+  margin-bottom: 0.5rem;
+}
+
+.event-card-link {
+  text-decoration: none;
+}
+.event-card-link:hover {
+  text-decoration: none;
+}
+
+.event-card-time {
+  display: flex;
 }

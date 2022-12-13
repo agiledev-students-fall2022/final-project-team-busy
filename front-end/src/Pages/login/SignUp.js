@@ -174,9 +174,9 @@ const SignUp = ({ onLogin }) => {
       >
         Sign Up
       </Button>
-      <Button className="form-button" variant="contained">
+      {/* <Button className="form-button" variant="contained">
         Continue with Google
-      </Button>
+      </Button> */}
       <p>
         Already have an account? <Link to="/login">Login</Link>{" "}
       </p>
